@@ -1,12 +1,14 @@
-import React from 'react';
 import './App.css';
 
+import Router from './Component/RouteComponent/Router/Router';
+
 function App() {
-  return (
-    <div className="App">
-      <h1>예시</h1>
-    </div>
-  );
+
+    return (
+        <>
+            <Router />
+        </>
+    );
 }
 
 export default App;
