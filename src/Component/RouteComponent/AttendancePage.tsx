@@ -5,8 +5,8 @@ import { attendanceRateActions } from "../../store/attendanceRate"
 import { modalActions, ModalState } from "../../store/modal"
 import type { CalculateAttendaceRatePayload } from "../../store/attendanceRate"
 import OtherWrapper from "../Wrapper/OtherWrapper"
-import ModalButtonList from "../Modal/OpenModalButtonWrapper/ModalButtonList"
-import ModalButtonItem from "../Modal/OpenModalButtonWrapper/ModalButtonItem"
+import ModalButtonList from "../Modal/ActiveModalButtonWrapper/ModalButtonList"
+import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem"
 import AttendanceTable from "../Attendance/AttendanceTable/AttendanceTable"
 
 

@@ -2,6 +2,7 @@ import { useAppDispatch } from "../../../store/hooks/storeHooks"
 import { attendanceActions } from "../../../store/attendance"
 import type { Attendance, ChangeAttendancePayload } from "../../../store/attendance"
 import Td from "../../Table/Td"
+import styled from "styled-components"
 
 export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()
@@ -16,7 +17,33 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
 
     return (
         <Td key={attendance.userId}>
-            <input type="checkbox" onChange={AttendClickHandler} checked={attendance.isAttended} />
+            <Item type="checkbox" onChange={AttendClickHandler} id={attendance.id.toString()} checked={attendance.isAttended} />
+            <label htmlFor={attendance.id.toString()}></label>
         </Td>
     )
 }
+
+const Item = styled.input`
+    &{
+        display: none;
+      }
+    & + label{
+        display: inline-block;
+        width: 1rem;
+        height: 1rem;
+        border:3px solid #adacac;
+        position: relative;
+      }
+    &:checked + label:after{
+        content:'✔';
+        font-size: 1.2rem;
+        width: 1;
+        height: 1.2rem;
+        text-align: center;
+        position: absolute;
+        left: -1px;
+        top: -10px;
+        color: #4285f4;
+        z-index: 2;
+      }
+`

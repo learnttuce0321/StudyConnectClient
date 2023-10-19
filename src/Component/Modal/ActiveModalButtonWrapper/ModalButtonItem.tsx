@@ -5,6 +5,7 @@ const ModalButtonItem = styled.li`
     flex-grow: 1;
     text-align: center;
     line-height: 2.5rem;
+    cursor: pointer;
     
     &:active {
         background-color: #282828;

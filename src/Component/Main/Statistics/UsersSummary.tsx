@@ -71,5 +71,6 @@ const Card = styled.div<CardProps>`
     color: white;
     display: flex;
     align-items: center;
-    gap: 13px
+    gap: 13px;
+    cursor: pointer;
 `

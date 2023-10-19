@@ -2,8 +2,8 @@ import Modal from '../Modal/ModalWrapper/Modal'
 import { useAppDispatch, useAppSelector } from '../../store/hooks/storeHooks'
 import { ModalState, modalActions } from '../../store/modal'
 import OtherWrapper from '../Wrapper/OtherWrapper'
-import ModalButtonList from '../Modal/OpenModalButtonWrapper/ModalButtonList'
-import ModalButtonItem from '../Modal/OpenModalButtonWrapper/ModalButtonItem'
+import ModalButtonList from '../Modal/ActiveModalButtonWrapper/ModalButtonList'
+import ModalButtonItem from '../Modal/ActiveModalButtonWrapper/ModalButtonItem'
 import MessageTable from '../Message/MessageTable/MessageTable'
 
 export default function MessagePage() {
