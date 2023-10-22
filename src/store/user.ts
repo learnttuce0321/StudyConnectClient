@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
 type Sex = 'male' | 'female'
@@ -9,7 +9,6 @@ export interface User {
     sex: Sex;
     age: number;
     info: string;
-    submissionRate: number;
 }
 
 export interface InfoPaylaod {
@@ -31,7 +30,6 @@ const initialState: Array<User> = [
         sex: 'male',
         age: 22,
         info: '',
-        submissionRate: 100,
     },
     {
         id: 2,
@@ -40,7 +38,6 @@ const initialState: Array<User> = [
         sex: 'female',
         age: 20,
         info: '',
-        submissionRate: 100,
     },
     {
         id: 3,
@@ -49,7 +46,6 @@ const initialState: Array<User> = [
         sex: 'male',
         age: 25,
         info: '',
-        submissionRate: 100,
     },
     {
         id: 4,
@@ -58,17 +54,136 @@ const initialState: Array<User> = [
         sex: 'female',
         age: 30,
         info: '',
-        submissionRate: 90,
     },
     {
         id: 5,
         name: '홍지훈',    
-        phone: '010-7777-7777',
+        phone: '010-0101-0101',
         sex: 'male',
         age: 27,
         info: '',
-        submissionRate: 100,
-    }
+    },
+    {
+        id: 6,
+        name: 'aaa',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 7,
+        name: 'bbb',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 8,
+        name: 'ccc',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 9,
+        name: 'ddd',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 10,
+        name: 'eee',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 11,
+        name: 'fff',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 12,
+        name: 'ggg',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 13,
+        name: 'hhh',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 14,
+        name: 'iii',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 15,
+        name: 'jjj',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 16,
+        name: 'kkk',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 17,
+        name: 'lll',    
+        phone: '010-0101-0101',
+        sex: 'female',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 18,
+        name: 'mmm',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 19,
+        name: 'nnn',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+    {
+        id: 20,
+        name: 'ooo',    
+        phone: '010-0101-0101',
+        sex: 'male',
+        age: 27,
+        info: '',
+    },
+
 ]
 
 
@@ -93,7 +208,6 @@ const userSlice = createSlice({
                 age,
                 sex: sex as Sex, 
                 info: '',
-                submissionRate: 0
             }
 
             state.push(tempUser)

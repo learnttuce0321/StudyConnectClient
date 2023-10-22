@@ -22,7 +22,7 @@ export default function MessageTable() {
                 </TableHead>
                 <Talbebody>
                     {
-                        messageValue.map(message => <MessageTableItem message={message} key={message.id} />)
+                        messageValue.slice(0).reverse().map(message => <MessageTableItem message={message} key={message.id} />)
                     }
                 </Talbebody>
             </Table>

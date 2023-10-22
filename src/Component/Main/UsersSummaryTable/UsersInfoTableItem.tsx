@@ -11,6 +11,8 @@ export default function UsersInfoTableItem({ user }: { user: User }) {
 
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
     const userAttendanceRate = attendanceRateValue.find(userAttendance => userAttendance.userId === user.id)
+    const submitRateValue = useAppSelector(state => state.submitRate)
+    const usersubmitRate = submitRateValue.find(usersubmit => usersubmit.userId === user.id)
 
     const ClickWatchUserLogHandler = (user: User) => {
         const payload: setClickedUserPayload = { user }
@@ -22,7 +24,7 @@ export default function UsersInfoTableItem({ user }: { user: User }) {
         <tr onClick={() => { ClickWatchUserLogHandler(user) }}>
             <Td>{user.name}</Td>
             <Td>{userAttendanceRate!.rate}% </Td>
-            <Td>{user.submissionRate}%</Td>
+            <Td>{usersubmitRate!.rate}%</Td>
         </tr>
     )
 }

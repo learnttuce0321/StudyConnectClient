@@ -29,20 +29,19 @@ export default function Navigation() {
 
     const ClickToggleHandler = (e: any): void => {
         setToggle(prev => !prev)
-        console.log(e.target)
     }
 
 
     return (
         <nav>
             <HeaderBar>
-                <FontAwesomeIcon icon={faHouse} onClick={ClickHomeHandler} style={{ color: 'white' }} />
+                <FontAwesomeIcon icon={faHouse} onClick={ClickHomeHandler} style={{ color: 'white', cursor: 'pointer' }} />
                 <NavIconContainer>
                     {
                         !toggle ? (
-                            <FontAwesomeIcon icon={faBars} onClick={ClickToggleHandler} style={{ color: 'white' }} />
+                            <FontAwesomeIcon icon={faBars} onClick={ClickToggleHandler} style={{ color: 'white', cursor: 'pointer' }} />
                         ) : (
-                            <FontAwesomeIcon icon={faX} onClick={ClickToggleHandler} style={{ color: 'white' }} />
+                            <FontAwesomeIcon icon={faX} onClick={ClickToggleHandler} style={{ color: 'white', cursor: 'pointer' }} />
                         )
                     }
                 </NavIconContainer>

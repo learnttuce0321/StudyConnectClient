@@ -15,17 +15,17 @@ export default function UsersTable() {
     const userValue = useAppSelector(state => state.user)
 
     const UserClickHandler = (e: React.MouseEvent<HTMLElement>): void => {
-        const clickedUserId: number = parseInt(e.currentTarget.id)
+        const clickedUserId: number = Number(e.currentTarget.id)
         const payload: setClickedUserPayload = {
             user: userValue.find((user) => user.id === clickedUserId)
         }
         dispatch(clickedUserActions.setClickedUser(payload))
     }
 
-    const tableHeight: string = window.innerWidth >= 1180 ? "100%" : "20%"
+    // const tableHeight: string = window.innerWidth >= 1180 ? "100%" : "20%"
 
     return (
-        <TableWrapper height={tableHeight}>
+        <TableWrapper height={'100%'}>
             <Table>
                 <TableHead>
                     <Th>회원번호</Th>

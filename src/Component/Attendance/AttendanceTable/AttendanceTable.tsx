@@ -13,7 +13,7 @@ export default function AttendanceTable() {
     const scheduleValue = useAppSelector(state => state.schedule)
     const attendanceValue = useAppSelector(state => state.attendance)
 
-    const MatchedTableItem = (SscheduleId: string, AscheduleId: string, attendance: Attendance): (JSX.Element | null | undefined) => {
+    const MatchedTableItem = (SscheduleId: number, AscheduleId: number, attendance: Attendance): (JSX.Element | null | undefined) => {
         switch (SscheduleId === AscheduleId) {
             case true:
                 return <AttendanceTableItem attendance={attendance} key={attendance.id} />
@@ -37,13 +37,13 @@ export default function AttendanceTable() {
                 </TableHead>
                 <Talbebody>
                     {
-                        scheduleValue.map(schedule => {
+                        scheduleValue.slice(0).reverse().map(schedule => {
                             return (
-                                <tr key={schedule.scheduleId}>
+                                <tr key={schedule.id}>
                                     <Th>{DateFormater('yyyy년 MM월 DD일', schedule.date)}</Th>
                                     {
                                         attendanceValue.map(attendance =>
-                                            MatchedTableItem(schedule.scheduleId, attendance.scheduleId, attendance)
+                                            MatchedTableItem(schedule.id, attendance.scheduleId, attendance)
                                         )
                                     }
                                 </tr>

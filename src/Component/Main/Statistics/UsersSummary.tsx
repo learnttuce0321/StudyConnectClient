@@ -9,19 +9,20 @@ export default function UsersSummary() {
 
     const navigate = useNavigate()
     const userValue = useAppSelector(state => state.user)
-    const attendanceValue = useAppSelector(state => state.attendance)
+    const attendanceRateValue = useAppSelector(state => state.attendaceRate)
+    const submitRateValue = useAppSelector(state => state.submitRate)
 
     const totalAttendanceRate: string = useMemo(() => {
-        const userLength: number = attendanceValue.length
-        const totalAttendance: number = (attendanceValue.filter(attendance => attendance.isAttended)).length
-        return (totalAttendance * 100 / userLength).toFixed(1)
-    }, [attendanceValue])
-
-    const totalSubmissionRate: string = useMemo(() => {
         const userLength: number = userValue.length
-        const totalSubmission: number = userValue.reduce((accu, curr) => accu += curr.submissionRate, 0)
-        return (totalSubmission / userLength).toFixed(1)
-    }, [userValue])
+        const attendanceRateTotal: number = attendanceRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+        return (attendanceRateTotal / userLength).toFixed(1)
+    }, [attendanceRateValue, userValue])
+
+    const totalSubmitRate: string = useMemo(() => {
+        const userLength: number = userValue.length
+        const submitRateTotal: number = submitRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+        return (submitRateTotal / userLength).toFixed(1)
+    }, [submitRateValue, userValue])
 
     return (
         <CardContainer>
@@ -42,7 +43,7 @@ export default function UsersSummary() {
             <Card onClick={() => { navigate('/assignment') }} $gridarea="2 / 2 / 3 / 3" >
                 <FontAwesomeIcon icon={faBook} size="xl" />
                 <div>
-                    <p>{totalSubmissionRate}%</p>
+                    <p>{totalSubmitRate}%</p>
                     <h3>전체 과제 제출률</h3>
                 </div>
             </Card>

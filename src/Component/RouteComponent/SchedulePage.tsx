@@ -46,6 +46,7 @@ export default function AttendancePage() {
             <OtherWrapper>
                 <AttendanceTable />
             </OtherWrapper>
+
             {
                 modalValue.type !== ModalState.NONE && <Modal />
             }

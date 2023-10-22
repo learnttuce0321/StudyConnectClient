@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../../../store/hooks/storeHooks"
 import { attendanceActions } from "../../../store/attendance"
-import type { Attendance, ChangeAttendancePayload } from "../../../store/attendance"
+import type { Attendance, CheckAttendancePayload } from "../../../store/attendance"
 import Td from "../../Table/Td"
 import styled from "styled-components"
 
@@ -8,7 +8,7 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
     const dispatch = useAppDispatch()
 
     const AttendClickHandler = (): void => {
-        const payload: ChangeAttendancePayload = {
+        const payload: CheckAttendancePayload = {
             scheduleId: attendance.scheduleId,
             userId: attendance.userId
         }
@@ -18,7 +18,7 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
     return (
         <Td key={attendance.userId}>
             <Item type="checkbox" onChange={AttendClickHandler} id={attendance.id.toString()} checked={attendance.isAttended} />
-            <label htmlFor={attendance.id.toString()}></label>
+            <label htmlFor={attendance.id.toString()} />
         </Td>
     )
 }

@@ -13,6 +13,9 @@ import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import { _AddSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
+import { submitActions } from '../../../store/submit'
+import { v4 as uuidv4 } from 'uuid'
 
 
 export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
@@ -20,6 +23,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
     const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
+    const assignmentValue = useAppSelector(state => state.assignment)
     const userValue = useAppSelector(state => state.user)
 
     const nameRef = useRef<HTMLInputElement>(null)
@@ -32,26 +36,38 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
         const nameInput = nameRef.current
         const phoneInput = phoneRef.current
         const ageInput = ageRef.current
+        const id = uuidv4()
 
         const addUserPayload: AddUserPayload = {
+            id,
             name: nameInput!.value,
             phone: phoneInput!.value,
-            age: parseInt(ageInput!.value),
+            age: Number(ageInput!.value),
             sex: sexValue as string
         }
-
         dispatch(userActions.addUser(addUserPayload))
+
 
         const _addAttendancePayload: _AddAttendancePayload = {
             schedules: scheduleValue,
-            userId: userValue.length + 1
+            userId: id
         }
         dispatch(attendanceActions._AddAttendance(_addAttendancePayload))
 
         const _addAttendanceRatePayload: _AddAttendanceRatePayload = {
-            userId: userValue.length + 1
+            userId: id
         }
         dispatch(attendanceRateActions._AddAttendanceRate(_addAttendanceRatePayload))
+
+        const _addSubmitPayload = {
+            assignments: assignmentValue,
+            userId: id
+        }
+        dispatch(submitActions._AddSubmit(_addSubmitPayload))
+        const _addSubmitRatePayload: _AddSubmitRatePayload = {
+            userId: id
+        }
+        dispatch(submitRateActions._AddSubmitRate(_addSubmitRatePayload))
 
         nameInput!.value = ''
         phoneInput!.value = ''

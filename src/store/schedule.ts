@@ -1,44 +1,65 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 
-// todos: date 어떻게 해야 할까?
-// todos: time의 type 어떻게 해야 할까?
 export interface Schedule {
-    id: number;
-    scheduleId: string;
+    id: string;
+    name: string;
     date: string;
     location: string;
     time: string;
 }
 export interface AddSchedulePayload {
-    scheduleId: string;
+    id: string;
+    name: string;
     date: string;
     location: string;
     time: string;
 }
 export interface _DeleteSchedulePayload {
-    scheduleId: string;
+    id: string;
 }
+export interface ModifySchedulePayload {
+    id: string;
+    name: string;
+    date: string;
+    location: string;
+    time: string;
+}
+
 const initialState: Array<Schedule> = [
     {
-        id: 1,
-        scheduleId: '아니',
+        id: '1',
+        name: '일정 1',
         date: '2023 10 15',
-        location: '5',
+        location: '1',
         time: '00:00:00'
     },
     {
-        id: 2,
-        scheduleId: '이름',
+        id: '2',
+        name: '일정 2',
         date: '2023 10 16',
+        location: '2',
+        time: '00:00:00'
+    },
+    {
+        id: '3',
+        name: '일정 3',
+        date: '2023 10 17',
+        location: '3',
+        time: '00:00:00'
+    },
+    {
+        id: '4',
+        name: '일정 4',
+        date: '2023 10 18',
         location: '4',
         time: '00:00:00'
     },
     {
-        id: 3,
-        scheduleId: '별로다',
-        date: '2023 10 17',
-        location: '3',
+        id: '5',
+        name: '일정 5',
+        date: '2023 10 18',
+        location: '5',
         time: '00:00:00'
     },
 ]
@@ -48,10 +69,10 @@ const scheduleSlice = createSlice({
     initialState,
     reducers: {
         AddSchedule(state, action: PayloadAction<AddSchedulePayload>) {
-            const { scheduleId, date, location, time } = action.payload
+            const { id, name, date, location, time } = action.payload
             const nextSchedule: Schedule = {
-                id: state.length + 1,
-                scheduleId,
+                id,
+                name,
                 date,
                 location,
                 time
@@ -59,15 +80,16 @@ const scheduleSlice = createSlice({
             state.unshift(nextSchedule)
         },
         _DeleteSchedule(state, action: PayloadAction<_DeleteSchedulePayload>) {
-            const { scheduleId } = action.payload
+            const { id } = action.payload
 
-            const tempSchedules = state.filter(schedule => schedule.scheduleId !== scheduleId)
+            const tempSchedules = state.filter(schedule => schedule.id !== id)
             return tempSchedules
         },
-        _ModifySchedule(state, action: PayloadAction<AddSchedulePayload>) {
-            const { scheduleId, date, location, time } = action.payload
-            const matchedScheduleObj = state.find(schedule => schedule.scheduleId === scheduleId)
+        _ModifySchedule(state, action: PayloadAction<ModifySchedulePayload>) {
+            const { id, name, date, location, time } = action.payload
+            const matchedScheduleObj = state.find(schedule => schedule.id === id)
 
+            matchedScheduleObj!.name = name
             matchedScheduleObj!.date = date
             matchedScheduleObj!.time = time
             matchedScheduleObj!.location = location

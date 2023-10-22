@@ -8,6 +8,8 @@ import attendanceRateSlice from './attendanceRate'
 import clickedUserSlice from './clickedUser'
 import messageSlice from './message'
 import modalSlice from './modal'
+import submitSlice from './submit'
+import submitRateSlice from './submitRate'
 
 const store = configureStore({
     reducer: {
@@ -19,7 +21,9 @@ const store = configureStore({
         assignment: assignmentSlice,
         clickedUser: clickedUserSlice,
         message: messageSlice,
-        modal: modalSlice
+        modal: modalSlice,
+        submit: submitSlice,
+        submitRate: submitRateSlice
     }
 })
 

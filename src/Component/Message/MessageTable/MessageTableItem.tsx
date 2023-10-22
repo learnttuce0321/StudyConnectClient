@@ -13,7 +13,7 @@ export default function MessageTableItem({ message }: { message: Message }) {
             <Td>{message.id}</Td>
             <Td>{message.content.length > 3 ? message.content.slice(0, 3) + '...' : message.content}</Td>
             <Td>{matchedUser!.name}</Td>
-            <Td>{DateFormater(message.date)}</Td>
+            <Td>{DateFormater('yyyy년 MM월 DD일', message.date)}</Td>
             <Td>{message.time}</Td>
         </tr>
     )

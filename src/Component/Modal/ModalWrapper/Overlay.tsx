@@ -8,6 +8,7 @@ import type { ModalFunctionProps } from "./Modal"
 import styled from "styled-components"
 import UserAddModal from "../UserModal/UserAddModal"
 import UserFindModal from "../UserModal/UserFindModal"
+import AssignmentAddModal from "../AssignmentModal/AssignmentAddModal"
 
 export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const modalValue = useAppSelector(state => state.modal)
@@ -26,6 +27,8 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
                 return <UserAddModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.FILTER_USER:
                 return <UserFindModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.ADD_ASSIGNMNET:
+                return <AssignmentAddModal ClickQuitHandler={ClickQuitHandler} />
         }
     }
     return (

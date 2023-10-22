@@ -15,25 +15,25 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
     const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
 
-    const [selectedSchedule, setSelectedSchedule] = useState<string>('')
+    const [selectedScheduleId, setSelectedScheduleId] = useState<string>('')
     const ClickScheduleHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        setSelectedSchedule(e.target!.value)
+        setSelectedScheduleId(e.target!.value)
     }
 
     const ClickDeleteHandler = () => {
         if (window.confirm('정말 삭제하시겠습니까?')) {
 
             const _DeleteAttendancePayload: _DeleteAttendancePayload = {
-                scheduleId: selectedSchedule
+                scheduleId: selectedScheduleId
             }
             dispatch(attendanceActions._DeleteAttendance(_DeleteAttendancePayload))
 
             const _DeleteSchedulePayload: _DeleteSchedulePayload = {
-                scheduleId: selectedSchedule
+                id: selectedScheduleId
             }
             dispatch(scheduleActions._DeleteSchedule(_DeleteSchedulePayload))
 
-            setSelectedSchedule('')
+            setSelectedScheduleId('')
             ClickQuitHandler()
         }
     }
@@ -46,7 +46,7 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
                     {
                         scheduleValue.map(schedule => {
                             return (
-                                <option key={schedule.id} value={schedule.scheduleId}>{schedule.scheduleId}</option>
+                                <option key={schedule.id} value={schedule.id}>{schedule.name}</option>
                             )
                         })
                     }
@@ -56,7 +56,7 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
             <ModalButtonsContainer>
                 <ModalButton onClick={ClickQuitHandler}>닫기</ModalButton>
                 {
-                    selectedSchedule.trim().length ? <ModalButton onClick={ClickDeleteHandler}>삭제하기</ModalButton> : null
+                    selectedScheduleId.trim().length ? <ModalButton onClick={ClickDeleteHandler}>삭제하기</ModalButton> : null
                 }
             </ModalButtonsContainer>
         </>

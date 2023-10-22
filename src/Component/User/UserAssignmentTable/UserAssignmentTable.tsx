@@ -1,12 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import TableWrapper from "../../Table/TableWrapper";
-import Table from "../../Table/Table";
-import TableHead from "../../Table/TableHead";
-import Th from "../../Table/Th";
-import Talbebody from "../../Table/TableBody";
-import UserAttendanceTableItem from "./UserAttendanceTableItem";
+import Table from '../../Table/Table';
+import Th from '../../Table/Th';
+import TableHead from '../../Table/TableHead';
+import Talbebody from '../../Table/TableBody';
+import UserAssignmentTableItem from './UserAssignmentTableItem';
 
-export default function UserAttendnaceTable({ userAttendances }: { userAttendances: any }) {
+export default function UserAssignmentTable({ userSubmits }: { userSubmits: any }) {
     const [tableHeight, setTableHeight] = useState<string>(window.innerWidth >= 1180 ? '64%' : '52%')
 
     useEffect(() => {
@@ -20,13 +20,13 @@ export default function UserAttendnaceTable({ userAttendances }: { userAttendanc
         <TableWrapper height={tableHeight}>
             <Table>
                 <TableHead>
-                    <Th>이름</Th>
-                    <Th>날짜</Th>
-                    <Th>출석</Th>
+                    <Th>과제이름</Th>
+                    <Th>기한</Th>
+                    <Th>제출</Th>
                 </TableHead>
                 <Talbebody>
                     {
-                        userAttendances.slice(0).reverse().map((userAttendance: any) => <UserAttendanceTableItem userAttendance={userAttendance} key={userAttendance.id} />)
+                        userSubmits.slice(0).reverse().map((userSubmit: any) => <UserAssignmentTableItem userSubmit={userSubmit} key={userSubmit.id} />)
                     }
                 </Talbebody>
             </Table>

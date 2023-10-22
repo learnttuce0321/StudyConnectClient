@@ -1,4 +1,4 @@
-import { useAppDispatch } from "../../../store/hooks/storeHooks"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
 import { userActions } from "../../../store/user"
 import { clickedUserActions } from "../../../store/clickedUser"
 import type { User } from "../../../store/user"
@@ -6,8 +6,10 @@ import type { InfoPaylaod } from "../../../store/user"
 import type { setClickedUserPayload } from "../../../store/clickedUser"
 import styled from "styled-components"
 
-export default function UserInfo({ clickedUserValue }: { clickedUserValue: User }) {
+export default function UserInfo() {
     const dispatch = useAppDispatch()
+
+    const clickedUserValue = useAppSelector(state => state.clickedUser)
 
     const ChangeUserInfoHandler = (e: React.ChangeEvent<HTMLTextAreaElement>): void => {
 

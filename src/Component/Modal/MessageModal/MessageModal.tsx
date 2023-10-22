@@ -27,13 +27,15 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const [date, time] = GetCurrentDate()
 
-        const messagePayload: MessagePayload = {
-            content: contentInput!.value,
-            userId: parseInt(userIdInput!.value),
-            date,
-            time
+        if (userIdInput!.value !== 'none') {
+            const messagePayload: MessagePayload = {
+                content: contentInput!.value,
+                userId: userIdInput!.value,
+                date,
+                time
+            }
+            dispatch(messageActions.AddMessage(messagePayload))
         }
-        dispatch(messageActions.AddMessage(messagePayload))
 
         ClickQuitHandler()
     }
@@ -44,7 +46,7 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
                 <ModalTextInputItem name={'메세지'} ref={contentRef} />
                 <ModalTextInputItem name={'등등'} ref={tempRef} />
                 <ModalSelectItem name={'수신'} ref={userIdRef}>
-                    <option>선택</option>
+                    <option value="none">선택</option>
                     {
                         userValue.map(user => {
                             return (

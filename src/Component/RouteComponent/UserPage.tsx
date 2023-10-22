@@ -5,15 +5,13 @@ import { clickedUserActions } from "../../store/clickedUser"
 import { ModalState, modalActions } from "../../store/modal"
 import { filteredUserActions } from "../../store/filteredUser"
 import OtherWrapper from "../Wrapper/OtherWrapper"
-import SummaryUserContent from "../User/Summary/SummaryUserContent"
-import UserInfo from "../User/Summary/UserInfo"
+import UserSummaryContent from "../User/Summary/UserSummaryContent"
 import UsersTable from "../User/UsersTable/UsersTable"
 import ModalButtonList from "../Modal/ActiveModalButtonWrapper/ModalButtonList"
 import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem"
 import SubNavigation from "../navigation/SubNavigation/SubNavigation"
 import SubNavigationItem from "../navigation/SubNavigation/SubNavigationItem"
 import SubNav from "../Else/SubNav"
-import Section from "../Else/Section"
 import styled from "styled-components"
 
 export enum ShowLogStatus {
@@ -51,56 +49,56 @@ export default function UserPage() {
             </SubNav>
 
             <OtherWrapper>
-
                 <Container>
                     <ContainerLeft>
                         <UsersTable />
                     </ContainerLeft>
+
                     <ContainerRight>
-                        <Section>
-                            <SubNavigation>
-                                <SubNavigationItem onClick={() => { setshowLog(ShowLogStatus.ATTENDANCE) }} className={showLog === ShowLogStatus.ATTENDANCE ? 'clicked' : ''}>출석</SubNavigationItem>
-                                <SubNavigationItem onClick={() => { setshowLog(ShowLogStatus.ASSIGNMENT) }} className={showLog === ShowLogStatus.ASSIGNMENT ? 'clicked' : ''}>과제</SubNavigationItem>
-                            </SubNavigation>
-                            {
-                                Object.keys(clickedUserValue).length !== 0 ? (
-                                    <div>
-                                        <UserInfo clickedUserValue={clickedUserValue} />
-                                        <hr />
-                                        <SummaryUserContent userId={clickedUserValue.id} showLog={showLog} />
-                                    </div>
-                                ) : (
-                                    <div>
-                                        <h1>회원을 클릭해 주세요</h1>
-                                    </div>
-                                )
-                            }
-                            {
-                                modalValue.type !== ModalState.NONE && <Modal />
-                            }
-                        </Section>
+
+                        <SubNavigation>
+                            <SubNavigationItem onClick={() => { setshowLog(ShowLogStatus.ATTENDANCE) }} className={showLog === ShowLogStatus.ATTENDANCE ? 'clicked' : ''}>출석</SubNavigationItem>
+                            <SubNavigationItem onClick={() => { setshowLog(ShowLogStatus.ASSIGNMENT) }} className={showLog === ShowLogStatus.ASSIGNMENT ? 'clicked' : ''}>과제</SubNavigationItem>
+                        </SubNavigation>
+
+                        {
+                            Object.keys(clickedUserValue).length !== 0 ? (
+                                <UserSummaryContent showLog={showLog} />
+                            ) : (
+                                <h1>회원을 클릭해 주세요</h1>
+                            )
+                        }
+
                     </ContainerRight>
                 </Container>
             </OtherWrapper>
+
+            {
+                modalValue.type !== ModalState.NONE && <Modal />
+            }
         </>
     )
 }
 
 const Container = styled.div`
+    height: 100%;
     @media screen and (min-width: 1180px) {
         display: flex;
-        justify-content: space-around;
-        height: 100%;
+        justify-content: space-around;   
     }
 `
 const ContainerLeft = styled.div`
-        @media screen and (min-width: 1180px) {
+    height: 20%;
+    @media screen and (min-width: 1180px) {
+        height: 100%;
         width: 25vw;
         padding-top: 1rem;
     }
 `
 const ContainerRight = styled.div`
-        @media screen and (min-width: 1180px) {
+    height: 80%;
+    @media screen and (min-width: 1180px) {
+        height: 100%;
         width: 65vw;
     }
 `
