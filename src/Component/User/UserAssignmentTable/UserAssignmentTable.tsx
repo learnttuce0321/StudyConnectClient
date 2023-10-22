@@ -26,7 +26,7 @@ export default function UserAssignmentTable({ userSubmits }: { userSubmits: any 
                 </TableHead>
                 <Talbebody>
                     {
-                        userSubmits.slice(0).reverse().map((userSubmit: any) => <UserAssignmentTableItem userSubmit={userSubmit} key={userSubmit.id} />)
+                        userSubmits.slice(0).reverse().map((userSubmit: any) => <UserAssignmentTableItem userSubmit={userSubmit} key={userSubmit.assignmentId + userSubmit.userId} />)
                     }
                 </Talbebody>
             </Table>

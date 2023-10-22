@@ -15,7 +15,7 @@ export default function UsersTable() {
     const userValue = useAppSelector(state => state.user)
 
     const UserClickHandler = (e: React.MouseEvent<HTMLElement>): void => {
-        const clickedUserId: number = Number(e.currentTarget.id)
+        const clickedUserId: string = e.currentTarget.id
         const payload: setClickedUserPayload = {
             user: userValue.find((user) => user.id === clickedUserId)
         }
@@ -39,7 +39,7 @@ export default function UsersTable() {
                                 filteredUser.length ? (
                                     <Talbebody>
                                         {
-                                            filteredUser!.map((user) => <UserTableItem UserClickHandler={UserClickHandler} user={user} key={user.id} />)
+                                            filteredUser!.map((user, index) => <UserTableItem UserClickHandler={UserClickHandler} user={user} index={index} key={user.id} />)
                                         }
                                     </Talbebody>
                                 ) : (
@@ -57,7 +57,7 @@ export default function UsersTable() {
                     ) : (
                         <Talbebody>
                             {
-                                userValue.map((user) => <UserTableItem UserClickHandler={UserClickHandler} user={user} key={user.id} />)
+                                userValue.map((user, index) => <UserTableItem UserClickHandler={UserClickHandler} user={user} index={index} key={user.id} />)
                             }
                         </Talbebody>
                     )

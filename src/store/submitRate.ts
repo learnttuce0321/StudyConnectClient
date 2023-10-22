@@ -3,7 +3,7 @@ import { User } from "./user";
 import { Submit } from "./submit";
 
 export interface SubmitRate {
-    userId: number;
+    userId: string;
     rate: string;
 }
 export interface CalculateSubmitRatePayload {
@@ -11,87 +11,87 @@ export interface CalculateSubmitRatePayload {
     submitValue: Array<Submit>
 }
 export interface _AddSubmitRatePayload {
-    userId: number;
+    userId: string;
 }
 const initialState: Array<SubmitRate> = [
-        {
-        userId: 1,
+    {
+        userId: '1',
         rate: '0.0'
     },
     {
-        userId: 2,
+        userId: '2',
         rate: '0.0'
     },
     {
-        userId: 3,
+        userId: '3',
         rate: '0.0'
     },
     {
-        userId: 4,
+        userId: '4',
         rate: '0.0'
     },
     {
-        userId: 5,
+        userId: '5',
         rate: '0.0'
     },
     {
-        userId: 6,
+        userId: '6',
         rate: '0.0'
     },
     {
-        userId: 7,
+        userId: '7',
         rate: '0.0'
     },
     {
-        userId: 8,
+        userId: '8',
         rate: '0.0'
     },
     {
-        userId: 9,
+        userId: '9',
         rate: '0.0'
     },
     {
-        userId: 10,
+        userId: '10',
         rate: '0.0'
     },
     {
-        userId: 11,
+        userId: '11',
         rate: '0.0'
     },
     {
-        userId: 12,
+        userId: '12',
         rate: '0.0'
     },
     {
-        userId: 13,
+        userId: '13',
         rate: '0.0'
     },
     {
-        userId: 14,
+        userId: '14',
         rate: '0.0'
     },
     {
-        userId: 15,
+        userId: '15',
         rate: '0.0'
     },
     {
-        userId: 16,
+        userId: '16',
         rate: '0.0'
     },
     {
-        userId: 17,
+        userId: '17',
         rate: '0.0'
     },
     {
-        userId: 18,
+        userId: '18',
         rate: '0.0'
     },
     {
-        userId: 19,
+        userId: '19',
         rate: '0.0'
     },
     {
-        userId: 20,
+        userId: '20',
         rate: '0.0'
     }
 ]

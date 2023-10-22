@@ -15,9 +15,9 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
         dispatch(submitActions.CheckSubmit(payLoad))
     }
     return (
-        <Td key={submit.id}>
-            <Item type="checkbox" onChange={ClickAssignmentCheckHandler} id={submit.id.toString()} checked={submit.isSubmitted} />
-            <label htmlFor={submit.id.toString()} />
+        <Td>
+            <Item type="checkbox" onChange={ClickAssignmentCheckHandler} id={submit.assignmentId + submit.userId} checked={submit.isSubmitted} />
+            <label htmlFor={submit.assignmentId + submit.userId} />
         </Td>
     )
 }

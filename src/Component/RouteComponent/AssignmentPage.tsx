@@ -34,12 +34,18 @@ export default function AssignmentPage() {
     const ClickAddAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ASSIGNMNET }))
     }
+    const ClickDeleteAssignmentHandler = (): void => {
+        dispatch(modalActions.setModalState({ type: ModalState.DELETE_ASSIGNMNET }))
+    }
+    const ClickModifyAssignmentHandler = (): void => {
+        dispatch(modalActions.setModalState({ type: ModalState.MODIFY_ASSIGNMENT }))
+    }
     return (
         <>
             <ModalButtonList>
                 <ModalButtonItem onClick={ClickAddAssignmentHandler}>추가하기</ModalButtonItem>
-                <ModalButtonItem onClick={() => { }}>삭제하기</ModalButtonItem>
-                <ModalButtonItem onClick={() => { }}>수정하기</ModalButtonItem>
+                <ModalButtonItem onClick={ClickDeleteAssignmentHandler}>삭제하기</ModalButtonItem>
+                <ModalButtonItem onClick={ClickModifyAssignmentHandler}>수정하기</ModalButtonItem>
             </ModalButtonList>
 
             <OtherWrapper>

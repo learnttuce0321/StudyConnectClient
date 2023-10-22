@@ -4,13 +4,13 @@ import { DateFormater } from "../../../utils/utils";
 import { User } from "../../../store/user";
 import type { Message } from "../../../store/message";
 
-export default function MessageTableItem({ message }: { message: Message }) {
+export default function MessageTableItem({ message, index, length }: { message: Message, index: number, length: number }) {
     const userValue = useAppSelector(state => state.user)
     const matchedUser: (User | undefined) = userValue.find(user => user.id === message.userId)
 
     return (
         <tr>
-            <Td>{message.id}</Td>
+            <Td>{length - index}</Td>
             <Td>{message.content.length > 3 ? message.content.slice(0, 3) + '...' : message.content}</Td>
             <Td>{matchedUser!.name}</Td>
             <Td>{DateFormater('yyyy년 MM월 DD일', message.date)}</Td>

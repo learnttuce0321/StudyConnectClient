@@ -77,7 +77,7 @@ const scheduleSlice = createSlice({
                 location,
                 time
             }
-            state.unshift(nextSchedule)
+            state.push(nextSchedule)
         },
         _DeleteSchedule(state, action: PayloadAction<_DeleteSchedulePayload>) {
             const { id } = action.payload

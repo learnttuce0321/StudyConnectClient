@@ -7,12 +7,12 @@ import Talbebody from "../../Table/TableBody";
 import UserAttendanceTableItem from "./UserAttendanceTableItem";
 
 export default function UserAttendnaceTable({ userAttendances }: { userAttendances: any }) {
-    const [tableHeight, setTableHeight] = useState<string>(window.innerWidth >= 1180 ? '64%' : '52%')
+    const [tableHeight, setTableHeight] = useState<string>(window.innerWidth >= 1180 ? '58%' : '52%')
 
     useEffect(() => {
-        window.addEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '64%' : '52%') })
+        window.addEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '58%' : '52%') })
         return () => {
-            window.removeEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '64%' : '52%') })
+            window.removeEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '58%' : '52%') })
         }
     }, [])
 
@@ -26,7 +26,7 @@ export default function UserAttendnaceTable({ userAttendances }: { userAttendanc
                 </TableHead>
                 <Talbebody>
                     {
-                        userAttendances.slice(0).reverse().map((userAttendance: any) => <UserAttendanceTableItem userAttendance={userAttendance} key={userAttendance.id} />)
+                        userAttendances.slice(0).reverse().map((userAttendance: any) => <UserAttendanceTableItem userAttendance={userAttendance} key={userAttendance.scheduleId + userAttendances.userId} />)
                     }
                 </Talbebody>
             </Table>

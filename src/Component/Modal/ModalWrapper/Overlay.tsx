@@ -9,6 +9,8 @@ import styled from "styled-components"
 import UserAddModal from "../UserModal/UserAddModal"
 import UserFindModal from "../UserModal/UserFindModal"
 import AssignmentAddModal from "../AssignmentModal/AssignmentAddModal"
+import AssignmentDeleteModal from "../AssignmentModal/AssignmentDeleteModal"
+import AssignmentModifyModal from "../AssignmentModal/AssignmentModifyModal"
 
 export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const modalValue = useAppSelector(state => state.modal)
@@ -29,6 +31,10 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
                 return <UserFindModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.ADD_ASSIGNMNET:
                 return <AssignmentAddModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.DELETE_ASSIGNMNET:
+                return <AssignmentDeleteModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.MODIFY_ASSIGNMENT:
+                return <AssignmentModifyModal ClickQuitHandler={ClickQuitHandler} />
         }
     }
     return (

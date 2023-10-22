@@ -13,10 +13,10 @@ export default function AttendanceTable() {
     const scheduleValue = useAppSelector(state => state.schedule)
     const attendanceValue = useAppSelector(state => state.attendance)
 
-    const MatchedTableItem = (SscheduleId: number, AscheduleId: number, attendance: Attendance): (JSX.Element | null | undefined) => {
+    const MatchedTableItem = (SscheduleId: string, AscheduleId: string, attendance: Attendance): (JSX.Element | null | undefined) => {
         switch (SscheduleId === AscheduleId) {
             case true:
-                return <AttendanceTableItem attendance={attendance} key={attendance.id} />
+                return <AttendanceTableItem attendance={attendance} key={attendance.scheduleId + attendance.userId} />
             case false:
                 return null
         }

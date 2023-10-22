@@ -23,8 +23,8 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
     const timeRef = useRef<HTMLInputElement>(null)
 
     const ClickScheduleHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
-        const id = Number(e.target.value)
-        if (id !== -1) {
+        const id = e.target.value
+        if (id !== 'none') {
             const selectedScheduleObj = scheduleValue.find(schedule => schedule.id === id)
             setSelectedSchedule(selectedScheduleObj)
         }
@@ -56,7 +56,7 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
             <ModalContentContainer>
                 <ModalTitle>수정</ModalTitle>
                 <ModalSelectItem name={"일정"} onChange={ClickScheduleHandler}>
-                    <option value={-1}>선택</option>
+                    <option value={'none'}>선택</option>
                     {
                         scheduleValue.map(schedule => {
                             return (

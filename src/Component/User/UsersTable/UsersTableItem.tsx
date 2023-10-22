@@ -4,7 +4,7 @@ import { User } from "../../../store/user"
 import styled from "styled-components"
 import Td from '../../Table/Td'
 
-export default function UserTableItem({ UserClickHandler, user }: { UserClickHandler: any, user: User }) {
+export default function UserTableItem({ UserClickHandler, user, index }: { UserClickHandler: any, user: User, index: number }) {
     const clickedUserValue = useAppSelector(state => state.clickedUser)
 
     const clickedStyle = useMemo(() => {
@@ -12,8 +12,8 @@ export default function UserTableItem({ UserClickHandler, user }: { UserClickHan
     }, [clickedUserValue, user])
 
     return (
-        <tr key={user.id} id={user.id.toString()} onClick={(e) => { UserClickHandler(e) }}>
-            <Td style={clickedStyle}>{user.id}</Td>
+        <tr key={user.id} id={user.id} onClick={(e) => { UserClickHandler(e) }}>
+            <Td style={clickedStyle}>{index + 1}</Td>
             <Td style={clickedStyle}>{user.name} <SexSpan>{user.sex === 'male' ? '남' : '여'}</SexSpan></Td>
             <Td style={clickedStyle}>{user.phone}</Td>
         </tr>

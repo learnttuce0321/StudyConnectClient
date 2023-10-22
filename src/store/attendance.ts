@@ -4,7 +4,7 @@ import type { User } from "./user";
 import type { Schedule } from "./schedule";
 
 export interface Attendance {
-    id: string;
+    // id: string;
     scheduleId: string;
     userId: string;
     isAttended: boolean;
@@ -28,601 +28,601 @@ export interface _DeleteAttendancePayload {
 
 const initialState: Array<Attendance> = [
     {   
-        id: '1',
+        // id: '1',
         scheduleId: '1',
         userId: '1',
         isAttended: true
     },
     {
-        id: '2',
+        // id: '2',
         scheduleId: '1',
         userId: '2',
         isAttended: true
     },
     {
-        id: '3',
+        // id: '3',
         scheduleId: '1',
         userId: '3',
         isAttended: true
     },
     {
-        id: '4',
+        // id: '4',
         scheduleId: '1',
         userId: '4',
         isAttended: true
     },
     {
-        id: '5',
+        // id: '5',
         scheduleId: '1',
         userId: '5',
         isAttended: true
     },
     {
-        id: '6',
+        // id: '6',
         scheduleId: '1',
         userId: '6',
         isAttended: true
     },
     {
-        id: '7',
+        // id: '7',
         scheduleId: '1',
         userId: '7',
         isAttended: true
     },
     {
-        id: '8',
+        // id: '8',
         scheduleId: '1',
         userId: '8',
         isAttended: true
     },
     {
-        id: '9',
+        // id: '9',
         scheduleId: '1',
         userId: '9',
         isAttended: true
     },
     {
-        id: '10',
+        // id: '10',
         scheduleId: '1',
         userId: '10',
         isAttended: true
     },
     {
-        id: '11',
+        // id: '11',
         scheduleId: '1',
         userId: '11',
         isAttended: true
     },
     {
-        id: '12',
+        // id: '12',
         scheduleId: '1',
         userId: '12',
         isAttended: true
     },
     {
-        id: '13',
+        // id: '13',
         scheduleId: '1',
         userId: '13',
         isAttended: true
     },
     {
-        id: '14',
+        // id: '14',
         scheduleId: '1',
         userId: '14',
         isAttended: true
     },
     {
-        id: '15',
+        // id: '15',
         scheduleId: '1',
         userId: '15',
         isAttended: true
     },
     {
-        id: '16',
+        // id: '16',
         scheduleId: '1',
         userId: '16',
         isAttended: true
     },
     {
-        id: '17',
+        // id: '17',
         scheduleId: '1',
         userId: '17',
         isAttended: true
     },
     {
-        id: '18',
+        // id: '18',
         scheduleId: '1',
         userId: '18',
         isAttended: true
     },
     {
-        id: '19',
+        // id: '19',
         scheduleId: '1',
         userId: '19',
         isAttended: true
     },
     {
-        id: '20',
+        // id: '20',
         scheduleId: '1',
         userId: '20',
         isAttended: true
     },
     {
-        id: '21',
+        // id: '21',
         scheduleId: '2',
         userId: '1',
         isAttended: true
     },
     {
-        id: '22',
+        // id: '22',
         scheduleId: '2',
         userId: '2',
         isAttended: true
     },
     {
-        id: '23',
+        // id: '23',
         scheduleId: '2',
         userId: '3',
         isAttended: true
     },
     {
-        id: '24',
+        // id: '24',
         scheduleId: '2',
         userId: '4',
         isAttended: true
     },
     {
-        id: '25',
+        // id: '25',
         scheduleId: '2',
         userId: '5',
         isAttended: true
     },
     {
-        id: '26',
+        // id: '26',
         scheduleId: '2',
         userId: '6',
         isAttended: true
     },
     {
-        id: '27',
+        // id: '27',
         scheduleId: '2',
         userId: '7',
         isAttended: true
     },
     {
-        id: '28',
+        // id: '28',
         scheduleId: '2',
         userId: '8',
         isAttended: true
     },
     {
-        id: '29',
+        // id: '29',
         scheduleId: '2',
         userId: '9',
         isAttended: true
     },
     {
-        id: '30',
+        // id: '30',
         scheduleId: '2',
         userId: '10',
         isAttended: true
     },
     {
-        id: '31',
+        // id: '31',
         scheduleId: '2',
         userId: '11',
         isAttended: true
     },
     {
-        id: '32',
+        // id: '32',
         scheduleId: '2',
         userId: '12',
         isAttended: true
     },
     {
-        id: '33',
+        // id: '33',
         scheduleId: '2',
         userId: '13',
         isAttended: true
     },
     {
-        id: '34',
+        // id: '34',
         scheduleId: '2',
         userId: '14',
         isAttended: true
     },
     {
-        id: '35',
+        // id: '35',
         scheduleId: '2',
         userId: '15',
         isAttended: true
     },
     {
-        id: '36',
+        // id: '36',
         scheduleId: '2',
         userId: '16',
         isAttended: true
     },
     {
-        id: '37',
+        // id: '37',
         scheduleId: '2',
         userId: '17',
         isAttended: true
     },
     {
-        id: '38',
+        // id: '38',
         scheduleId: '2',
         userId: '18',
         isAttended: true
     },
     {
-        id: '39',
+        // id: '39',
         scheduleId: '2',
         userId: '19',
         isAttended: true
     },
     {
-        id: '40',
+        // id: '40',
         scheduleId: '2',
         userId: '20',
         isAttended: true
     },
     {
-        id: '41',
+        // id: '41',
         scheduleId: '3',
         userId: '1',
         isAttended: true
     },
     {
-        id: '42',
+        // id: '42',
         scheduleId: '3',
         userId: '2',
         isAttended: true
     },
     {
-        id: '43',
+        // id: '43',
         scheduleId: '3',
         userId: '3',
         isAttended: true
     },
     {
-        id: '44',
+        // id: '44',
         scheduleId: '3',
         userId: '4',
         isAttended: true
     },
     {
-        id: '45',
+        // id: '45',
         scheduleId: '3',
         userId: '5',
         isAttended: true
     },
     {
-        id: '46',
+        // id: '46',
         scheduleId: '3',
         userId: '6',
         isAttended: true
     },
     {
-        id: '47',
+        // id: '47',
         scheduleId: '3',
         userId: '7',
         isAttended: true
     },
     {
-        id: '48',
+        // id: '48',
         scheduleId: '3',
         userId: '8',
         isAttended: true
     },
     {
-        id: '49',
+        // id: '49',
         scheduleId: '3',
         userId: '9',
         isAttended: true
     },
     {
-        id: '50',
+        // id: '50',
         scheduleId: '3',
         userId: '10',
         isAttended: true
     },
     {
-        id: '51',
+        // id: '51',
         scheduleId: '3',
         userId: '11',
         isAttended: true
     },
     {
-        id: '52',
+        // id: '52',
         scheduleId: '3',
         userId: '12',
         isAttended: true
     },
     {
-        id: '53',
+        // id: '53',
         scheduleId: '3',
         userId: '13',
         isAttended: true
     },
     {
-        id: '54',
+        // id: '54',
         scheduleId: '3',
         userId: '14',
         isAttended: false
     },
     {
-        id: '55',
+        // id: '55',
         scheduleId: '3',
         userId: '15',
         isAttended: false
     },
     {
-        id: '56',
+        // id: '56',
         scheduleId: '3',
         userId: '16',
         isAttended: false
     },
     {
-        id: '57',
+        // id: '57',
         scheduleId: '3',
         userId: '17',
         isAttended: false
     },
     {
-        id: '58',
+        // id: '58',
         scheduleId: '3',
         userId: '18',
         isAttended: false
     },
     {
-        id: '59',
+        // id: '59',
         scheduleId: '3',
         userId: '19',
         isAttended: false
     },
     {
-        id: '60',
+        // id: '60',
         scheduleId: '3',
         userId: '20',
         isAttended: false
     },
     {
-        id: '61',
+        // id: '61',
         scheduleId: '4',
         userId: '1',
         isAttended: false
     },
     {
-        id: '62',
+        // id: '62',
         scheduleId: '4',
         userId: '2',
         isAttended: false
     },
     {
-        id: '63',
+        // id: '63',
         scheduleId: '4',
         userId: '3',
         isAttended: false
     },
     {
-        id: '64',
+        // id: '64',
         scheduleId: '4',
         userId: '4',
         isAttended: false
     },
     {
-        id: '65',
+        // id: '65',
         scheduleId: '4',
         userId: '5',
         isAttended: false
     },
     {
-        id: '66',
+        // id: '66',
         scheduleId: '4',
         userId: '6',
         isAttended: false
     },
     {
-        id: '67',
+        // id: '67',
         scheduleId: '4',
         userId: '7',
         isAttended: false
     },
     {
-        id: '68',
+        // id: '68',
         scheduleId: '4',
         userId: '8',
         isAttended: false
     },
     {
-        id: '69',
+        // id: '69',
         scheduleId: '4',
         userId: '9',
         isAttended: false
     },
     {
-        id: '70',
+        // id: '70',
         scheduleId: '4',
         userId: '10',
         isAttended: false
     },
     {
-        id: '71',
+        // id: '71',
         scheduleId: '4',
         userId: '11',
         isAttended: false
     },
     {
-        id: '72',
+        // id: '72',
         scheduleId: '4',
         userId: '12',
         isAttended: false
     },
     {
-        id: '73',
+        // id: '73',
         scheduleId: '4',
         userId: '13',
         isAttended: false
     },
     {
-        id: '74',
+        // id: '74',
         scheduleId: '4',
         userId: '14',
         isAttended: false
     },
     {
-        id: '75',
+        // id: '75',
         scheduleId: '4',
         userId: '15',
         isAttended: false
     },
     {
-        id: '76',
+        // id: '76',
         scheduleId: '4',
         userId: '16',
         isAttended: false
     },
     {
-        id: '77',
+        // id: '77',
         scheduleId: '4',
         userId: '17',
         isAttended: false
     },
     {
-        id: '78',
+        // id: '78',
         scheduleId: '4',
         userId: '18',
         isAttended: false
     },
     {
-        id: '79',
+        // id: '79',
         scheduleId: '4',
         userId: '19',
         isAttended: false
     },
     {
-        id: '80',
+        // id: '80',
         scheduleId: '4',
         userId: '20',
         isAttended: false
     },
     {
-        id: '81',
+        // id: '81',
         scheduleId: '5',
         userId: '1',
         isAttended: false
     },
     {
-        id: '82',
+        // id: '82',
         scheduleId: '5',
         userId: '2',
         isAttended: false
     },
     {
-        id: '83',
+        // id: '83',
         scheduleId: '5',
         userId: '3',
         isAttended: false
     },
     {
-        id: '84',
+        // id: '84',
         scheduleId: '5',
         userId: '4',
         isAttended: false
     },
     {
-        id: '85',
+        // id: '85',
         scheduleId: '5',
         userId: '5',
         isAttended: false
     },
     {
-        id: '86',
+        // id: '86',
         scheduleId: '5',
         userId: '6',
         isAttended: false
     },
     {
-        id: '87',
+        // id: '87',
         scheduleId: '5',
         userId: '7',
         isAttended: false
     },
     {
-        id: '88',
+        // id: '88',
         scheduleId: '5',
         userId: '8',
         isAttended: false
     },
     {
-        id: '89',
+        // id: '89',
         scheduleId: '5',
         userId: '9',
         isAttended: false
     },
     {
-        id: '90',
+        // id: '90',
         scheduleId: '5',
         userId: '10',
         isAttended: false
     },
     {
-        id: '91',
+        // id: '91',
         scheduleId: '5',
         userId: '11',
         isAttended: false
     },
     {
-        id: '92',
+        // id: '92',
         scheduleId: '5',
         userId: '12',
         isAttended: false
     },
     {
-        id: '93',
+        // id: '93',
         scheduleId: '5',
         userId: '13',
         isAttended: false
     },
     {
-        id: '94',
+        // id: '94',
         scheduleId: '5',
         userId: '14',
         isAttended: false
     },
     {
-        id: '95',
+        // id: '95',
         scheduleId: '5',
         userId: '15',
         isAttended: false
     },
     {
-        id: '96',
+        // id: '96',
         scheduleId: '5',
         userId: '16',
         isAttended: false
     },
     {
-        id: '97',
+        // id: '97',
         scheduleId: '5',
         userId: '17',
         isAttended: false
     },
     {
-        id: '98',
+        // id: '98',
         scheduleId: '5',
         userId: '18',
         isAttended: false
     },
     {
-        id: '99',
+        // id: '99',
         scheduleId: '5',
         userId: '19',
         isAttended: false
     },
     {
-        id: '100',
+        // id: '100',
         scheduleId: '5',
         userId: '20',
         isAttended: false
@@ -639,7 +639,7 @@ const attendanceSlice = createSlice({
 
             for(let user of users) {
                 const tempAttendanceObj: Attendance = {
-                    id: state.length + 1,
+                    // id: state.length + 1,
                     scheduleId,
                     userId: user.id,
                     isAttended: false
@@ -665,7 +665,7 @@ const attendanceSlice = createSlice({
 
             for(let schedule of schedules) {
                 const tempAttendanceObj: Attendance = {
-                    id: state.length + 1,
+                    // id: state.length + 1,
                     scheduleId: schedule.id,
                     userId,
                     isAttended: false

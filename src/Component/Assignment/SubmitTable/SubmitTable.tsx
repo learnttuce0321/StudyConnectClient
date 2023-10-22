@@ -12,10 +12,10 @@ export default function SubmitTable() {
     const assignmentValue = useAppSelector(state => state.assignment)
     const submitValue = useAppSelector(state => state.submit)
 
-    const MatchedTableItem = (AassignmentId: number, SassignmentId: number, submit: Submit): (JSX.Element | undefined | null) => {
+    const MatchedTableItem = (AassignmentId: string, SassignmentId: string, submit: Submit): (JSX.Element | undefined | null) => {
         switch (AassignmentId === SassignmentId) {
             case true:
-                return <SubmitTableItem submit={submit} key={submit.id} />
+                return <SubmitTableItem submit={submit} key={submit.assignmentId + submit.userId} />
             case false:
                 return null
         }

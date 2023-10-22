@@ -1,9 +1,10 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { v4 as uuidv4 } from 'uuid'
 
 type Sex = 'male' | 'female'
 export interface User {
-    id: number
+    id: string
     name: string;
     phone: string;
     sex: Sex;
@@ -12,10 +13,11 @@ export interface User {
 }
 
 export interface InfoPaylaod {
-    id: number;
+    id: string;
     info: string
 }
 export interface AddUserPayload {
+    id: string;
     name: string;
     phone: string;
     age: number
@@ -24,7 +26,7 @@ export interface AddUserPayload {
 
 const initialState: Array<User> = [
     {
-        id: 1,
+        id: '1',
         name: '주상후',    
         phone: '010-1234-5678',
         sex: 'male',
@@ -32,7 +34,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 2,
+        id: '2',
         name: '황동준',    
         phone: '010-1111-2222',
         sex: 'female',
@@ -40,7 +42,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 3,
+        id: '3',
         name: '장창현',    
         phone: '010-3333-3333',
         sex: 'male',
@@ -48,7 +50,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 4,
+        id: '4',
         name: '김종현',    
         phone: '010-5555-6666',
         sex: 'female',
@@ -56,7 +58,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 5,
+        id: '5',
         name: '홍지훈',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -64,7 +66,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 6,
+        id: '6',
         name: 'aaa',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -72,7 +74,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 7,
+        id: '7',
         name: 'bbb',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -80,7 +82,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 8,
+        id: '8',
         name: 'ccc',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -88,7 +90,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 9,
+        id: '9',
         name: 'ddd',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -96,7 +98,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 10,
+        id: '10',
         name: 'eee',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -104,7 +106,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 11,
+        id: '11',
         name: 'fff',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -112,7 +114,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 12,
+        id: '12',
         name: 'ggg',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -120,7 +122,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 13,
+        id: '13',
         name: 'hhh',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -128,7 +130,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 14,
+        id: '14',
         name: 'iii',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -136,7 +138,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 15,
+        id: '15',
         name: 'jjj',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -144,7 +146,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 16,
+        id: '16',
         name: 'kkk',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -152,7 +154,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 17,
+        id: '17',
         name: 'lll',    
         phone: '010-0101-0101',
         sex: 'female',
@@ -160,7 +162,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 18,
+        id: '18',
         name: 'mmm',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -168,7 +170,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 19,
+        id: '19',
         name: 'nnn',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -176,7 +178,7 @@ const initialState: Array<User> = [
         info: '',
     },
     {
-        id: 20,
+        id: '20',
         name: 'ooo',    
         phone: '010-0101-0101',
         sex: 'male',
@@ -199,10 +201,10 @@ const userSlice = createSlice({
             }
         },
         addUser(state, action: PayloadAction<AddUserPayload>) {
-            const { name, phone, age, sex } = action.payload
+            const { id, name, phone, age, sex } = action.payload
 
             const tempUser: User = {
-                id: state.length + 1,
+                id,
                 name,
                 phone,
                 age,

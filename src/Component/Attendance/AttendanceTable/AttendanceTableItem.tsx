@@ -17,8 +17,8 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
 
     return (
         <Td key={attendance.userId}>
-            <Item type="checkbox" onChange={AttendClickHandler} id={attendance.id.toString()} checked={attendance.isAttended} />
-            <label htmlFor={attendance.id.toString()} />
+            <Item type="checkbox" onChange={AttendClickHandler} id={attendance.scheduleId + attendance.userId} checked={attendance.isAttended} />
+            <label htmlFor={attendance.scheduleId + attendance.userId} />
         </Td>
     )
 }
