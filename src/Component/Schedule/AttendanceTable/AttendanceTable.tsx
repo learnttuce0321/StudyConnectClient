@@ -4,9 +4,9 @@ import TableHead from "../../Table/TableHead"
 import Talbebody from "../../Table/TableBody"
 import { useAppSelector } from "../../../store/hooks/storeHooks"
 import { DateFormater } from "../../../utils/utils"
-import type { Attendance } from "../../../store/attendance"
 import AttendanceTableItem from "./AttendanceTableItem"
 import Th from "../../Table/Th"
+import { Attendance } from "../../../store/attendance"
 
 export default function AttendanceTable() {
     const userValue = useAppSelector(state => state.user)
@@ -23,7 +23,7 @@ export default function AttendanceTable() {
 
     }
     return (
-        <TableWrapper height="100%">
+        <TableWrapper height="90%">
             <Table>
                 <TableHead>
                     <Th className="pin">ㅤ</Th>

@@ -5,12 +5,17 @@ export interface Assignment {
     title: string;
     content: string
     deadLine: string;
+    studyId: string;
+}
+export interface SetAssignmentDataPayload {
+    assignments: Array<Assignment>;
 }
 export interface AddAssignmentPayload {
     id: string;
     title: string;
     content: string;
     deadLine: string;
+    studyId: string;
 }
 export interface DeleteAssignmentPayload {
     id: string
@@ -23,45 +28,24 @@ export interface ModifyAssignmentPayload {
     deadLine: string;
 }
 
-const initialState: Array<Assignment> = [
-    {
-        id: '1',
-        title: '과제 1',
-        content: 'asdf',
-        deadLine: '2023 10 23'
-    },
-    {
-        id: '2',
-        title: '과제 2',
-        content: 'asdf',
-        deadLine: '2023 10 24'
-    },
-    {
-        id: '3',
-        title: '과제 3',
-        content: 'asdf',
-        deadLine: '2023 10 25'
-    },
-    {
-        id: '4',
-        title: '과제 4',
-        content: 'asdf',
-        deadLine: '2023 10 26'
-    },
-]
+const initialState: Array<Assignment> = []
 
 const assignmentSlice = createSlice({
     name: 'assignment',
     initialState,
     reducers: {
+        SetAssignmentsData(state, action: PayloadAction<SetAssignmentDataPayload>) {
+            return action.payload.assignments
+        },
         AddAssignment(state, action: PayloadAction<AddAssignmentPayload>) {
-            const { id, title, content, deadLine } = action.payload
+            const { id, title, content, deadLine, studyId } = action.payload
 
             const nextAssignment = {
                 id: id,
                 title,
                 content,
-                deadLine
+                deadLine,
+                studyId
             }
             state.push(nextAssignment)
         },

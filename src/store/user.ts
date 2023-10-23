@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { v4 as uuidv4 } from 'uuid'
 
 type Sex = 'male' | 'female'
 export interface User {
@@ -10,8 +9,11 @@ export interface User {
     sex: Sex;
     age: number;
     info: string;
+    studyId: string;
 }
-
+export interface SetUserDataPayload {
+    users: Array<User>;
+}
 export interface InfoPaylaod {
     id: string;
     info: string
@@ -22,177 +24,19 @@ export interface AddUserPayload {
     phone: string;
     age: number
     sex: string;
+    studyId: string
 }
 
-const initialState: Array<User> = [
-    {
-        id: '1',
-        name: '주상후',    
-        phone: '010-1234-5678',
-        sex: 'male',
-        age: 22,
-        info: '',
-    },
-    {
-        id: '2',
-        name: '황동준',    
-        phone: '010-1111-2222',
-        sex: 'female',
-        age: 20,
-        info: '',
-    },
-    {
-        id: '3',
-        name: '장창현',    
-        phone: '010-3333-3333',
-        sex: 'male',
-        age: 25,
-        info: '',
-    },
-    {
-        id: '4',
-        name: '김종현',    
-        phone: '010-5555-6666',
-        sex: 'female',
-        age: 30,
-        info: '',
-    },
-    {
-        id: '5',
-        name: '홍지훈',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '6',
-        name: 'aaa',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '7',
-        name: 'bbb',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '8',
-        name: 'ccc',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '9',
-        name: 'ddd',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '10',
-        name: 'eee',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '11',
-        name: 'fff',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '12',
-        name: 'ggg',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '13',
-        name: 'hhh',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '14',
-        name: 'iii',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '15',
-        name: 'jjj',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '16',
-        name: 'kkk',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '17',
-        name: 'lll',    
-        phone: '010-0101-0101',
-        sex: 'female',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '18',
-        name: 'mmm',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '19',
-        name: 'nnn',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-    {
-        id: '20',
-        name: 'ooo',    
-        phone: '010-0101-0101',
-        sex: 'male',
-        age: 27,
-        info: '',
-    },
-
-]
+const initialState: Array<User> = []
 
 
 const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
+        SetUserData(state, action: PayloadAction<SetUserDataPayload>) {
+            return action.payload.users
+        },
         ChangeInfo(state, action: PayloadAction<InfoPaylaod>) {
             const {id, info}: InfoPaylaod = action.payload
             const matchedUserObj = state.find(user => user.id === id)
@@ -201,7 +45,7 @@ const userSlice = createSlice({
             }
         },
         addUser(state, action: PayloadAction<AddUserPayload>) {
-            const { id, name, phone, age, sex } = action.payload
+            const { id, name, phone, age, sex, studyId } = action.payload
 
             const tempUser: User = {
                 id,
@@ -210,6 +54,7 @@ const userSlice = createSlice({
                 age,
                 sex: sex as Sex, 
                 info: '',
+                studyId
             }
 
             state.push(tempUser)

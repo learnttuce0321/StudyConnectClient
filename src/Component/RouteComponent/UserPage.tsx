@@ -1,4 +1,3 @@
-import Modal from "../Modal/ModalWrapper/Modal"
 import { useState } from "react"
 import { useAppSelector, useAppDispatch } from "../../store/hooks/storeHooks"
 import { clickedUserActions } from "../../store/clickedUser"
@@ -9,9 +8,8 @@ import UserSummaryContent from "../User/Summary/UserSummaryContent"
 import UsersTable from "../User/UsersTable/UsersTable"
 import ModalButtonList from "../Modal/ActiveModalButtonWrapper/ModalButtonList"
 import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem"
-import SubNavigation from "../navigation/SubNavigation/SubNavigation"
-import SubNavigationItem from "../navigation/SubNavigation/SubNavigationItem"
-import SubNav from "../Else/SubNav"
+import SubNavigation from "../Navigation/SubNavigation/SubNavigation"
+import SubNavigationItem from "../Navigation/SubNavigation/SubNavigationItem"
 import styled from "styled-components"
 
 export enum ShowLogStatus {
@@ -23,7 +21,6 @@ export default function UserPage() {
 
     const dispatch = useAppDispatch()
     const clickedUserValue = useAppSelector(state => state.clickedUser)
-    const modalValue = useAppSelector(state => state.modal)
 
     const [showLog, setshowLog] = useState<ShowLogStatus>(ShowLogStatus.ATTENDANCE)
 
@@ -40,13 +37,11 @@ export default function UserPage() {
     }
     return (
         <>
-            <SubNav>
-                <ModalButtonList>
-                    <ModalButtonItem onClick={ClickAddUserHandler}>추가</ModalButtonItem>
-                    <ModalButtonItem onClick={ClickFilterUserHandler}>검색</ModalButtonItem>
-                    <ModalButtonItem onClick={ClickResetHandler}>초기화</ModalButtonItem>
-                </ModalButtonList>
-            </SubNav>
+            <ModalButtonList>
+                <ModalButtonItem onClick={ClickAddUserHandler}>추가</ModalButtonItem>
+                <ModalButtonItem onClick={ClickFilterUserHandler}>검색</ModalButtonItem>
+                <ModalButtonItem onClick={ClickResetHandler}>초기화</ModalButtonItem>
+            </ModalButtonList>
 
             <OtherWrapper>
                 <Container>
@@ -72,10 +67,6 @@ export default function UserPage() {
                     </ContainerRight>
                 </Container>
             </OtherWrapper>
-
-            {
-                modalValue.type !== ModalState.NONE && <Modal />
-            }
         </>
     )
 }

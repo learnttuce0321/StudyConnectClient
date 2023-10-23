@@ -3,11 +3,13 @@ import { useAppSelector } from '../../../store/hooks/storeHooks';
 import styled from "styled-components"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCheck, faBook } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 export default function UsersSummary() {
 
     const navigate = useNavigate()
+    const { studyId } = useParams()
+
     const userValue = useAppSelector(state => state.user)
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
     const submitRateValue = useAppSelector(state => state.submitRate)
@@ -24,26 +26,28 @@ export default function UsersSummary() {
         return (submitRateTotal / userLength).toFixed(1)
     }, [submitRateValue, userValue])
 
+    console.log(!Number.isNaN(totalAttendanceRate))
+
     return (
         <CardContainer>
-            <Card onClick={() => { navigate('/user') }} $gridarea="1 / 1 / 2 / 3" >
+            <Card onClick={() => { navigate(`/study/${studyId}/user`) }} $gridarea="1 / 1 / 2 / 3" >
                 <FontAwesomeIcon icon={faUser} size="2xl" />
                 <div>
                     <p>{userValue.length}</p>
                     <h3>전체 회원</h3>
                 </div>
             </Card>
-            <Card onClick={() => { navigate('/attendance') }} $gridarea="2 / 1 / 3 / 2" >
+            <Card onClick={() => { navigate(`/study/${studyId}/schedule`) }} $gridarea="2 / 1 / 3 / 2" >
                 <FontAwesomeIcon icon={faCheck} size="xl" />
                 <div>
-                    <p>{totalAttendanceRate}%</p>
+                    <p>{totalAttendanceRate !== 'NaN' ? totalAttendanceRate : 0}%</p>
                     <h3>전체 출석률</h3>
                 </div>
             </Card>
-            <Card onClick={() => { navigate('/assignment') }} $gridarea="2 / 2 / 3 / 3" >
+            <Card onClick={() => { navigate(`/study/${studyId}/assignment`) }} $gridarea="2 / 2 / 3 / 3" >
                 <FontAwesomeIcon icon={faBook} size="xl" />
                 <div>
-                    <p>{totalSubmitRate}%</p>
+                    <p>{totalSubmitRate !== 'NaN' ? totalSubmitRate : 0}%</p>
                     <h3>전체 과제 제출률</h3>
                 </div>
             </Card>

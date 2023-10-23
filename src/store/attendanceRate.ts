@@ -6,103 +6,31 @@ import type { Attendance } from "./attendance";
 export interface AttendanceRate {
     userId: string;
     rate: string;
+    studyId: string;
+}
+export interface SetAttendanceRateDataPayload {
+    attendanceRates: Array<AttendanceRate>;
 }
 export interface CalculateAttendaceRatePayload {
     userValue: Array<User>;
     attendanceValue: Array<Attendance>
+    studyId: string;
 }
 export interface _AddAttendanceRatePayload {
     userId: string;
+    studyId: string;
 }
-const initialState: Array<AttendanceRate> = [
-    {
-        userId: '1',
-        rate: '0.0'
-    },
-    {
-        userId: '2',
-        rate: '0.0'
-    },
-    {
-        userId: '3',
-        rate: '0.0'
-    },
-    {
-        userId: '4',
-        rate: '0.0'
-    },
-    {
-        userId: '5',
-        rate: '0.0'
-    },
-    {
-        userId: '6',
-        rate: '0.0'
-    },
-    {
-        userId: '7',
-        rate: '0.0'
-    },
-    {
-        userId: '8',
-        rate: '0.0'
-    },
-    {
-        userId: '9',
-        rate: '0.0'
-    },
-    {
-        userId: '10',
-        rate: '0.0'
-    },
-    {
-        userId: '11',
-        rate: '0.0'
-    },
-    {
-        userId: '12',
-        rate: '0.0'
-    },
-    {
-        userId: '13',
-        rate: '0.0'
-    },
-    {
-        userId: '14',
-        rate: '0.0'
-    },
-    {
-        userId: '15',
-        rate: '0.0'
-    },
-    {
-        userId: '16',
-        rate: '0.0'
-    },
-    {
-        userId: '17',
-        rate: '0.0'
-    },
-    {
-        userId: '18',
-        rate: '0.0'
-    },
-    {
-        userId: '19',
-        rate: '0.0'
-    },
-    {
-        userId: '20',
-        rate: '0.0'
-    }
-]
+const initialState: Array<AttendanceRate> = []
 
 const attendanceRateSlice = createSlice({
     name: 'attendanceRate',
     initialState,
     reducers: {
+        SetAttendanceRateData(state, action: PayloadAction<SetAttendanceRateDataPayload>) {
+            return  action.payload.attendanceRates
+        },
         CalculateAttendanceRate(state, action: PayloadAction<CalculateAttendaceRatePayload>) {
-            const { userValue, attendanceValue } = action.payload
+            const { userValue, attendanceValue, studyId } = action.payload
 
             const tempState: Array<AttendanceRate> = []
             
@@ -114,18 +42,20 @@ const attendanceRateSlice = createSlice({
 
                 const AttendanceRateObj: AttendanceRate = {
                     userId: user.id,
-                    rate: userAttendanceRate
+                    rate: userAttendanceRate,
+                    studyId
                 }
                 tempState.push(AttendanceRateObj)
             }
             return tempState
         },
         _AddAttendanceRate(state, action: PayloadAction<_AddAttendanceRatePayload>) {
-            const { userId } = action.payload
+            const { userId, studyId } = action.payload
 
             const tempAttendanceRateObj: AttendanceRate = {
                 userId,
-                rate: '0.0'
+                rate: '0.0',
+                studyId
             }
             state.push(tempAttendanceRateObj)
         }

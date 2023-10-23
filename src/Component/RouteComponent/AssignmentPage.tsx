@@ -3,13 +3,13 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks/storeHooks';
 import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem";
 import ModalButtonList from "../Modal/ActiveModalButtonWrapper/ModalButtonList";
 import OtherWrapper from "../Wrapper/OtherWrapper";
-import SubNavigation from "../navigation/SubNavigation/SubNavigation";
-import SubNavigationItem from "../navigation/SubNavigation/SubNavigationItem";
+import SubNavigation from "../Navigation/SubNavigation/SubNavigation";
+import SubNavigationItem from "../Navigation/SubNavigation/SubNavigationItem";
 import AssignmentMainContent from '../Assignment/Content/AssignmentMainContent';
 import { ModalState, modalActions } from '../../store/modal';
-import Modal from '../Modal/ModalWrapper/Modal';
 import { submitRateActions } from '../../store/submitRate';
 import type { CalculateSubmitRatePayload } from '../../store/submitRate';
+import { useParams } from 'react-router-dom';
 
 export enum AssignmentState {
     ASSIGNMENT = 'ASSIGNEMNT',
@@ -18,7 +18,8 @@ export enum AssignmentState {
 export default function AssignmentPage() {
 
     const dispatch = useAppDispatch()
-    const modalValue = useAppSelector(state => state.modal)
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
+
     const userValue = useAppSelector(state => state.user)
     const submitValue = useAppSelector(state => state.submit)
     const [assignmentState, setAssignmentState] = useState<AssignmentState>(AssignmentState.ASSIGNMENT)
@@ -26,10 +27,11 @@ export default function AssignmentPage() {
     useEffect(() => {
         const calculateSubmitRatePayload: CalculateSubmitRatePayload = {
             userValue,
-            submitValue
+            submitValue,
+            studyId
         }
         dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
-    }, [dispatch, userValue, submitValue])
+    }, [dispatch, userValue, submitValue, studyId])
 
     const ClickAddAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ASSIGNMNET }))
@@ -56,9 +58,6 @@ export default function AssignmentPage() {
 
                 <AssignmentMainContent assignmentState={assignmentState} />
             </OtherWrapper>
-            {
-                modalValue.type !== ModalState.NONE && <Modal />
-            }
         </>
     )
 }

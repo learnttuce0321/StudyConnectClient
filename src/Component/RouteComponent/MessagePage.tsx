@@ -1,5 +1,4 @@
-import Modal from '../Modal/ModalWrapper/Modal'
-import { useAppDispatch, useAppSelector } from '../../store/hooks/storeHooks'
+import { useAppDispatch } from '../../store/hooks/storeHooks'
 import { ModalState, modalActions } from '../../store/modal'
 import OtherWrapper from '../Wrapper/OtherWrapper'
 import ModalButtonList from '../Modal/ActiveModalButtonWrapper/ModalButtonList'
@@ -9,7 +8,6 @@ import MessageTable from '../Message/MessageTable/MessageTable'
 export default function MessagePage() {
 
     const dispatch = useAppDispatch()
-    const modalValue = useAppSelector(state => state.modal)
 
     const ClickOpenMessageHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_MESSAGE }))
@@ -24,9 +22,6 @@ export default function MessagePage() {
                 <MessageTable />
             </OtherWrapper>
 
-            {
-                modalValue.type !== ModalState.NONE && <Modal />
-            }
         </>
     )
 }

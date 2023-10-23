@@ -22,8 +22,6 @@ export default function UsersTable() {
         dispatch(clickedUserActions.setClickedUser(payload))
     }
 
-    // const tableHeight: string = window.innerWidth >= 1180 ? "100%" : "20%"
-
     return (
         <TableWrapper height={'100%'}>
             <Table>

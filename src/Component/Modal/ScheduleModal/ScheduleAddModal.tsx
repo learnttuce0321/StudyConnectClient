@@ -11,6 +11,7 @@ import ModalContentContainer from "../ModalWrapper/ModalContentContainer"
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer"
 import ModalButton from "../ModalInputItem/ModalButton"
 import { v4 as uuidv4 } from 'uuid'
+import { useParams } from "react-router-dom"
 
 
 export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProps) {
@@ -20,8 +21,8 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
     const locationRef = useRef<HTMLInputElement>(null)
 
     const dispatch = useAppDispatch()
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
     const userValue = useAppSelector(state => state.user)
-    const scheduleValue = useAppSelector(state => state.schedule)
 
     const ClickAddScheduleHandler = (): void => {
         const inputname = nameRef.current
@@ -36,10 +37,12 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
             date: inputDate!.value.trim(),
             time: inputTime!.value.trim(),
             location: inputLocation!.value.trim(),
+            studyId
         }
         const addtAttendancePayload: addAttendancePayload = {
             users: userValue,
             scheduleId: id,
+            studyId
         }
 
         dispatch(scheduleActions.AddSchedule(addSchedulePayload))

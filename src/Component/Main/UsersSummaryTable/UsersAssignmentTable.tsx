@@ -8,6 +8,7 @@ import UsersAssignmentTableItem from "./UsersAssignmentTableItem";
 
 export default function UsersAssignmentTable() {
     const assignmentValue = useAppSelector(state => state.assignment)
+
     return (
         <TableWrapper height="50%">
             <Table>

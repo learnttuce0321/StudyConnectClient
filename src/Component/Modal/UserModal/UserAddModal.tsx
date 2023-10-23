@@ -16,15 +16,17 @@ import ModalButton from '../ModalInputItem/ModalButton'
 import { _AddSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
 import { submitActions } from '../../../store/submit'
 import { v4 as uuidv4 } from 'uuid'
+import { useParams } from 'react-router-dom'
 
 
 export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const [sexValue, setSexValue] = useState<string>()
 
     const dispatch = useAppDispatch()
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
+
     const scheduleValue = useAppSelector(state => state.schedule)
     const assignmentValue = useAppSelector(state => state.assignment)
-    const userValue = useAppSelector(state => state.user)
 
     const nameRef = useRef<HTMLInputElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
@@ -43,19 +45,22 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
             name: nameInput!.value,
             phone: phoneInput!.value,
             age: Number(ageInput!.value),
-            sex: sexValue as string
+            sex: sexValue as string,
+            studyId
         }
         dispatch(userActions.addUser(addUserPayload))
 
 
         const _addAttendancePayload: _AddAttendancePayload = {
             schedules: scheduleValue,
-            userId: id
+            userId: id,
+            studyId
         }
         dispatch(attendanceActions._AddAttendance(_addAttendancePayload))
 
         const _addAttendanceRatePayload: _AddAttendanceRatePayload = {
-            userId: id
+            userId: id,
+            studyId
         }
         dispatch(attendanceRateActions._AddAttendanceRate(_addAttendanceRatePayload))
 
@@ -65,7 +70,8 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
         }
         dispatch(submitActions._AddSubmit(_addSubmitPayload))
         const _addSubmitRatePayload: _AddSubmitRatePayload = {
-            userId: id
+            userId: id,
+            studyId
         }
         dispatch(submitRateActions._AddSubmitRate(_addSubmitRatePayload))
 

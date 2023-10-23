@@ -1,4 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
+import studySlice from './study'
 import userSlice from './user'
 import filteredUserSlice from './filteredUser'
 import scheduleSlice from './schedule'
@@ -10,9 +11,11 @@ import messageSlice from './message'
 import modalSlice from './modal'
 import submitSlice from './submit'
 import submitRateSlice from './submitRate'
+import fineSlice from './fine'
 
 const store = configureStore({
     reducer: {
+        study: studySlice,
         user: userSlice,
         filteredUser: filteredUserSlice,
         schedule: scheduleSlice,
@@ -23,7 +26,8 @@ const store = configureStore({
         message: messageSlice,
         modal: modalSlice,
         submit: submitSlice,
-        submitRate: submitRateSlice
+        submitRate: submitRateSlice,
+        fine: fineSlice,
     }
 })
 

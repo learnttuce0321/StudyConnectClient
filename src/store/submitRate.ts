@@ -5,103 +5,31 @@ import { Submit } from "./submit";
 export interface SubmitRate {
     userId: string;
     rate: string;
+    studyId: string;
+}
+export interface SetSubmitRateDataPayload {
+    submitRates: Array<SubmitRate>;
 }
 export interface CalculateSubmitRatePayload {
     userValue: Array<User>;
-    submitValue: Array<Submit>
+    submitValue: Array<Submit>;
+    studyId: string;
 }
 export interface _AddSubmitRatePayload {
     userId: string;
+    studyId: string
 }
-const initialState: Array<SubmitRate> = [
-    {
-        userId: '1',
-        rate: '0.0'
-    },
-    {
-        userId: '2',
-        rate: '0.0'
-    },
-    {
-        userId: '3',
-        rate: '0.0'
-    },
-    {
-        userId: '4',
-        rate: '0.0'
-    },
-    {
-        userId: '5',
-        rate: '0.0'
-    },
-    {
-        userId: '6',
-        rate: '0.0'
-    },
-    {
-        userId: '7',
-        rate: '0.0'
-    },
-    {
-        userId: '8',
-        rate: '0.0'
-    },
-    {
-        userId: '9',
-        rate: '0.0'
-    },
-    {
-        userId: '10',
-        rate: '0.0'
-    },
-    {
-        userId: '11',
-        rate: '0.0'
-    },
-    {
-        userId: '12',
-        rate: '0.0'
-    },
-    {
-        userId: '13',
-        rate: '0.0'
-    },
-    {
-        userId: '14',
-        rate: '0.0'
-    },
-    {
-        userId: '15',
-        rate: '0.0'
-    },
-    {
-        userId: '16',
-        rate: '0.0'
-    },
-    {
-        userId: '17',
-        rate: '0.0'
-    },
-    {
-        userId: '18',
-        rate: '0.0'
-    },
-    {
-        userId: '19',
-        rate: '0.0'
-    },
-    {
-        userId: '20',
-        rate: '0.0'
-    }
-]
+const initialState: Array<SubmitRate> = []
 
 const submitRateSlice = createSlice({
     name: 'submitRate',
     initialState,
     reducers: {
+        SetSubmitData(state, action: PayloadAction<SetSubmitRateDataPayload>) {
+            return action.payload.submitRates  
+        },
         CalculateSubmitRate(state, action: PayloadAction<CalculateSubmitRatePayload>) {
-            const { userValue, submitValue } = action.payload
+            const { userValue, submitValue, studyId } = action.payload
 
             const tempState: Array<SubmitRate> = []
             
@@ -113,18 +41,20 @@ const submitRateSlice = createSlice({
 
                 const submitRateObj: SubmitRate = {
                     userId: user.id,
-                    rate: userSubmitRate
+                    rate: userSubmitRate,
+                    studyId
                 }
                 tempState.push(submitRateObj)
             }
             return tempState
         },
         _AddSubmitRate(state, action: PayloadAction<_AddSubmitRatePayload>) {
-            const { userId } = action.payload
+            const { userId, studyId } = action.payload
 
-            const tempSubmitRateObj = {
+            const tempSubmitRateObj: SubmitRate = {
                 userId,
-                rate: '0.0'
+                rate: '0.0',
+                studyId
             }
             state.push(tempSubmitRateObj)
         }

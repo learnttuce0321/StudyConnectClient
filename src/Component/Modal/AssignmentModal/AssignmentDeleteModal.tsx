@@ -32,9 +32,10 @@ export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctio
             }
             dispatch(submitActions.DeleteSubmit(deleteSubmitPayload))
 
-            setSelectedAssignmentId('')
-            ClickQuitHandler()
         }
+
+        setSelectedAssignmentId('')
+        ClickQuitHandler()
     }
 
     return (
@@ -44,11 +45,7 @@ export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctio
                 <ModalSelectItem name={'일정'} onChange={ClickAssignmentHandler}>
                     <option value={''}>선택</option>
                     {
-                        assignmentValue.map(assignment => {
-                            return (
-                                <option key={assignment.id} value={assignment.id}>{assignment.title}</option>
-                            )
-                        })
+                        assignmentValue.map(assignment => <option key={assignment.id} value={assignment.id}>{assignment.title}</option>)
                     }
                 </ModalSelectItem>
             </ModalContentContainer >

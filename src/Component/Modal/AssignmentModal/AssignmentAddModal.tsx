@@ -9,13 +9,13 @@ import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
 import { AddAssignmentPayload, assignmentActions } from '../../../store/assignment';
 import { AddSubmitPayload, submitActions } from '../../../store/submit';
 import { v4 as uuidv4 } from 'uuid'
+import { useParams } from 'react-router-dom';
 
 export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
     const dispatch = useAppDispatch()
-
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
     const userValue = useAppSelector(state => state.user)
-    const assignmentValue = useAppSelector(state => state.assignment)
 
     const titleRef = useRef<HTMLInputElement>(null)
     const contentRef = useRef<HTMLInputElement>(null)
@@ -33,12 +33,14 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
             title: titleInput!.value,
             content: contentInput!.value,
             deadLine: deadLineInput!.value,
+            studyId
         }
         dispatch(assignmentActions.AddAssignment(addAssignmentPayload))
 
         const addSubmitPayload: AddSubmitPayload = {
             users: userValue,
             assignmentId: id,
+            studyId
         }
         dispatch(submitActions.AddSubmit(addSubmitPayload))
 
