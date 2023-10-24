@@ -4,6 +4,7 @@ import Table from "../../Table/Table";
 import Talbebody from "../../Table/TableBody";
 import TableHead from "../../Table/TableHead";
 import TableWrapper from "../../Table/TableWrapper";
+import Td from "../../Table/Td";
 import Th from "../../Table/Th";
 import SubmitTableItem from "./SubmitTableItem";
 
@@ -27,30 +28,52 @@ export default function SubmitTable() {
                 <TableHead>
                     <Th className="pin">ㅤ</Th>
                     {
-                        userValue.map(user => {
-                            return (
-                                <Th key={user.id}>{user.name}</Th>
-                            )
-                        })
+                        userValue.length === 0 ? (
+                            <>
+                                <Th>회원을 추가해 주세요</Th>
+                            </>
+                        ) : (
+                            <>
+                                {
+                                    userValue.map(user => {
+                                        return (
+                                            <Th key={user.id}>{user.name}</Th>
+                                        )
+                                    })
+                                }
+                            </>
+                        )
                     }
                 </TableHead>
                 <Talbebody>
                     {
-                        assignmentValue.slice(0).reverse().map(assignment => {
-                            return (
-                                <tr key={assignment.id}>
-                                    <Th>{assignment.title}</Th>
-                                    {
-                                        submitValue.map(submit =>
-                                            MatchedTableItem(assignment.id, submit.assignmentId, submit)
+                        assignmentValue.length === 0 ? (
+                            <tr>
+                                <Th>과제를 추가해 주세요</Th>
+                                <Td></Td>
+                            </tr>
+                        ) : (
+                            <>
+                                {
+                                    assignmentValue.slice(0).reverse().map(assignment => {
+                                        return (
+                                            <tr key={assignment.id}>
+                                                <Th>{assignment.title}</Th>
+                                                {
+                                                    submitValue.map(submit =>
+                                                        MatchedTableItem(assignment.id, submit.assignmentId, submit)
+                                                    )
+                                                }
+                                            </tr>
                                         )
-                                    }
-                                </tr>
-                            )
-                        })
+                                    })
+                                }
+                            </>
+                        )
                     }
                 </Talbebody>
             </Table>
         </TableWrapper>
     )
 }
+

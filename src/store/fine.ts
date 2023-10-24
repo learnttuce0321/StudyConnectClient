@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid'
+import { fineData } from "../DummyData/fineData";
 
 export interface Fine {
     id: string;
@@ -56,6 +57,9 @@ const fineSlice = createSlice({
                 studyId
             }
             state.push(tempFineObj)
+
+            // todos : 삭제
+            fineData.push(tempFineObj)
         },
         DeleteFine(state, action: PayloadAction<DeleteFinePayload>) {
             const { id } = action.payload

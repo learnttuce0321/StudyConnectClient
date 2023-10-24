@@ -23,7 +23,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const [sexValue, setSexValue] = useState<string>()
 
     const dispatch = useAppDispatch()
-    const { studyId }: { studyId: string } = useParams() as { studyId: string }
+    const { studyId } = useParams() as { studyId: string }
 
     const scheduleValue = useAppSelector(state => state.schedule)
     const assignmentValue = useAppSelector(state => state.assignment)

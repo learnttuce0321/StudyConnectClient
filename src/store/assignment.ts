@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { assignmentData } from "../DummyData/assignmentData";
 
 export interface Assignment {
     id: string;
@@ -48,6 +49,9 @@ const assignmentSlice = createSlice({
                 studyId
             }
             state.push(nextAssignment)
+
+            // todos : 삭제
+            assignmentData.push(nextAssignment)
         },
         DeleteAssignment(state, action: PayloadAction<DeleteAssignmentPayload>) {
             const { id } = action.payload

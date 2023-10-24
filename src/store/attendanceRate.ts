@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { User } from "./user";
 import type { Attendance } from "./attendance";
+import { attendanceRateData } from "../DummyData/attendaneRateData";
 
 export interface AttendanceRate {
     userId: string;
@@ -40,12 +41,12 @@ const attendanceRateSlice = createSlice({
                 const totalCheckedAttendceLength: number = (userAttendances.filter(userAttendace => userAttendace.isAttended)).length
                 const userAttendanceRate = (totalCheckedAttendceLength * 100 /userAttendanceLength).toFixed(1)
 
-                const AttendanceRateObj: AttendanceRate = {
+                const tempAttendanceRateObj: AttendanceRate = {
                     userId: user.id,
-                    rate: userAttendanceRate,
+                    rate: userAttendanceRate === 'NaN' ? '0.0' : userAttendanceRate,
                     studyId
                 }
-                tempState.push(AttendanceRateObj)
+                tempState.push(tempAttendanceRateObj)
             }
             return tempState
         },
@@ -58,6 +59,9 @@ const attendanceRateSlice = createSlice({
                 studyId
             }
             state.push(tempAttendanceRateObj)
+
+            // todos : 삭제
+            attendanceRateData.push(tempAttendanceRateObj)
         }
     }
 })

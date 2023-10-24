@@ -5,7 +5,7 @@ import { useAppDispatch } from "../../../store/hooks/storeHooks"
 import { clickedUserActions, setClickedUserPayload } from "../../../store/clickedUser"
 import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faHouse, faX } from "@fortawesome/free-solid-svg-icons";
+import { faBars, faBook, faHouse, faX } from "@fortawesome/free-solid-svg-icons";
 import { filteredUserActions } from '../../../store/filteredUser'
 import { SetAssignmentDataPayload, assignmentActions } from '../../../store/assignment'
 // todos : DB연결 후 삭제
@@ -45,6 +45,12 @@ export default memo(function Navigation() {
         dispatch(filteredUserActions.setFilteredUser({ filteredUser: [], isFiltering: false }))
         setToggle(false)
         navigate(`/study/${studyId}/main`)
+    }
+    const ClickStudyHandler = (): void => {
+        dispatch(clickedUserActions.setClickedUser({ user: {} }))
+        dispatch(filteredUserActions.setFilteredUser({ filteredUser: [], isFiltering: false }))
+        setToggle(false)
+        navigate(`/`)
     }
 
     const ClickToggleHandler = (e: any): void => {
@@ -93,7 +99,10 @@ export default memo(function Navigation() {
     return (
         <nav>
             <HeaderBar>
-                <FontAwesomeIcon icon={faHouse} onClick={ClickHomeHandler} style={{ color: 'white', cursor: 'pointer' }} />
+                <span>
+                    <FontAwesomeIcon icon={faBook} onClick={ClickStudyHandler} style={{ color: 'white', cursor: 'pointer' }} />
+                    <FontAwesomeIcon icon={faHouse} onClick={ClickHomeHandler} style={{ color: 'white', cursor: 'pointer', marginLeft: '0.8rem' }} />
+                </span>
                 <NavIconContainer>
                     {
                         !toggle ? (

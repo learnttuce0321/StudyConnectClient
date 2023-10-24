@@ -14,6 +14,8 @@ export enum ModalState {
     ADD_FINE = 'ADD_FINE',
     DELETE_FINE = 'DELETE_FINE',
     MODIFY_FINE = 'MODIFY_FINE',
+    ADD_STUDY = 'ADD_STUDY',
+    DELETE_STUDY = 'DELETE_STUDY',
     NONE = ''
 }
 

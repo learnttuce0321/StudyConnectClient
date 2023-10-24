@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "./user";
 import { Submit } from "./submit";
+import { submitRateData } from "../DummyData/sutmitRateData";
 
 export interface SubmitRate {
     userId: string;
@@ -41,7 +42,7 @@ const submitRateSlice = createSlice({
 
                 const submitRateObj: SubmitRate = {
                     userId: user.id,
-                    rate: userSubmitRate,
+                    rate: userSubmitRate === 'NaN' ? '0.0' : userSubmitRate,
                     studyId
                 }
                 tempState.push(submitRateObj)
@@ -57,6 +58,9 @@ const submitRateSlice = createSlice({
                 studyId
             }
             state.push(tempSubmitRateObj)
+
+            // todos : 삭제
+            submitRateData.push(tempSubmitRateObj)
         }
     }
 })

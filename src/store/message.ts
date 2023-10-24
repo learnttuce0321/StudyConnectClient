@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
 import { v4 as uuidv4 } from 'uuid'
+import { messageData } from "../DummyData/messageData";
 
 interface Message {
     id: string,
@@ -33,14 +34,19 @@ const messageSlice = createSlice({
         AddMessage(state, action: PayloadAction<AddMessagePayload>) {
             const { content, userId, date, time, studyId } = action.payload
 
-            state.push({
+            const tempMessageObj: Message = {
                 id: uuidv4(),
                 content, 
                 userId, 
                 date, 
                 time,
                 studyId
-            })
+            }
+
+            state.push(tempMessageObj)
+
+            // todos: 삭제
+            messageData.push(tempMessageObj)
         }
     }
 })

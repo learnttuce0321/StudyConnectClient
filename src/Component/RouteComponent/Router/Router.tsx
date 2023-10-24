@@ -8,8 +8,13 @@ import AssignmentPage from '../AssignmentPage';
 import MyPage from '../MyPage';
 import FinePage from '../FinePage';
 import StudyPage from '../StudyPage';
+import { ModalState } from '../../../store/modal';
+import Modal from '../../Modal/ModalWrapper/Modal';
+import { useAppSelector } from '../../../store/hooks/storeHooks';
 
 export default function Router() {
+
+    const modalValue = useAppSelector(state => state.modal)
     return (
         <>
             <Routes>
@@ -18,6 +23,9 @@ export default function Router() {
                     <>
                         <Navigation />
                         <Outlet />
+                        {
+                            modalValue.type !== ModalState.NONE && <Modal />
+                        }
                     </>
                 }>
                     <Route path='main' element={<MainPage />} />

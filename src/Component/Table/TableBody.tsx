@@ -10,6 +10,7 @@ const Talbebody = styled.tbody`
         position: sticky;
         left: 0;
         z-index: 3;
+        text-align: center;
     }
     & tr:last-child th {
         border-bottom: 0;

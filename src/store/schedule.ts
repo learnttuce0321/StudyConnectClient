@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
+import { scheduleData } from "../DummyData/scheduleData";
 
 export interface Schedule {
     id: string;
@@ -51,6 +52,9 @@ const scheduleSlice = createSlice({
                 studyId
             }
             state.push(nextSchedule)
+
+            // todos : 삭제
+            scheduleData.push(nextSchedule)
         },
         _DeleteSchedule(state, action: PayloadAction<_DeleteSchedulePayload>) {
             const { id } = action.payload

@@ -26,8 +26,6 @@ export default function UsersSummary() {
         return (submitRateTotal / userLength).toFixed(1)
     }, [submitRateValue, userValue])
 
-    console.log(!Number.isNaN(totalAttendanceRate))
-
     return (
         <CardContainer>
             <Card onClick={() => { navigate(`/study/${studyId}/user`) }} $gridarea="1 / 1 / 2 / 3" >

@@ -44,6 +44,10 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
                 return <FineDeleteModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.MODIFY_FINE:
                 return <FineModifyModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.ADD_STUDY:
+                return
+            case ModalState.DELETE_STUDY:
+                return
         }
     }
 

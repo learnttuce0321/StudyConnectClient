@@ -7,6 +7,7 @@ import { DateFormater } from "../../../utils/utils"
 import AttendanceTableItem from "./AttendanceTableItem"
 import Th from "../../Table/Th"
 import { Attendance } from "../../../store/attendance"
+import Td from "../../Table/Td"
 
 export default function AttendanceTable() {
     const userValue = useAppSelector(state => state.user)
@@ -28,27 +29,49 @@ export default function AttendanceTable() {
                 <TableHead>
                     <Th className="pin">ㅤ</Th>
                     {
-                        userValue.map(user => {
-                            return (
-                                <Th key={user.id}>{user.name}</Th>
-                            )
-                        })
+                        userValue.length === 0 ? (
+                            <>
+                                <Th>회원을 추가해 주세요</Th>
+                            </>
+                        ) : (
+                            <>
+                                {
+                                    userValue.map(user => {
+                                        return (
+                                            <Th key={user.id}>{user.name}</Th>
+                                        )
+                                    })
+                                }
+                            </>
+                        )
                     }
                 </TableHead>
                 <Talbebody>
                     {
-                        scheduleValue.slice(0).reverse().map(schedule => {
-                            return (
-                                <tr key={schedule.id}>
-                                    <Th>{DateFormater('yyyy년 MM월 DD일', schedule.date)}</Th>
-                                    {
-                                        attendanceValue.map(attendance =>
-                                            MatchedTableItem(schedule.id, attendance.scheduleId, attendance)
+                        scheduleValue.length === 0 ? (
+                            <tr>
+                                <Th>일정을 추가해 주세요</Th>
+                                <Td></Td>
+
+                            </tr>
+                        ) : (
+                            <>
+                                {
+                                    scheduleValue.slice(0).reverse().map(schedule => {
+                                        return (
+                                            <tr key={schedule.id}>
+                                                <Th>{DateFormater('yyyy년 MM월 DD일', schedule.date)}</Th>
+                                                {
+                                                    attendanceValue.map(attendance =>
+                                                        MatchedTableItem(schedule.id, attendance.scheduleId, attendance)
+                                                    )
+                                                }
+                                            </tr>
                                         )
-                                    }
-                                </tr>
-                            )
-                        })
+                                    })
+                                }
+                            </>
+                        )
                     }
                 </Talbebody>
             </Table>

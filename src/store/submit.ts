@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { User } from './user';
 import { Assignment } from './assignment';
+import { submitData } from '../DummyData/submitData';
 export interface Submit {
     userId: string;
     assignmentId: string;
@@ -49,6 +50,9 @@ const submitSlice = createSlice({
                     studyId
                 }
                 state.push(tempSubmitObj)
+
+                // todos : 삭제
+                submitData.push(tempSubmitObj)
             }
         },
         CheckSubmit(state, action: PayloadAction<CheckSubmitPayload>) {
@@ -74,6 +78,9 @@ const submitSlice = createSlice({
                     studyId
                 }
                 state.push(tempSubmitObj)
+
+                // todos : 삭제
+                submitData.push(tempSubmitObj)
             }
         },
         DeleteSubmit(state, action: PayloadAction<DeleteSubmitPayload>) {

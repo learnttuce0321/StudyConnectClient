@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { User } from "./user";
 import type { Schedule } from "./schedule";
+import { attendanceData } from "../DummyData/attendanceData";
 
 export interface Attendance {
     scheduleId: string;
@@ -51,6 +52,9 @@ const attendanceSlice = createSlice({
                     studyId
                 }
                 state.push(tempAttendanceObj)
+
+                // todos : 삭제
+                attendanceData.push(tempAttendanceObj)
             }
         },
         checkAttendance(state, action: PayloadAction<CheckAttendancePayload>) {
@@ -77,6 +81,9 @@ const attendanceSlice = createSlice({
                     studyId
                 }
                 state.push(tempAttendanceObj)
+
+                // todos : 삭제
+                attendanceData.push(tempAttendanceObj)
             }
         },
         _DeleteAttendance(state, action: PayloadAction<_DeleteAttendancePayload>) {

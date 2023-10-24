@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
+import { userData } from "../DummyData/userData";
 
 type Sex = 'male' | 'female'
 export interface User {
@@ -24,7 +25,7 @@ export interface AddUserPayload {
     phone: string;
     age: number
     sex: string;
-    studyId: string
+    studyId: string;
 }
 
 const initialState: Array<User> = []
@@ -56,8 +57,10 @@ const userSlice = createSlice({
                 info: '',
                 studyId
             }
-
             state.push(tempUser)
+
+            // todos : 삭제
+            userData.push(tempUser)
         }
     }
 })
