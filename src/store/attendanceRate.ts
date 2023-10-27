@@ -5,6 +5,7 @@ import type { Attendance } from "./attendance";
 import { attendanceRateData } from "../DummyData/attendaneRateData";
 
 export interface AttendanceRate {
+    num?: number;
     userId: string;
     rate: string;
     studyId: string;

@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { messageData } from "../DummyData/messageData";
 
 interface Message {
+    num?: number;
     id: string,
     content: string;
     userId: string;

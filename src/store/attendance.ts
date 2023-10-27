@@ -5,6 +5,7 @@ import type { Schedule } from "./schedule";
 import { attendanceData } from "../DummyData/attendanceData";
 
 export interface Attendance {
+    num?: number;
     scheduleId: string;
     userId: string;
     isAttended: boolean;

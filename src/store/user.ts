@@ -4,6 +4,7 @@ import { userData } from "../DummyData/userData";
 
 type Sex = 'male' | 'female'
 export interface User {
+    num?: number;
     id: string
     name: string;
     phone: string;

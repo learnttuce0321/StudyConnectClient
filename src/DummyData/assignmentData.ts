@@ -1,7 +1,7 @@
 import { Assignment } from "../store/assignment";
 
 export const assignmentData: Array<Assignment> = [
-        {
+    {
         id: 'b41d2990-66f4-4535-96e8-bdb84ab6281e',
         title: '과제 1',
         content: 'asdf',

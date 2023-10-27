@@ -2,6 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { assignmentData } from "../DummyData/assignmentData";
 
 export interface Assignment {
+    num?: number;
     id: string;
     title: string;
     content: string

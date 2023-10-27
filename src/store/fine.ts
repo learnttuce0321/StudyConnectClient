@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { fineData } from "../DummyData/fineData";
 
 export interface Fine {
+    num?: number;
     id: string;
     userId: string;
     deadLine: string;

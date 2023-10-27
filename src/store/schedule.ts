@@ -3,6 +3,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { scheduleData } from "../DummyData/scheduleData";
 
 export interface Schedule {
+    num?: number;
     id: string;
     name: string;
     date: string;

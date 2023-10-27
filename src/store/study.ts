@@ -1,6 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 export interface Study {
+    num?: number;
     id: string;
     name: string;
 }

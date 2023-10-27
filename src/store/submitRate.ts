@@ -4,6 +4,7 @@ import { Submit } from "./submit";
 import { submitRateData } from "../DummyData/sutmitRateData";
 
 export interface SubmitRate {
+    num?: number;
     userId: string;
     rate: string;
     studyId: string;
