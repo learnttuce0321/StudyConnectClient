@@ -43,7 +43,7 @@ const assignmentSlice = createSlice({
             const { id, title, content, deadLine, studyId } = action.payload
 
             const nextAssignment = {
-                id: id,
+                id,
                 title,
                 content,
                 deadLine,
