@@ -3,7 +3,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { fineData } from "../DummyData/fineData";
 
 export interface Fine {
-    num?: number;
     id: string;
     userId: string;
     deadLine: string;
@@ -18,10 +17,7 @@ export interface CheckFinePayload {
     id: string;
 }
 export interface AddFinePayload {
-    userId: string;
-    deadLine: string;
-    fine: number;
-    studyId: string;
+    fine: Fine;
 }
 export interface DeleteFinePayload {
     id: string;
@@ -47,20 +43,9 @@ const fineSlice = createSlice({
             matchedFineObj!.isPaid = !matchedFineObj!.isPaid
         },
         AddFine(state, action: PayloadAction<AddFinePayload>) {
-            const { userId, deadLine, fine, studyId } = action.payload
+            const { fine } = action.payload
             
-            const tempFineObj: Fine = {
-                id: uuidv4(),
-                userId,
-                deadLine,
-                fine,
-                isPaid: false,
-                studyId
-            }
-            state.push(tempFineObj)
-
-            // todos : 삭제
-            fineData.push(tempFineObj)
+            state.push(fine)
         },
         DeleteFine(state, action: PayloadAction<DeleteFinePayload>) {
             const { id } = action.payload

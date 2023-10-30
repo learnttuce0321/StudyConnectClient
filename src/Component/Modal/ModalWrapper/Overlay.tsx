@@ -14,6 +14,8 @@ import AssignmentModifyModal from "../AssignmentModal/AssignmentModifyModal"
 import FineAddModal from "../FineModal/FineAddModal"
 import FineDeleteModal from "../FineModal/FineDeleteModal"
 import FineModifyModal from "../FineModal/FineModifyModal"
+import StudyAddModal from "../StudyModal/StudyAddModal"
+import StudyDeleteModal from "../StudyModal/StudyDeleteModal"
 
 export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const modalValue = useAppSelector(state => state.modal)
@@ -45,9 +47,9 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
             case ModalState.MODIFY_FINE:
                 return <FineModifyModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.ADD_STUDY:
-                return
+                return <StudyAddModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.DELETE_STUDY:
-                return
+                return <StudyDeleteModal ClickQuitHandler={ClickQuitHandler} />
         }
     }
 

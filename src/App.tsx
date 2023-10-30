@@ -15,94 +15,93 @@ import { fineData } from './DummyData/fineData';
 import { messageData } from './DummyData/messageData';
 function App() {
     useEffect(() => {
-        const foo = async () => {
-            // for (let study of studyData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/s',
-            //         data: study,
+        // const foo = async () => {
+        //     for (let study of studyData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/s',
+        //             data: study,
 
-            //     }).then(res => console.log(res))
-            // }
+        //         })
+        //     }
 
-            // for (let user of userData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/user',
-            //         data: user,
+        //     for (let user of userData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/user',
+        //             data: user,
 
-            //     }).then(res => console.log(res))
-            // }
+        //         })
+        //     }
 
-            // for (let schedule of scheduleData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/schedule',
-            //         data: schedule,
+        //     for (let schedule of scheduleData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/schedule',
+        //             data: schedule,
 
-            //     }).then(res => console.log(res))
-            // }
-            // for (let attendance of attendanceData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/attendance',
-            //         data: attendance,
+        //         })
+        //     }
+        //     for (let attendance of attendanceData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/attendance',
+        //             data: attendance,
 
-            //     }).then(res => console.log(res))
-            // }
-            for (let attendanceRate of attendanceRateData) {
+        //         })
+        //     }
+        //     for (let attendanceRate of attendanceRateData) {
 
-                const res = await axios({
-                    method: 'POST',
-                    url: '/attendanceRate',
-                    data: attendanceRate,
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/attendanceRate',
+        //             data: attendanceRate,
 
-                })
-                console.log(res)
-            }
+        //         })
+        //     }
 
-            // for (let assignment of assignmentData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/assignment',
-            //         data: assignment,
+        //     for (let assignment of assignmentData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/assignment',
+        //             data: assignment,
 
-            //     }).then(res => console.log(res))
-            // }
-            // for (let submit of submitData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/submit',
-            //         data: submit,
+        //         })
+        //     }
+        //     for (let submit of submitData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/submit',
+        //             data: submit,
 
-            //     }).then(res => console.log(res))
-            // }
-            for (let submitRate of submitRateData) {
-                await axios({
-                    method: 'POST',
-                    url: '/submitRate',
-                    data: submitRate,
+        //         })
+        //     }
+        //     for (let submitRate of submitRateData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/submitRate',
+        //             data: submitRate,
 
-                }).then(res => console.log(res))
-            }
-            // for (let fine of fineData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/fine',
-            //         data: fine,
+        //         })
+        //     }
+        //     for (let fine of fineData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/fine',
+        //             data: fine,
 
-            //     }).then(res => console.log(res))
-            // }
-            // for (let message of messageData) {
-            //     axios({
-            //         method: 'POST',
-            //         url: '/message',
-            //         data: message,
+        //         })
+        //     }
+        //     for (let message of messageData) {
+        //         await axios({
+        //             method: 'POST',
+        //             url: '/message',
+        //             data: message,
 
-            //     }).then(res => console.log(res))
-            // }
-        }
-        foo()
+        //         })
+        //     }
+        // }
+        // foo()
     }, [])
     return (
         <>

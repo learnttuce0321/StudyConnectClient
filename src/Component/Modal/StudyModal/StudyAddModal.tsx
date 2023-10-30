@@ -7,22 +7,31 @@ import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalButton from "../ModalInputItem/ModalButton";
 import { v4 as uuidv4 } from 'uuid'
 import { useAppDispatch } from "../../../store/hooks/storeHooks";
-import { AddStudyPayload, studyActions } from "../../../store/study";
+import { SetStudyDataPayload, studyActions } from "../../../store/study";
+import axios from "axios";
 
 export default function StudyAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
     const dispatch = useAppDispatch()
     const nameRef = useRef<HTMLInputElement>(null)
 
-    const ClickAddStudyHandler = (): void => {
+    const ClickAddStudyHandler = async (): Promise<any> => {
         const nameInput = nameRef.current
         const id = uuidv4()
 
-        const addStudyPayload: AddStudyPayload = {
-            id,
-            name: nameInput!.value
+        const result = await axios({
+            method: 'POST',
+            url: '/add',
+            data: {
+                id,
+                name: nameInput!.value
+            }
+        })
+
+        if (result.data.result) {
+            const payload: SetStudyDataPayload = { studies: result.data.data }
+            dispatch(studyActions.SetStudyData(payload))
         }
-        dispatch(studyActions.AddStudy(addStudyPayload))
 
         ClickQuitHandler()
     }

@@ -5,7 +5,7 @@ import type { Schedule } from "./schedule";
 import { attendanceData } from "../DummyData/attendanceData";
 
 export interface Attendance {
-    num?: number;
+    id?: number;
     scheduleId: string;
     userId: string;
     isAttended: boolean;
@@ -14,21 +14,17 @@ export interface Attendance {
 export interface SetAttendanceDataPayload { 
     attendanes: Array<Attendance>;
 }
-export interface addAttendancePayload {
-    scheduleId: string;
-    users: Array<User>;
-    studyId: string;
+export interface AddAttendanceByschedulePayload {
+    attendances: Array<Attendance>
 }
 export interface CheckAttendancePayload {
     scheduleId: string;
     userId: string;
 }
-export interface _AddAttendancePayload {
-    schedules: Array<Schedule>;
-    userId: string;
-    studyId: string;
+export interface AddAttendanceByUserPayload {
+    attendances: Array<Attendance>
 }
-export interface _DeleteAttendancePayload {
+export interface DeleteAttendancePayload {
     scheduleId: string;
 }
 
@@ -41,21 +37,11 @@ const attendanceSlice = createSlice({
         SetAttendanceData(state, action: PayloadAction<SetAttendanceDataPayload>) {
             return action.payload.attendanes
         },
-        AddAttendance(state, action: PayloadAction<addAttendancePayload>) {
-            
-            const { users, scheduleId, studyId } = action.payload
+        AddAttendance(state, action: PayloadAction<AddAttendanceByschedulePayload>) {
+            const { attendances } = action.payload
 
-            for(let user of users) {
-                const tempAttendanceObj: Attendance = {
-                    scheduleId,
-                    userId: user.id,
-                    isAttended: false,
-                    studyId
-                }
-                state.push(tempAttendanceObj)
-
-                // todos : 삭제
-                attendanceData.push(tempAttendanceObj)
+            for(let attendance of attendances) {
+                state.push(attendance)
             }
         },
         checkAttendance(state, action: PayloadAction<CheckAttendancePayload>) {
@@ -71,23 +57,14 @@ const attendanceSlice = createSlice({
                 matchedAttendanceObj!.isAttended = !matchedAttendanceObj.isAttended
             }
         },
-        _AddAttendance(state, action: PayloadAction<_AddAttendancePayload>) {
-            const { schedules, userId, studyId } = action.payload
+        AddAttendanceByUser(state, action: PayloadAction<AddAttendanceByUserPayload>) {
+            const { attendances } = action.payload
 
-            for(let schedule of schedules) {
-                const tempAttendanceObj: Attendance = {
-                    scheduleId: schedule.id,
-                    userId,
-                    isAttended: false,
-                    studyId
-                }
-                state.push(tempAttendanceObj)
-
-                // todos : 삭제
-                attendanceData.push(tempAttendanceObj)
+            for(let attendance of attendances) {
+                state.push(attendance)
             }
         },
-        _DeleteAttendance(state, action: PayloadAction<_DeleteAttendancePayload>) {
+        _DeleteAttendance(state, action: PayloadAction<DeleteAttendancePayload>) {
             const { scheduleId } = action.payload
 
             const tempAttendaces = state.filter(attendance => attendance.scheduleId !== scheduleId)

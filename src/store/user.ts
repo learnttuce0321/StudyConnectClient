@@ -26,6 +26,7 @@ export interface AddUserPayload {
     phone: string;
     age: number
     sex: string;
+    info: string;
     studyId: string;
 }
 
@@ -47,7 +48,7 @@ const userSlice = createSlice({
             }
         },
         addUser(state, action: PayloadAction<AddUserPayload>) {
-            const { id, name, phone, age, sex, studyId } = action.payload
+            const { id, name, phone, age, sex, info, studyId } = action.payload
 
             const tempUser: User = {
                 id,
@@ -55,7 +56,7 @@ const userSlice = createSlice({
                 phone,
                 age,
                 sex: sex as Sex, 
-                info: '',
+                info,
                 studyId
             }
             state.push(tempUser)

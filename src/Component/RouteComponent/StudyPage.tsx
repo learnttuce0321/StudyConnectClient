@@ -1,13 +1,15 @@
 import ReactDOM from "react-dom"
 import { useAppDispatch, useAppSelector } from "../../store/hooks/storeHooks"
 import { useEffect, useState } from "react"
-import { studyData } from "../../DummyData/studyData"
 import { studyActions } from "../../store/study"
-import type { SetStudyDataPayload } from "../../store/study"
+import type { SetStudyDataPayload, Study } from "../../store/study"
 import styled from "styled-components"
 import { faBars, faX } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
+import axios from "axios"
+import { v4 as uuidv4 } from 'uuid'
+import { ModalState, modalActions } from "../../store/modal"
 
 export default function StudyPage() {
 
@@ -19,12 +21,33 @@ export default function StudyPage() {
     const ClickToggleHandler = (e: any): void => {
         setToggle(prev => !prev)
     }
-
+    const ClickAddStudyHandler = (): void => {
+        dispatch(modalActions.setModalState({ type: ModalState.ADD_STUDY }))
+    }
+    const ClickDeleteStudyHandler = (): void => {
+        dispatch(modalActions.setModalState({ type: ModalState.DELETE_STUDY }))
+    }
 
     // todos : DB연결 후 restAPI로 변경
     useEffect(() => {
-        const payload: SetStudyDataPayload = { studies: studyData }
-        dispatch(studyActions.SetStudyData(payload))
+
+        const getStudiesData = async (): Promise<any> => {
+
+            try {
+                const result = await axios({
+                    method: 'GET',
+                    url: '/get',
+                })
+
+                if (result.data.result) {
+                    const payload: SetStudyDataPayload = { studies: result.data.data }
+                    dispatch(studyActions.SetStudyData(payload))
+                }
+            } catch (error) {
+
+            }
+        }
+        getStudiesData();
     }, [dispatch])
 
     return (
@@ -44,10 +67,10 @@ export default function StudyPage() {
 
                     <TopBarWrap>
                         <NavItem>
-                            <p>추가하기</p>
+                            <p onClick={ClickAddStudyHandler} style={{ cursor: 'pointer' }}>추가하기</p>
                         </NavItem>
                         <NavItem>
-                            <p>삭제하기</p>
+                            <p onClick={ClickDeleteStudyHandler} style={{ cursor: 'pointer' }}>삭제하기</p>
                         </NavItem>
                     </TopBarWrap>
                 </HeaderBar>

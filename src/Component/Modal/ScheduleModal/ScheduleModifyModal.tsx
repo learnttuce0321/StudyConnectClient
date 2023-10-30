@@ -9,8 +9,10 @@ import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import axios from 'axios'
+import { DateFormater } from '../../../utils/utils'
 
-
+// todos : 일정 변경하면 defaultValue 변경 되야함
 export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
@@ -26,25 +28,36 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
         const id = e.target.value
         if (id !== 'none') {
             const selectedScheduleObj = scheduleValue.find(schedule => schedule.id === id)
+            console.log(selectedSchedule === selectedScheduleObj)
             setSelectedSchedule(selectedScheduleObj)
         }
     }
 
-    const ClickModifyHandler = (): void => {
+    const ClickModifyScheduleHandler = async (): Promise<any> => {
         if (window.confirm('수정하시겠습니까?')) {
             const nameInput = nameRef.current
             const locationInput = locationRef.current
             const dateInput = dateRef.current
             const timeInput = timeRef.current
 
-            const _modifySchedulePayload: ModifySchedulePayload = {
-                id: selectedSchedule!.id,
-                name: nameInput!.value,
-                date: dateInput!.value,
-                location: locationInput!.value,
-                time: timeInput!.value
+            const result = await axios({
+                method: 'PATCH',
+                url: 'schedule/update',
+                data: {
+                    id: selectedSchedule!.id,
+                    name: nameInput!.value,
+                    date: dateInput!.value,
+                    location: locationInput!.value,
+                    time: timeInput!.value
+                }
+            })
+
+            if (result.data.result) {
+                const modifySchedulePayload: ModifySchedulePayload = {
+                    ...result.data.data
+                }
+                dispatch(scheduleActions.ModifySchedule(modifySchedulePayload))
             }
-            dispatch(scheduleActions._ModifySchedule(_modifySchedulePayload))
 
             setSelectedSchedule(undefined)
             ClickQuitHandler()
@@ -70,7 +83,7 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
                         <>
                             <ModalTextInputItem name="이름" ref={nameRef} defaultValue={selectedSchedule!.name} />
                             <ModalTextInputItem name="날짜" ref={dateRef} defaultValue={selectedSchedule!.date} />
-                            <ModalTextInputItem name="시간" ref={timeRef} defaultValue={selectedSchedule!.time} />
+                            <ModalTextInputItem name="시간" ref={timeRef} defaultValue={selectedSchedule!.date} />
                             <ModalTextInputItem name="장소" ref={locationRef} defaultValue={selectedSchedule!.location} />
                         </>
                     ) : null
@@ -79,7 +92,7 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
             <ModalButtonsContainer>
                 <ModalButton onClick={ClickQuitHandler}>닫기</ModalButton>
                 {
-                    selectedSchedule ? <ModalButton onClick={ClickModifyHandler}>수정하기</ModalButton> : null
+                    selectedSchedule ? <ModalButton onClick={ClickModifyScheduleHandler}>수정하기</ModalButton> : null
                 }
             </ModalButtonsContainer>
         </>

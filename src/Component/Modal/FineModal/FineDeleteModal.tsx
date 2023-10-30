@@ -10,6 +10,7 @@ import { User } from "../../../store/user";
 import { DateFormater } from "../../../utils/utils";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalButton from "../ModalInputItem/ModalButton";
+import axios from "axios";
 
 export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -30,12 +31,23 @@ export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps
         setSelectedFineId(e.target!.value)
     }
 
-    const ClickDeleteHandler = (): void => {
+    const ClickDeleteHandler = async (): Promise<any> => {
         if (window.confirm('정말 삭제하시겠습니까?')) {
-            const deleteFinePayload: DeleteFinePayload = {
-                id: selectedFineId
+
+            const result = await axios({
+                method: 'DELETE',
+                url: 'fine/delete',
+                data: {
+                    id: selectedFineId
+                }
+            })
+
+            if (result.data.result) {
+                const deleteFinePayload: DeleteFinePayload = {
+                    id: selectedFineId
+                }
+                dispatch(fineActions.DeleteFine(deleteFinePayload))
             }
-            dispatch(fineActions.DeleteFine(deleteFinePayload))
         }
 
         setSelectedFineId('')

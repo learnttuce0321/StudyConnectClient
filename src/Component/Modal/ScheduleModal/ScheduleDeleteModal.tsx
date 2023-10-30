@@ -2,14 +2,15 @@ import { useState } from 'react'
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
 import { attendanceActions } from '../../../store/attendance'
 import { scheduleActions } from '../../../store/schedule'
-import type { _DeleteAttendancePayload } from '../../../store/attendance'
-import type { _DeleteSchedulePayload } from '../../../store/schedule'
+import type { DeleteAttendancePayload } from '../../../store/attendance'
+import type { DeleteSchedulePayload } from '../../../store/schedule'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import axios from 'axios'
 
 export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -20,18 +21,27 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
         setSelectedScheduleId(e.target!.value)
     }
 
-    const ClickDeleteHandler = () => {
+    const ClickDeleteHandler = async (): Promise<any> => {
         if (window.confirm('정말 삭제하시겠습니까?')) {
+            const result = await axios({
+                method: 'DELETE',
+                url: 'schedule/delete',
+                data: {
+                    id: selectedScheduleId
+                }
+            })
 
-            const _DeleteAttendancePayload: _DeleteAttendancePayload = {
-                scheduleId: selectedScheduleId
-            }
-            dispatch(attendanceActions._DeleteAttendance(_DeleteAttendancePayload))
+            if (result.data.result) {
+                const deleteAttendancePayload: DeleteAttendancePayload = {
+                    scheduleId: selectedScheduleId
+                }
+                dispatch(attendanceActions._DeleteAttendance(deleteAttendancePayload))
 
-            const _DeleteSchedulePayload: _DeleteSchedulePayload = {
-                id: selectedScheduleId
+                const deleteSchedulePayload: DeleteSchedulePayload = {
+                    id: selectedScheduleId
+                }
+                dispatch(scheduleActions.DeleteSchedule(deleteSchedulePayload))
             }
-            dispatch(scheduleActions._DeleteSchedule(_DeleteSchedulePayload))
 
             setSelectedScheduleId('')
             ClickQuitHandler()

@@ -18,7 +18,15 @@ export default function Router() {
     return (
         <>
             <Routes>
-                <Route path='/' element={<StudyPage />} />
+                <Route path='/' element={
+                    <>
+                        <StudyPage />
+                        {
+                            modalValue.type !== ModalState.NONE && <Modal />
+                        }
+                    </>
+                }
+                />
                 <Route path='/study/:studyId' element={
                     <>
                         <Navigation />

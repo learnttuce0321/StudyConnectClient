@@ -3,16 +3,27 @@ import { fineActions, type CheckFinePayload } from "../../../store/fine";
 import { DateFormater } from "../../../utils/utils";
 import Td from "../../Table/Td";
 import styled from "styled-components";
+import axios from "axios";
 
 export default function FineTableItem({ userFine, index, length }: { userFine: any, index: number, length: number }) {
 
     const dispatch = useAppDispatch()
 
-    const ClickFineCheckHandler = (): void => {
-        const payload: CheckFinePayload = {
-            id: userFine.id
+    const ClickFineCheckHandler = async (): Promise<any> => {
+        const result = await axios({
+            method: 'PATCH',
+            url: 'fine/check',
+            data: {
+                id: userFine.id
+            }
+        })
+
+        if (result.data.result) {
+            const payload: CheckFinePayload = {
+                id: userFine.id
+            }
+            dispatch(fineActions.CheckFine(payload))
         }
-        dispatch(fineActions.CheckFine(payload))
     }
     return (
         <tr>

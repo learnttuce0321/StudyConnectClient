@@ -19,7 +19,7 @@ export default function UsersAssignmentTable() {
                 </TableHead>
                 <Talbebody>
                     {
-                        assignmentValue.slice(0).reverse().map((assignment) => <UsersAssignmentTableItem assignment={assignment} key={assignment.id} />)
+                        assignmentValue.slice(0).reverse().map((assignment, index, arr) => <UsersAssignmentTableItem assignment={assignment} index={index} length={arr.length} key={assignment.id} />)
                     }
                 </Talbebody>
             </Table>

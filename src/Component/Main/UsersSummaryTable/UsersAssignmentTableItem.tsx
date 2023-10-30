@@ -3,7 +3,7 @@ import { Assignment } from "../../../store/assignment";
 import Td from "../../Table/Td";
 import { DateFormater, GetCurrentDate } from "../../../utils/utils";
 
-export default function UsersAssignmentTableItem({ assignment }: { assignment: Assignment }) {
+export default function UsersAssignmentTableItem({ assignment, index, length }: { assignment: Assignment, index: number, length: number }) {
 
     const [currentDate] = GetCurrentDate()
 
@@ -21,7 +21,7 @@ export default function UsersAssignmentTableItem({ assignment }: { assignment: A
 
     return (
         <tr >
-            <Td>{assignment.id}</Td>
+            <Td>{length - index}</Td>
             <Td>{assignment.title} </Td>
             <Td style={{ color: titleColor }}>{DateFormater('yyyy년 MM월 DD일', assignment.deadLine)}</Td>
         </tr>

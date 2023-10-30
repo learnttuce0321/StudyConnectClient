@@ -26,6 +26,7 @@ import { SetSubmitRateDataPayload, submitRateActions } from '../../../store/subm
 import { submitRateData } from '../../../DummyData/sutmitRateData'
 import { SetUserDataPayload, userActions } from '../../../store/user'
 import { userData } from '../../../DummyData/userData'
+import axios from 'axios'
 
 export default memo(function Navigation() {
     const dispatch = useAppDispatch()
@@ -58,44 +59,56 @@ export default memo(function Navigation() {
     }
 
     useEffect(() => {
-        const setAssignmentDataPayload: SetAssignmentDataPayload = {
-            assignments: assignmentData.filter(assignment => assignment.studyId === studyId)
-        }
-        const setAttendanceDataPayload: SetAttendanceDataPayload = {
-            attendanes: attendanceData.filter(attendance => attendance.studyId === studyId)
-        }
-        const setAttendanceRateDataPayload: SetAttendanceRateDataPayload = {
-            attendanceRates: attendanceRateData.filter(attendanceRate => attendanceRate.studyId === studyId)
-        }
-        const setFineDataPayload: SetFineDataPayload = {
-            fines: fineData.filter(fine => fine.studyId === studyId)
-        }
-        const setMessageDataPayload: SetMessageDataPayload = {
-            messages: messageData.filter(message => message.studyId === studyId)
-        }
-        const setScheduleDataPayload: SetScheduleDataPayload = {
-            schedules: scheduleData.filter(schedule => schedule.studyId === studyId)
-        }
-        const setSubmitDataPayload: SetSubmitDataPayload = {
-            submits: submitData.filter(submit => submit.studyId === studyId)
-        }
-        const setSubmitRateDataPayload: SetSubmitRateDataPayload = {
-            submitRates: submitRateData.filter(submitRate => submitRate.studyId === studyId)
-        }
-        const setUserDataPayload: SetUserDataPayload = {
-            users: userData.filter(user => user.studyId === studyId)
-        }
 
-        dispatch(assignmentActions.SetAssignmentsData(setAssignmentDataPayload))
-        dispatch(attendanceActions.SetAttendanceData(setAttendanceDataPayload))
-        dispatch(attendanceRateActions.SetAttendanceRateData(setAttendanceRateDataPayload))
-        dispatch(fineActions.SetFineData(setFineDataPayload))
-        dispatch(messageActions.SetMessageData(setMessageDataPayload))
-        dispatch(scheduleActions.SetSchduleData(setScheduleDataPayload))
-        dispatch(submitActions.SetSutmitData(setSubmitDataPayload))
-        dispatch(submitRateActions.SetSubmitData(setSubmitRateDataPayload))
-        dispatch(userActions.SetUserData(setUserDataPayload))
-    }, [dispatch, studyId])
+        const GetDatas = async (): Promise<any> => {
+            const userResult = await axios({
+                method: 'GET',
+                url: `get`
+            })
+
+            if (userResult.data.result) {
+                const setAssignmentDataPayload: SetAssignmentDataPayload = {
+                    assignments: userResult.data.assignmentData
+                }
+                const setAttendanceDataPayload: SetAttendanceDataPayload = {
+                    attendanes: userResult.data.attendanceData
+                }
+                const setAttendanceRateDataPayload: SetAttendanceRateDataPayload = {
+                    attendanceRates: userResult.data.attendanceRateData
+                }
+                const setFineDataPayload: SetFineDataPayload = {
+                    fines: userResult.data.fineData
+                }
+                const setMessageDataPayload: SetMessageDataPayload = {
+                    messages: userResult.data.messageData
+                }
+                const setScheduleDataPayload: SetScheduleDataPayload = {
+                    schedules: userResult.data.scheduleData
+                }
+                const setSubmitDataPayload: SetSubmitDataPayload = {
+                    submits: userResult.data.submitData
+                }
+                const setSubmitRateDataPayload: SetSubmitRateDataPayload = {
+                    submitRates: userResult.data.submitRateData
+                }
+                const setUserDataPayload: SetUserDataPayload = {
+                    users: userResult.data.userData
+                }
+
+                dispatch(assignmentActions.SetAssignmentsData(setAssignmentDataPayload))
+                dispatch(attendanceActions.SetAttendanceData(setAttendanceDataPayload))
+                dispatch(attendanceRateActions.SetAttendanceRateData(setAttendanceRateDataPayload))
+                dispatch(fineActions.SetFineData(setFineDataPayload))
+                dispatch(messageActions.SetMessageData(setMessageDataPayload))
+                dispatch(scheduleActions.SetSchduleData(setScheduleDataPayload))
+                dispatch(submitActions.SetSutmitData(setSubmitDataPayload))
+                dispatch(submitRateActions.SetSubmitData(setSubmitRateDataPayload))
+                dispatch(userActions.SetUserData(setUserDataPayload))
+            }
+        }
+        GetDatas()
+    }, [dispatch])
+
     return (
         <nav>
             <HeaderBar>

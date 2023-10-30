@@ -17,9 +17,8 @@ export interface CalculateSubmitRatePayload {
     submitValue: Array<Submit>;
     studyId: string;
 }
-export interface _AddSubmitRatePayload {
-    userId: string;
-    studyId: string
+export interface AddSubmitRatePayload {
+    submitRate: SubmitRate
 }
 const initialState: Array<SubmitRate> = []
 
@@ -50,18 +49,10 @@ const submitRateSlice = createSlice({
             }
             return tempState
         },
-        _AddSubmitRate(state, action: PayloadAction<_AddSubmitRatePayload>) {
-            const { userId, studyId } = action.payload
+        AddSubmitRate(state, action: PayloadAction<AddSubmitRatePayload>) {
+            const { submitRate } = action.payload
 
-            const tempSubmitRateObj: SubmitRate = {
-                userId,
-                rate: '0.0',
-                studyId
-            }
-            state.push(tempSubmitRateObj)
-
-            // todos : 삭제
-            submitRateData.push(tempSubmitRateObj)
+            state.push(submitRate)
         }
     }
 })

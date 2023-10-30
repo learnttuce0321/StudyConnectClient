@@ -4,19 +4,20 @@ import { userActions } from '../../../store/user'
 import { attendanceActions } from '../../../store/attendance'
 import { attendanceRateActions } from '../../../store/attendanceRate'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
-import type { AddUserPayload } from '../../../store/user'
-import type { _AddAttendancePayload } from '../../../store/attendance'
-import type { _AddAttendanceRatePayload } from '../../../store/attendanceRate'
+import type { AddUserPayload, SetUserDataPayload } from '../../../store/user'
+import type { AddAttendanceByUserPayload } from '../../../store/attendance'
+import type { AddAttendanceRatePayload } from '../../../store/attendanceRate'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalRadioInputItem from '../ModalInputItem/ModalRadioInputItem'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
-import { _AddSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
-import { submitActions } from '../../../store/submit'
+import { AddSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
+import { AddSubmitPayloadByUser, submitActions } from '../../../store/submit'
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 
 export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
@@ -32,7 +33,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const phoneRef = useRef<HTMLInputElement>(null)
     const ageRef = useRef<HTMLInputElement>(null)
 
-    const ClickAddUserHandler = (e: React.MouseEvent<HTMLElement>) => {
+    const ClickAddUserHandler = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
 
         const nameInput = nameRef.current
@@ -40,40 +41,78 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
         const ageInput = ageRef.current
         const id = uuidv4()
 
+        const userResult = await axios({
+            method: 'POST',
+            url: 'user/add',
+            data: {
+                id,
+                name: nameInput!.value,
+                phone: phoneInput!.value,
+                age: Number(ageInput!.value),
+                info: '',
+                sex: sexValue as string,
+                studyId
+            }
+        })
+        const attendanceResult = await axios({
+            method: 'POST',
+            url: 'attendance/add-user',
+            data: {
+                schedules: scheduleValue,
+                userId: id,
+                studyId,
+            }
+        })
+        const attendanceRateResult = await axios({
+            method: 'POST',
+            url: 'attendance-rate/add',
+            data: {
+                userId: id,
+                studyId
+            }
+        })
+        const submitResult = await axios({
+            method: 'POST',
+            url: 'submit/add-user',
+            data: {
+                assignments: assignmentValue,
+                userId: id,
+                studyId
+            }
+        })
+        const submitRateResult = await axios({
+            method: 'POST',
+            url: 'submit-rate/add',
+            data: {
+                userId: id,
+                studyId
+            }
+        })
+
         const addUserPayload: AddUserPayload = {
-            id,
-            name: nameInput!.value,
-            phone: phoneInput!.value,
-            age: Number(ageInput!.value),
-            sex: sexValue as string,
-            studyId
+            ...userResult.data.data
         }
         dispatch(userActions.addUser(addUserPayload))
 
+        const addAttendanceByUserPayload: AddAttendanceByUserPayload = {
+            attendances: attendanceResult.data.data
+        }
+        dispatch(attendanceActions.AddAttendanceByUser(addAttendanceByUserPayload))
 
-        const _addAttendancePayload: _AddAttendancePayload = {
-            schedules: scheduleValue,
-            userId: id,
-            studyId
+        const addAttendanceRatePayload: AddAttendanceRatePayload = {
+            attendanceRate: attendanceRateResult.data.data
         }
-        dispatch(attendanceActions._AddAttendance(_addAttendancePayload))
+        dispatch(attendanceRateActions.AddAttendanceRate(addAttendanceRatePayload))
 
-        const _addAttendanceRatePayload: _AddAttendanceRatePayload = {
-            userId: id,
-            studyId
+        const addSubmitPayload: AddSubmitPayloadByUser = {
+            submits: submitResult.data.data
         }
-        dispatch(attendanceRateActions._AddAttendanceRate(_addAttendanceRatePayload))
+        dispatch(submitActions.AddSubmitByUser(addSubmitPayload))
 
-        const _addSubmitPayload = {
-            assignments: assignmentValue,
-            userId: id
+        const addSubmitRatePayload: AddSubmitRatePayload = {
+            submitRate: submitRateResult.data.data
         }
-        dispatch(submitActions._AddSubmit(_addSubmitPayload))
-        const _addSubmitRatePayload: _AddSubmitRatePayload = {
-            userId: id,
-            studyId
-        }
-        dispatch(submitRateActions._AddSubmitRate(_addSubmitRatePayload))
+        dispatch(submitRateActions.AddSubmitRate(addSubmitRatePayload))
 
         nameInput!.value = ''
         phoneInput!.value = ''

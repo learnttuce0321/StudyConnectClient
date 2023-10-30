@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import { scheduleData } from "../DummyData/scheduleData";
 
@@ -22,7 +22,7 @@ export interface AddSchedulePayload {
     time: string;
     studyId: string;
 }
-export interface _DeleteSchedulePayload {
+export interface DeleteSchedulePayload {
     id: string;
 }
 export interface ModifySchedulePayload {
@@ -53,17 +53,14 @@ const scheduleSlice = createSlice({
                 studyId
             }
             state.push(nextSchedule)
-
-            // todos : 삭제
-            scheduleData.push(nextSchedule)
         },
-        _DeleteSchedule(state, action: PayloadAction<_DeleteSchedulePayload>) {
+        DeleteSchedule(state, action: PayloadAction<DeleteSchedulePayload>) {
             const { id } = action.payload
 
             const tempSchedules = state.filter(schedule => schedule.id !== id)
             return tempSchedules
         },
-        _ModifySchedule(state, action: PayloadAction<ModifySchedulePayload>) {
+        ModifySchedule(state, action: PayloadAction<ModifySchedulePayload>) {
             const { id, name, date, location, time } = action.payload
             const matchedScheduleObj = state.find(schedule => schedule.id === id)
 

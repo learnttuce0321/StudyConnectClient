@@ -23,22 +23,6 @@ export default function MainPage() {
     const attendanceValue = useAppSelector(state => state.attendance)
     const submitValue = useAppSelector(state => state.submit)
 
-    useEffect(() => {
-        const calculateAttendaceRatePayload: CalculateAttendaceRatePayload = {
-            userValue,
-            attendanceValue,
-            studyId
-        }
-        dispatch(attendanceRateActions.CalculateAttendanceRate(calculateAttendaceRatePayload))
-
-        const calculateSubmitRatePayload: CalculateSubmitRatePayload = {
-            userValue,
-            submitValue,
-            studyId
-        }
-        dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
-    }, [dispatch, userValue, attendanceValue, submitValue, studyId])
-
     const [summaryNavState, setSummaryNavState] = useState<SummaryNavState>(SummaryNavState.USER)
 
     return (

@@ -21,12 +21,9 @@ export interface AddSubmitPayload {
     assignmentId: string;
     studyId: string;
 }
-export interface _AddSubmitPayload {
-    assignments: Array<Assignment>;
-    userId: string;
-    studyId: string;
+export interface AddSubmitPayloadByUser {
+    submits: Array<Submit>
 }
-
 export interface DeleteSubmitPayload {
     assignmentId: string;
 }
@@ -68,20 +65,11 @@ const submitSlice = createSlice({
                 matchedAssignmentObj!.isSubmitted = !matchedAssignmentObj.isSubmitted
             }
         },
-        _AddSubmit(state, action) {
-            const { assignments, userId, studyId } = action.payload
+        AddSubmitByUser(state, action: PayloadAction<AddSubmitPayloadByUser>) {
+            const { submits } = action.payload
 
-            for(let assignment of assignments) {
-                const tempSubmitObj: Submit = {
-                    assignmentId: assignment.id,
-                    userId,
-                    isSubmitted: false,
-                    studyId
-                }
-                state.push(tempSubmitObj)
-
-                // todos : 삭제
-                submitData.push(tempSubmitObj)
+            for(let submit of submits) {
+                state.push(submit)
             }
         },
         DeleteSubmit(state, action: PayloadAction<DeleteSubmitPayload>) {

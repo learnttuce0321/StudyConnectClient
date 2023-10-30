@@ -9,6 +9,8 @@ import { AddFinePayload, fineActions } from '../../../store/fine';
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer';
 import ModalButton from '../ModalInputItem/ModalButton';
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { v4 as uuidv4 } from 'uuid'
 
 export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
@@ -20,17 +22,26 @@ export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const fineRef = useRef<HTMLInputElement>(null)
     const deadLineRef = useRef<HTMLInputElement>(null)
 
-    const ClickAddFineHandler = (): void => {
+    const ClickAddFineHandler = async (): Promise<any> => {
         const userIdInput = userIdRef.current
         const fineInput = fineRef.current
         const deadLineInput = deadLineRef.current
 
         if (userIdInput!.value !== 'none') {
+            const result = await axios({
+                method: 'POST',
+                url: 'fine/add',
+                data: {
+                    id: uuidv4(),
+                    deadLine: deadLineInput!.value,
+                    fine: parseInt(fineInput!.value),
+                    userId: userIdInput!.value,
+                    studyId
+                }
+            })
+
             const addFinePayload: AddFinePayload = {
-                userId: userIdInput!.value,
-                deadLine: deadLineInput!.value,
-                fine: parseInt(fineInput!.value),
-                studyId
+                fine: result.data.data
             }
             dispatch(fineActions.AddFine(addFinePayload))
         }

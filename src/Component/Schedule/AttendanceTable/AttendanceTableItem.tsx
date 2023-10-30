@@ -3,16 +3,29 @@ import { attendanceActions } from "../../../store/attendance"
 import type { Attendance, CheckAttendancePayload } from "../../../store/attendance"
 import Td from "../../Table/Td"
 import styled from "styled-components"
+import axios from "axios"
 
 export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()
 
-    const AttendClickHandler = (): void => {
-        const payload: CheckAttendancePayload = {
-            scheduleId: attendance.scheduleId,
-            userId: attendance.userId
+    const AttendClickHandler = async (): Promise<any> => {
+
+        const result = await axios({
+            method: 'PATCH',
+            url: 'attendance/check',
+            data: {
+                scheduleId: attendance.scheduleId,
+                userId: attendance.userId
+            }
+        })
+
+        if (result.data.result) {
+            const payload: CheckAttendancePayload = {
+                scheduleId: attendance.scheduleId,
+                userId: attendance.userId
+            }
+            dispatch(attendanceActions.checkAttendance(payload))
         }
-        dispatch(attendanceActions.checkAttendance(payload))
     }
 
     return (

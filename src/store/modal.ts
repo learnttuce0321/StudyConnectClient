@@ -34,7 +34,7 @@ const modalSlice = createSlice({
     initialState,
     reducers: {
         setModalState(state, action: PayloadAction<{type: ModalState}>) {
-            const {type} = action.payload
+            const { type } = action.payload
 
             return { type }
         }

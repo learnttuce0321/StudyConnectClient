@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { User } from "./user";
 import type { Attendance } from "./attendance";
-import { attendanceRateData } from "../DummyData/attendaneRateData";
 
 export interface AttendanceRate {
     num?: number;
@@ -15,12 +14,11 @@ export interface SetAttendanceRateDataPayload {
 }
 export interface CalculateAttendaceRatePayload {
     userValue: Array<User>;
-    attendanceValue: Array<Attendance>
+    attendanceValue: Array<Attendance>;
     studyId: string;
 }
-export interface _AddAttendanceRatePayload {
-    userId: string;
-    studyId: string;
+export interface AddAttendanceRatePayload {
+    attendanceRate: AttendanceRate;
 }
 const initialState: Array<AttendanceRate> = []
 
@@ -51,18 +49,10 @@ const attendanceRateSlice = createSlice({
             }
             return tempState
         },
-        _AddAttendanceRate(state, action: PayloadAction<_AddAttendanceRatePayload>) {
-            const { userId, studyId } = action.payload
+        AddAttendanceRate(state, action: PayloadAction<AddAttendanceRatePayload>) {
+            const { attendanceRate } = action.payload
 
-            const tempAttendanceRateObj: AttendanceRate = {
-                userId,
-                rate: '0.0',
-                studyId
-            }
-            state.push(tempAttendanceRateObj)
-
-            // todos : 삭제
-            attendanceRateData.push(tempAttendanceRateObj)
+            state.push(attendanceRate)
         }
     }
 })

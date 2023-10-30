@@ -11,6 +11,7 @@ import { DateFormater } from "../../../utils/utils";
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalButton from "../ModalInputItem/ModalButton";
+import axios from "axios";
 
 export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -35,20 +36,33 @@ export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps
         setSelectedFineId(e.target!.value)
     }
 
-    const ClickModifyHandler = (): void => {
+    const ClickModifyHandler = async (): Promise<any> => {
         if (window.confirm('수정하시겠습니까?')) {
             const fineInput = fineRef.current
             const deadLineInput = deadLineRef.current
 
-            const modifyFinePayload: ModifyFinePayload = {
-                id: selectedFineId,
-                deadLine: deadLineInput!.value,
-                fine: parseInt(fineInput!.value)
+            const result = await axios({
+                method: 'PATCH',
+                url: 'fine/update',
+                data: {
+                    id: selectedFineId,
+                    deadLine: deadLineInput!.value,
+                    fine: parseInt(fineInput!.value)
+                }
+            })
+
+            if (result.data.result) {
+                const modifyFinePayload: ModifyFinePayload = {
+                    id: selectedFineId,
+                    deadLine: deadLineInput!.value,
+                    fine: parseInt(fineInput!.value)
+                }
+                dispatch(fineActions.ModifyFine(modifyFinePayload))
             }
-            dispatch(fineActions.ModifyFine(modifyFinePayload))
         }
         ClickQuitHandler()
     }
+
     return (
         <>
             <ModalContentContainer>
