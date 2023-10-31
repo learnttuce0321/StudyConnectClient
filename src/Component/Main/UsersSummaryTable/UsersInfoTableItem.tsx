@@ -12,8 +12,9 @@ export default function UsersInfoTableItem({ user }: { user: User }) {
     const navigate = useNavigate()
 
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
-    const userAttendanceRate = attendanceRateValue.find(userAttendance => userAttendance.userId === user.id)
     const submitRateValue = useAppSelector(state => state.submitRate)
+
+    const userAttendanceRate = attendanceRateValue.find(userAttendance => userAttendance.userId === user.id)
     const userSubmitRate = submitRateValue.find(usersubmit => usersubmit.userId === user.id)
 
     const attendanceColor = useMemo((): string => {

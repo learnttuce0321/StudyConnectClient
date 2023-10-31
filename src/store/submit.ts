@@ -17,9 +17,7 @@ export interface CheckSubmitPayload {
     assignmentId: string;
 }
 export interface AddSubmitPayload {
-    users: Array<User>;
-    assignmentId: string;
-    studyId: string;
+    submits: Array<Submit>
 }
 export interface AddSubmitPayloadByUser {
     submits: Array<Submit>
@@ -38,19 +36,10 @@ const submitSlice = createSlice({
             return action.payload.submits
         },
         AddSubmit(state, action: PayloadAction<AddSubmitPayload>) {
-            const { users, assignmentId, studyId } = action.payload
+            const { submits } = action.payload
 
-            for(let user of users) {
-                const tempSubmitObj: Submit = {
-                    userId: user.id,
-                    assignmentId,
-                    isSubmitted: false,
-                    studyId
-                }
-                state.push(tempSubmitObj)
-
-                // todos : 삭제
-                submitData.push(tempSubmitObj)
+            for(let submit of submits) {
+                state.push(submit)
             }
         },
         CheckSubmit(state, action: PayloadAction<CheckSubmitPayload>) {

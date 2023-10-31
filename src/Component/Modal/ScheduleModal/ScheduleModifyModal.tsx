@@ -28,7 +28,7 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
         const id = e.target.value
         if (id !== 'none') {
             const selectedScheduleObj = scheduleValue.find(schedule => schedule.id === id)
-            console.log(selectedSchedule === selectedScheduleObj)
+
             setSelectedSchedule(selectedScheduleObj)
         }
     }

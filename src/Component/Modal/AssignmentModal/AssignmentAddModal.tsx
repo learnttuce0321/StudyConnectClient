@@ -10,6 +10,8 @@ import { AddAssignmentPayload, assignmentActions } from '../../../store/assignme
 import { AddSubmitPayload, submitActions } from '../../../store/submit';
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from 'react-router-dom';
+import axios from 'axios';
+import { CalculateAllSubmitRatePayload, submitRateActions } from '../../../store/submitRate';
 
 export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
@@ -21,28 +23,55 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
     const contentRef = useRef<HTMLInputElement>(null)
     const deadLineRef = useRef<HTMLInputElement>(null)
 
-    const ClickAddAssignmentHandler = (): void => {
+    const ClickAddAssignmentHandler = async (): Promise<any> => {
 
         const titleInput = titleRef.current
         const contentInput = contentRef.current
         const deadLineInput = deadLineRef.current
         const id = uuidv4()
 
+        const assignmentResult = await axios({
+            method: 'POST',
+            url: 'assignment/add',
+            data: {
+                id,
+                title: titleInput!.value,
+                content: contentInput!.value,
+                deadLine: deadLineInput!.value,
+                studyId
+            }
+        })
+        const submitResult = await axios({
+            method: 'POST',
+            url: 'submit/add-assignment',
+            data: {
+                users: userValue,
+                assignmentId: id,
+                studyId
+            }
+        })
+        const submitRateResult = await axios({
+            method: 'PATCH',
+            url: 'submit-rate/calculate-all',
+            data: {
+                studyId
+            }
+        })
+
         const addAssignmentPayload: AddAssignmentPayload = {
-            id,
-            title: titleInput!.value,
-            content: contentInput!.value,
-            deadLine: deadLineInput!.value,
-            studyId
+            ...assignmentResult.data.data
         }
         dispatch(assignmentActions.AddAssignment(addAssignmentPayload))
 
         const addSubmitPayload: AddSubmitPayload = {
-            users: userValue,
-            assignmentId: id,
-            studyId
+            submits: submitResult.data.data
         }
         dispatch(submitActions.AddSubmit(addSubmitPayload))
+
+        const calculateAllSubmitRAtePayload: CalculateAllSubmitRatePayload = {
+            submitRates: submitRateResult.data.data
+        }
+        dispatch(submitRateActions.CalculateAllSubmitRate(calculateAllSubmitRAtePayload))
 
         ClickQuitHandler()
     }

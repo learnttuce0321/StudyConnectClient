@@ -24,14 +24,14 @@ export default function AssignmentPage() {
     const submitValue = useAppSelector(state => state.submit)
     const [assignmentState, setAssignmentState] = useState<AssignmentState>(AssignmentState.ASSIGNMENT)
 
-    useEffect(() => {
-        const calculateSubmitRatePayload: CalculateSubmitRatePayload = {
-            userValue,
-            submitValue,
-            studyId
-        }
-        dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
-    }, [dispatch, userValue, submitValue, studyId])
+    // useEffect(() => {
+    //     const calculateSubmitRatePayload: CalculateSubmitRatePayload = {
+    //         userValue,
+    //         submitValue,
+    //         studyId
+    //     }
+    //     dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
+    // }, [dispatch, userValue, submitValue, studyId])
 
     const ClickAddAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ASSIGNMNET }))
@@ -42,6 +42,7 @@ export default function AssignmentPage() {
     const ClickModifyAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.MODIFY_ASSIGNMENT }))
     }
+
     return (
         <>
             <ModalButtonList>

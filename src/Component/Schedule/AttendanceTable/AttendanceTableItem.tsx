@@ -4,27 +4,44 @@ import type { Attendance, CheckAttendancePayload } from "../../../store/attendan
 import Td from "../../Table/Td"
 import styled from "styled-components"
 import axios from "axios"
+import { useParams } from "react-router-dom"
+import { CalculateAttendaceRatePayload, attendanceRateActions } from "../../../store/attendanceRate"
 
 export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()
+    const { studyId } = useParams()
 
     const AttendClickHandler = async (): Promise<any> => {
 
-        const result = await axios({
+        const attendanceResult = await axios({
             method: 'PATCH',
             url: 'attendance/check',
             data: {
                 scheduleId: attendance.scheduleId,
-                userId: attendance.userId
+                userId: attendance.userId,
+                isAttended: attendance.isAttended
+            }
+        })
+        const attendanceRateResult = await axios({
+            method: 'PATCH',
+            url: 'attendance-rate/calculate',
+            data: {
+                userId: attendance.userId,
+                studyId
             }
         })
 
-        if (result.data.result) {
-            const payload: CheckAttendancePayload = {
+        if (attendanceResult.data.result && attendanceRateResult.data.result) {
+            const checkAttendancePayload: CheckAttendancePayload = {
                 scheduleId: attendance.scheduleId,
                 userId: attendance.userId
             }
-            dispatch(attendanceActions.checkAttendance(payload))
+            dispatch(attendanceActions.checkAttendance(checkAttendancePayload))
+
+            const calculateAttendanceRatePayload: CalculateAttendaceRatePayload = {
+                userAttendanceRate: attendanceRateResult.data.data
+            }
+            dispatch(attendanceRateActions.CalculateAttendanceRate(calculateAttendanceRatePayload))
         }
     }
 

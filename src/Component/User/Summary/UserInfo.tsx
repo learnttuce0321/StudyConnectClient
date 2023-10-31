@@ -43,7 +43,7 @@ export default function UserInfo() {
         const clickedUserPayload: setClickedUserPayload = {
             user: tempUser
         }
-        console.log(clickedUserPayload)
+
         dispatch(clickedUserActions.setClickedUser(clickedUserPayload))
     }
 
@@ -53,7 +53,7 @@ export default function UserInfo() {
                 <span style={{ fontSize: '1.2rem' }}>{clickedUserValue.name}/</span>
                 <span style={{ fontSize: '1.2rem' }}>{clickedUserValue.sex === 'male' ? '남 ' : '여 '}</span>
                 <span style={{ fontSize: '0.9rem' }}>{clickedUserValue.phone}</span>
-                <button onClick={ClickModifyUserInfoHandler}>저장하기</button>
+                <UserInfoSaveButton onClick={ClickModifyUserInfoHandler}>저장하기</UserInfoSaveButton>
             </div>
             <UserInfoInput value={clickedUserValue.info} ref={infoRef} onChange={ChangeUserInfoHandler} />
         </UserInfoContainer>
@@ -71,4 +71,18 @@ const UserInfoInput = styled.textarea`
     border: 1px solid #282828;
     border-radius: 5px;
     margin: 0.3rem 0;
+`
+const UserInfoSaveButton = styled.button`
+    margin-left: 0.7rem;
+    border-radius: 15px;
+    border: 1px solid gray;
+    padding: 0.2rem 0.7rem;
+    cursor: pointer;
+
+    &:active {
+        background-color: rgb(194 194 194);
+    }
+    &:hover {
+        background-color: rgb(194 194 194);
+    }
 `

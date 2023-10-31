@@ -3,16 +3,46 @@ import { useAppDispatch } from "../../../store/hooks/storeHooks";
 import { Submit } from "../../../store/submit";
 import { CheckSubmitPayload, submitActions } from "../../../store/submit";
 import styled from "styled-components";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import { CalculateSubmitRatePayload, submitRateActions } from "../../../store/submitRate";
 
 export default function SubmitTableItem({ submit }: { submit: Submit }) {
     const dispatch = useAppDispatch()
+    const { studyId } = useParams()
 
-    const ClickAssignmentCheckHandler = (): void => {
-        const payLoad: CheckSubmitPayload = {
-            userId: submit.userId,
-            assignmentId: submit.assignmentId
+    const ClickAssignmentCheckHandler = async (): Promise<any> => {
+
+        const submitResult = await axios({
+            method: 'PATCH',
+            url: 'submit/check',
+            data: {
+                userId: submit.userId,
+                assignmentId: submit.assignmentId,
+                isSubmitted: submit.isSubmitted
+            }
+        })
+        const submitRateResult = await axios({
+            method: 'PATCH',
+            url: 'submit-rate/calculate',
+            data: {
+                userId: submit.userId,
+                studyId
+            }
+        })
+
+        if (submitResult.data.result && submitRateResult.data.result) {
+            const checkSubmitPayLoad: CheckSubmitPayload = {
+                userId: submit.userId,
+                assignmentId: submit.assignmentId
+            }
+            dispatch(submitActions.CheckSubmit(checkSubmitPayLoad))
+
+            const calculateSubmitRatePayload: CalculateSubmitRatePayload = {
+                userSubmitRate: submitRateResult.data.data
+            }
+            dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
         }
-        dispatch(submitActions.CheckSubmit(payLoad))
     }
     return (
         <Td>

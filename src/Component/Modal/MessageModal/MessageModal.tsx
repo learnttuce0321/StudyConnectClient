@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
 import { messageActions, type AddMessagePayload } from '../../../store/message'
 import { GetCurrentDate } from '../../../utils/utils'
-
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
@@ -11,6 +10,8 @@ import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import { v4 as uuidv4 } from 'uuid'
 
 export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -23,21 +24,38 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
     // todos : 이후 삭제
     const tempRef = useRef<HTMLInputElement>(null)
 
-    const ClickSendMessageHandler = (): void => {
+    const ClickSendMessageHandler = async (): Promise<any> => {
         const contentInput = contentRef.current
         const userIdInput = userIdRef.current
+        const id = uuidv4()
 
         const [date, time] = GetCurrentDate()
 
         if (userIdInput!.value !== 'none') {
-            const AddMessagePayload: AddMessagePayload = {
-                content: contentInput!.value,
-                userId: userIdInput!.value,
-                date,
-                time,
-                studyId
+            const result = await axios({
+                method: 'POST',
+                url: 'message/add',
+                data: {
+                    id,
+                    content: contentInput!.value,
+                    userId: userIdInput!.value,
+                    date,
+                    time,
+                    studyId
+                }
+            })
+
+            if (result.data.result) {
+                const AddMessagePayload: AddMessagePayload = {
+                    id,
+                    content: contentInput!.value,
+                    userId: userIdInput!.value,
+                    date,
+                    time,
+                    studyId
+                }
+                dispatch(messageActions.AddMessage(AddMessagePayload))
             }
-            dispatch(messageActions.AddMessage(AddMessagePayload))
         }
 
         ClickQuitHandler()

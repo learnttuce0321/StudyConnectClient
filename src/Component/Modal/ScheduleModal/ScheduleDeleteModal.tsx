@@ -11,10 +11,13 @@ import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
 import axios from 'axios'
+import { useParams } from 'react-router-dom'
+import { CalculateAllAttendanceRatePayload, attendanceRateActions } from '../../../store/attendanceRate'
 
 export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
+    const { studyId } = useParams()
 
     const [selectedScheduleId, setSelectedScheduleId] = useState<string>('')
     const ClickScheduleHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
@@ -30,6 +33,14 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
                     id: selectedScheduleId
                 }
             })
+            const attendanceRateResult = await axios({
+                method: 'PATCH',
+                url: 'attendance-rate/calculate-all',
+                data: {
+                    studyId
+                }
+            })
+
 
             if (result.data.result) {
                 const deleteAttendancePayload: DeleteAttendancePayload = {
@@ -41,7 +52,13 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
                     id: selectedScheduleId
                 }
                 dispatch(scheduleActions.DeleteSchedule(deleteSchedulePayload))
+
+                const calculateAttendanceRatePayload: CalculateAllAttendanceRatePayload = {
+                    attendanceRates: attendanceRateResult.data.data
+                }
+                dispatch(attendanceRateActions.CalculateAllAttendanceRate(calculateAttendanceRatePayload))
             }
+
 
             setSelectedScheduleId('')
             ClickQuitHandler()

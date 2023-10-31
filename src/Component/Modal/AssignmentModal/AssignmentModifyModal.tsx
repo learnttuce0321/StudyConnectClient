@@ -8,6 +8,7 @@ import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer"
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer"
 import { Assignment, ModifyAssignmentPayload, assignmentActions } from '../../../store/assignment'
 import { ModalFunctionProps } from '../ModalWrapper/Modal'
+import axios from 'axios'
 
 export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -28,19 +29,29 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
         }
     }
 
-    const ClickModifyHandler = (): void => {
+    const ClickModifyHandler = async (): Promise<any> => {
         if (window.confirm('수정하시겠습니까?')) {
             const titleInput = titleRef.current
             const contentInput = contentRef.current
             const deadLineInput = deadLineRef.current
 
-            const modifyAssignmentPayload: ModifyAssignmentPayload = {
-                id: selectedAssignment!.id,
-                title: titleInput!.value,
-                content: contentInput!.value,
-                deadLine: deadLineInput!.value
+            const result = await axios({
+                method: 'PATCH',
+                url: 'assignment/update',
+                data: {
+                    id: selectedAssignment!.id,
+                    title: titleInput!.value,
+                    content: contentInput!.value,
+                    deadLine: deadLineInput!.value
+                }
+            })
+
+            if (result.data.result) {
+                const modifyAssignmentPayload: ModifyAssignmentPayload = {
+                    ...result.data.data
+                }
+                dispatch(assignmentActions.ModifyAssignment(modifyAssignmentPayload))
             }
-            dispatch(assignmentActions.ModifyAssignment(modifyAssignmentPayload))
 
             setSelectedAssignment(undefined)
             ClickQuitHandler()

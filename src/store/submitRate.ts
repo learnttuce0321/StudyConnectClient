@@ -1,10 +1,10 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "./user";
 import { Submit } from "./submit";
 import { submitRateData } from "../DummyData/sutmitRateData";
 
 export interface SubmitRate {
-    num?: number;
+    id?: number;
     userId: string;
     rate: string;
     studyId: string;
@@ -13,9 +13,10 @@ export interface SetSubmitRateDataPayload {
     submitRates: Array<SubmitRate>;
 }
 export interface CalculateSubmitRatePayload {
-    userValue: Array<User>;
-    submitValue: Array<Submit>;
-    studyId: string;
+    userSubmitRate: SubmitRate
+}
+export interface CalculateAllSubmitRatePayload {
+    submitRates: Array<SubmitRate>
 }
 export interface AddSubmitRatePayload {
     submitRate: SubmitRate
@@ -30,24 +31,19 @@ const submitRateSlice = createSlice({
             return action.payload.submitRates  
         },
         CalculateSubmitRate(state, action: PayloadAction<CalculateSubmitRatePayload>) {
-            const { userValue, submitValue, studyId } = action.payload
+            const { userSubmitRate } = action.payload
 
-            const tempState: Array<SubmitRate> = []
-            
-            for(let user of userValue) {
-                const usersubmits: Array<Submit> = submitValue.filter(submit => submit.userId === user.id)
-                const userSubmitLength: number = usersubmits.length
-                const totalCheckedsubmitRateLength: number = (usersubmits.filter(usersubmit => usersubmit.isSubmitted)).length
-                const userSubmitRate = (totalCheckedsubmitRateLength * 100 / userSubmitLength).toFixed(1)
+            const matchedSubmitRateObj = state.find(submitRate => submitRate.userId === userSubmitRate.userId)
+            matchedSubmitRateObj!.rate = userSubmitRate.rate
+        },
+        CalculateAllSubmitRate(state, action: PayloadAction<CalculateAllSubmitRatePayload>) {
+            const { submitRates } = action.payload
 
-                const submitRateObj: SubmitRate = {
-                    userId: user.id,
-                    rate: userSubmitRate === 'NaN' ? '0.0' : userSubmitRate,
-                    studyId
-                }
-                tempState.push(submitRateObj)
+            for(let userSubmitRate of submitRates) {
+                const matchedSubmitRateObj = state.find(submitRate => submitRate.userId === userSubmitRate.userId)    
+
+                matchedSubmitRateObj!.rate = userSubmitRate.rate
             }
-            return tempState
         },
         AddSubmitRate(state, action: PayloadAction<AddSubmitRatePayload>) {
             const { submitRate } = action.payload

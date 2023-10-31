@@ -11,7 +11,7 @@ import ModalButton from "../ModalInputItem/ModalButton"
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from "react-router-dom"
 import axios from "axios"
-
+import { CalculateAllAttendanceRatePayload, attendanceRateActions } from "../../../store/attendanceRate"
 
 export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const nameRef = useRef<HTMLInputElement>(null)
@@ -51,8 +51,13 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
                 studyId
             }
         })
-        console.log(scheduleResult)
-        console.log(attendanceResult)
+        const attendanceRateResult = await axios({
+            method: 'PATCH',
+            url: 'attendance-rate/calculate-all',
+            data: {
+                studyId
+            }
+        })
 
         const addSchedulePayload: AddSchedulePayload = {
             ...scheduleResult.data.data
@@ -63,6 +68,11 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
             attendances: attendanceResult.data.data
         }
         dispatch(attendanceActions.AddAttendance(addAttendancePayload))
+
+        const calculateAttendanceRatePayload: CalculateAllAttendanceRatePayload = {
+            attendanceRates: attendanceRateResult.data.data
+        }
+        dispatch(attendanceRateActions.CalculateAllAttendanceRate(calculateAttendanceRatePayload))
         ClickQuitHandler()
     }
 

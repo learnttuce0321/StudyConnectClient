@@ -48,6 +48,15 @@ export default memo(function Navigation() {
         navigate(`/study/${studyId}/main`)
     }
     const ClickStudyHandler = (): void => {
+        dispatch(assignmentActions.SetAssignmentsData({ assignments: [] }))
+        dispatch(attendanceActions.SetAttendanceData({ attendanes: [] }))
+        dispatch(attendanceRateActions.SetAttendanceRateData({ attendanceRates: [] }))
+        dispatch(fineActions.SetFineData({ fines: [] }))
+        dispatch(messageActions.SetMessageData({ messages: [] }))
+        dispatch(scheduleActions.SetSchduleData({ schedules: [] }))
+        dispatch(submitActions.SetSutmitData({ submits: [] }))
+        dispatch(submitRateActions.SetSubmitData({ submitRates: [] }))
+        dispatch(userActions.SetUserData({ users: [] }))
         dispatch(clickedUserActions.setClickedUser({ user: {} }))
         dispatch(filteredUserActions.setFilteredUser({ filteredUser: [], isFiltering: false }))
         setToggle(false)

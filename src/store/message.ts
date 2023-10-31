@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid'
 import { messageData } from "../DummyData/messageData";
 
 interface Message {
-    num?: number;
     id: string,
     content: string;
     userId: string;
@@ -16,6 +15,7 @@ export interface SetMessageDataPayload {
     messages: Array<Message>;
 }
 export interface AddMessagePayload {
+    id: string;
     content: string;
     userId: string;
     date: string;
@@ -33,10 +33,10 @@ const messageSlice = createSlice({
             return action.payload.messages
         },
         AddMessage(state, action: PayloadAction<AddMessagePayload>) {
-            const { content, userId, date, time, studyId } = action.payload
+            const { id, content, userId, date, time, studyId } = action.payload
 
             const tempMessageObj: Message = {
-                id: uuidv4(),
+                id,
                 content, 
                 userId, 
                 date, 

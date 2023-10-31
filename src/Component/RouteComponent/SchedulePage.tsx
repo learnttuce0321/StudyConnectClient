@@ -24,15 +24,15 @@ export default function AttendancePage() {
 
     const [scheduleState, setScheduleState] = useState<ScheduleState>(ScheduleState.SCHEDULE)
 
-    useEffect(() => {
-        const payload: CalculateAttendaceRatePayload = {
-            userValue,
-            attendanceValue,
-            studyId
-        }
+    // useEffect(() => {
+    //     const payload: CalculateAttendaceRatePayload = {
+    //         userValue,
+    //         attendanceValue,
+    //         studyId
+    //     }
 
-        dispatch(attendanceRateActions.CalculateAttendanceRate(payload))
-    }, [dispatch, userValue, attendanceValue, studyId])
+    //     dispatch(attendanceRateActions.CalculateAttendanceRate(payload))
+    // }, [dispatch, userValue, attendanceValue, studyId])
 
     const ClickAddAttendanceHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ATTENDANCE }))
