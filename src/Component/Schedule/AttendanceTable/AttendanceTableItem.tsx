@@ -1,11 +1,13 @@
+import Td from "../../Table/Td"
 import { useAppDispatch } from "../../../store/hooks/storeHooks"
 import { attendanceActions } from "../../../store/attendance"
-import type { Attendance, CheckAttendancePayload } from "../../../store/attendance"
-import Td from "../../Table/Td"
+import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
-import { useParams } from "react-router-dom"
-import { CalculateAttendaceRatePayload, attendanceRateActions } from "../../../store/attendanceRate"
+import type { Attendance } from "../../../store/attendance"
+import { attendanceRateActions } from "../../../store/attendanceRate"
+import type { CheckAttendancePayload } from "../../../store/attendance"
+import { CalculateAttendaceRatePayload } from "../../../store/attendanceRate"
 
 export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()

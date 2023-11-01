@@ -1,15 +1,14 @@
-import ReactDOM from "react-dom"
-import { useAppDispatch, useAppSelector } from "../../store/hooks/storeHooks"
+import { faBars, faCaretRight, faX } from "@fortawesome/free-solid-svg-icons"
 import { useEffect, useState } from "react"
-import { studyActions } from "../../store/study"
-import type { SetStudyDataPayload, Study } from "../../store/study"
-import styled from "styled-components"
-import { faBars, faX } from "@fortawesome/free-solid-svg-icons"
+import ReactDOM from "react-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "react-router-dom"
+import styled from "styled-components"
 import axios from "axios"
-import { v4 as uuidv4 } from 'uuid'
+import { useAppDispatch, useAppSelector } from "../../store/hooks/storeHooks"
+import { studyActions } from "../../store/study"
 import { ModalState, modalActions } from "../../store/modal"
+import type { SetStudyDataPayload } from "../../store/study"
 
 export default function StudyPage() {
 
@@ -22,13 +21,14 @@ export default function StudyPage() {
         setToggle(prev => !prev)
     }
     const ClickAddStudyHandler = (): void => {
+        setToggle(false)
         dispatch(modalActions.setModalState({ type: ModalState.ADD_STUDY }))
     }
     const ClickDeleteStudyHandler = (): void => {
+        setToggle(false)
         dispatch(modalActions.setModalState({ type: ModalState.DELETE_STUDY }))
     }
 
-    // todos : DB연결 후 restAPI로 변경
     useEffect(() => {
 
         const getStudiesData = async (): Promise<any> => {
@@ -44,7 +44,7 @@ export default function StudyPage() {
                     dispatch(studyActions.SetStudyData(payload))
                 }
             } catch (error) {
-
+                console.log(error)
             }
         }
         getStudiesData();
@@ -77,25 +77,33 @@ export default function StudyPage() {
 
                 <SideBarWrap className={toggle ? 'open' : ''}>
                     <NavItem>
-                        <p>추가하기</p>
+                        <p onClick={ClickAddStudyHandler}>추가하기</p>
                     </NavItem>
                     <NavItem>
-                        <p>삭제하기</p>
+                        <p onClick={ClickDeleteStudyHandler}>삭제하기</p>
                     </NavItem>
                 </SideBarWrap>
                 {
                     toggle && ReactDOM.createPortal(<Backdrop onClick={ClickToggleHandler} />, document.querySelector('#backdrop-root') as HTMLElement)
                 }
             </nav>
-            {
-                studyValue.map(study => {
-                    return (
-                        <Link to={`/study/${study.id}/main`} key={study.id}>
-                            <h1>{study.name}</h1>
-                        </Link>
-                    )
-                })
-            }
+
+            <main >
+                <StudyListContainer>
+                    {
+                        studyValue.map(study => {
+                            return (
+                                <Link to={`/study/${study.id}/main`} key={study.id}>
+                                    <StudyListItem>
+                                        <h1>{study.name}</h1>
+                                        <FontAwesomeIcon icon={faCaretRight} style={{ fontSize: '2.5rem' }} />
+                                    </StudyListItem>
+                                </Link>
+                            )
+                        })
+                    }
+                </StudyListContainer>
+            </main>
         </>
     )
 }
@@ -158,4 +166,32 @@ const NavIconContainer = styled.span`
     @media screen and ( min-width: 1180px ) {
         display: none;
     }
+`
+const StudyListContainer = styled.ul`
+    height: calc( 100vh - 3rem );
+    padding: 2rem 2rem;
+    overflow-y: scroll;
+
+    @media screen and ( min-width: 820px ) {
+        padding: 2rem 4.5rem;
+    }
+
+    @media screen and ( min-width: 1180px ) {
+        padding: 2rem 8rem;
+    }
+
+    @media screen and (min-width: 1400px) {
+        padding: 4rem 12rem;
+    }
+`
+const StudyListItem = styled.li`
+    height: 4rem;
+    list-style: none;
+    padding: 0rem 1.5rem;
+    border: 1px solid gray;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 `

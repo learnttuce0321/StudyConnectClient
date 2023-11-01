@@ -1,6 +1,6 @@
-import { ScheduleState } from "../../RouteComponent/SchedulePage";
 import AttendanceTable from "../AttendanceTable/AttendanceTable";
 import ScheduleTable from "../ScheduleTable/ScheduleTable";
+import { ScheduleState } from "../../RouteComponent/SchedulePage";
 
 export default function ScheduleMainContent({ scheduleState }: { scheduleState: ScheduleState }) {
     const SelectContent = (): (JSX.Element | undefined) => {

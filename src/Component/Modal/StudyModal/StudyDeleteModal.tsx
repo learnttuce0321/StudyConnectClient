@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
 import ModalButton from "../ModalInputItem/ModalButton";
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem";
 import ModalTitle from "../ModalInputItem/ModalTitle";
-import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
-import { SetStudyDataPayload, studyActions } from '../../../store/study';
+import { useState } from 'react';
 import axios from 'axios';
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
+import { studyActions } from '../../../store/study';
+import type { ModalFunctionProps } from "../ModalWrapper/Modal";
+import { SetStudyDataPayload } from '../../../store/study';
 
 export default function StudyDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
 

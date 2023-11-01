@@ -1,12 +1,12 @@
 import { useRef } from 'react'
+import styled from "styled-components"
+import axios from "axios"
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
 import { userActions } from "../../../store/user"
 import { clickedUserActions } from "../../../store/clickedUser"
 import type { User } from "../../../store/user"
 import type { InfoPaylaod } from "../../../store/user"
-import type { setClickedUserPayload } from "../../../store/clickedUser"
-import styled from "styled-components"
-import axios from "axios"
+import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UserInfo() {
     const dispatch = useAppDispatch()
@@ -40,7 +40,7 @@ export default function UserInfo() {
         const tempUser = { ...clickedUserValue } as User
         tempUser.info = e.target.value
 
-        const clickedUserPayload: setClickedUserPayload = {
+        const clickedUserPayload: SetClickedUserPayload = {
             user: tempUser
         }
 

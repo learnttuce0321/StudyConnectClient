@@ -1,17 +1,18 @@
-import { uniqBy } from "lodash";
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem";
 import ModalTitle from "../ModalInputItem/ModalTitle";
-import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
-import { useRef, useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
-import { Fine, ModifyFinePayload, fineActions } from "../../../store/fine";
-import { User } from "../../../store/user";
-import { DateFormater } from "../../../utils/utils";
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalButton from "../ModalInputItem/ModalButton";
+import { useRef, useState } from "react";
+import { uniqBy } from "lodash";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
+import { DateFormater } from "../../../utils/utils";
+import { fineActions } from "../../../store/fine";
+import type { Fine, ModifyFinePayload } from "../../../store/fine";
+import type { User } from "../../../store/user";
+import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -86,8 +87,8 @@ export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps
                 {
                     selectedFineObj ? (
                         <>
-                            <ModalTextInputItem name="벌금" ref={fineRef} defaultValue={selectedFineObj.fine.toString()} />
-                            <ModalTextInputItem name="기한" ref={deadLineRef} defaultValue={selectedFineObj.deadLine} />
+                            <ModalTextInputItem name="벌금" ref={fineRef} value={selectedFineObj.fine.toString()} />
+                            <ModalTextInputItem name="기한" ref={deadLineRef} value={selectedFineObj.deadLine} />
                         </>
                     ) : null
                 }

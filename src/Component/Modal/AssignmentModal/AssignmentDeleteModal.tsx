@@ -1,16 +1,19 @@
-import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
 import ModalButton from "../ModalInputItem/ModalButton"
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem"
 import ModalTitle from "../ModalInputItem/ModalTitle"
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer"
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer"
-import { ModalFunctionProps } from '../ModalWrapper/Modal'
-import { DeleteAssignmentPayload, assignmentActions } from '../../../store/assignment'
-import { DeleteSubmitPayload, submitActions } from '../../../store/submit'
-import axios from 'axios'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { CalculateAllSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
+import axios from 'axios'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { assignmentActions } from '../../../store/assignment'
+import { submitActions } from '../../../store/submit'
+import { submitRateActions } from '../../../store/submitRate'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
+import type { DeleteAssignmentPayload } from '../../../store/assignment'
+import type { DeleteSubmitPayload } from '../../../store/submit'
+import type { CalculateAllSubmitRatePayload } from '../../../store/submitRate'
 
 export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
 

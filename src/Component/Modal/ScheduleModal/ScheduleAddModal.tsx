@@ -1,17 +1,20 @@
-import { useRef } from "react"
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
-import { AddSchedulePayload, scheduleActions } from "../../../store/schedule"
-import { AddAttendanceByschedulePayload, attendanceActions } from "../../../store/attendance"
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem"
 import ModalTitle from "../ModalInputItem/ModalTitle"
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer"
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer"
 import ModalButton from "../ModalInputItem/ModalButton"
+import { useRef } from "react"
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from "react-router-dom"
 import axios from "axios"
-import { CalculateAllAttendanceRatePayload, attendanceRateActions } from "../../../store/attendanceRate"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
+import { scheduleActions } from "../../../store/schedule"
+import { attendanceActions } from "../../../store/attendance"
+import { attendanceRateActions } from "../../../store/attendanceRate"
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
+import type { AddSchedulePayload } from "../../../store/schedule"
+import type { AddAttendanceByschedulePayload } from "../../../store/attendance"
+import type { CalculateAllAttendanceRatePayload } from "../../../store/attendanceRate"
 
 export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const nameRef = useRef<HTMLInputElement>(null)

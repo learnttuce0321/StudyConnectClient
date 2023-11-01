@@ -1,14 +1,15 @@
-import { useState, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
 import ModalButton from "../ModalInputItem/ModalButton"
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem"
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem"
 import ModalTitle from "../ModalInputItem/ModalTitle"
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer"
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer"
-import { Assignment, ModifyAssignmentPayload, assignmentActions } from '../../../store/assignment'
-import { ModalFunctionProps } from '../ModalWrapper/Modal'
+import { useState, useRef } from 'react'
 import axios from 'axios'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { assignmentActions } from '../../../store/assignment'
+import type { Assignment, ModifyAssignmentPayload } from '../../../store/assignment'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
@@ -74,9 +75,9 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
                 {
                     selectedAssignment ? (
                         <>
-                            <ModalTextInputItem name="이름" ref={titleRef} defaultValue={selectedAssignment!.title} />
-                            <ModalTextInputItem name="내용" ref={contentRef} defaultValue={selectedAssignment!.content} />
-                            <ModalTextInputItem name="기한" ref={deadLineRef} defaultValue={selectedAssignment!.deadLine} />
+                            <ModalTextInputItem name="이름" ref={titleRef} value={selectedAssignment!.title} />
+                            <ModalTextInputItem name="내용" ref={contentRef} value={selectedAssignment!.content} />
+                            <ModalTextInputItem name="기한" ref={deadLineRef} value={selectedAssignment!.deadLine} />
 
                         </>
                     ) : null

@@ -1,19 +1,20 @@
-import { useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
-import { messageActions, type AddMessagePayload } from '../../../store/message'
-import { GetCurrentDate } from '../../../utils/utils'
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import axios from 'axios'
 import { v4 as uuidv4 } from 'uuid'
+import axios from 'axios'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { GetCurrentDate } from '../../../utils/utils'
+import { messageActions } from '../../../store/message'
+import type { AddMessagePayload } from '../../../store/message'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
-export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
+export default function MessageAddModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
     const { studyId }: { studyId: string } = useParams() as { studyId: string }
     const userValue = useAppSelector(state => state.user)
@@ -21,8 +22,18 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
     const contentRef = useRef<HTMLInputElement>(null)
     const userIdRef = useRef<HTMLSelectElement>(null)
 
-    // todos : 이후 삭제
-    const tempRef = useRef<HTMLInputElement>(null)
+
+    const ShareKakao = (userId: string, content: string): void => {
+        const matchedUserObj = userValue.find(user => user.id === userId)
+
+        window.Kakao.Link.sendCustom({
+            templateId: 100158,
+            templateArgs: {
+                userName: `${matchedUserObj!.name}`,
+                content: `${content}`
+            }
+        })
+    }
 
     const ClickSendMessageHandler = async (): Promise<any> => {
         const contentInput = contentRef.current
@@ -45,6 +56,8 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
                 }
             })
 
+            ShareKakao(userIdInput!.value, contentInput!.value)
+
             if (result.data.result) {
                 const AddMessagePayload: AddMessagePayload = {
                     id,
@@ -65,7 +78,6 @@ export default function MessageModal({ ClickQuitHandler }: ModalFunctionProps) {
             <ModalContentContainer>
                 <ModalTitle>메세지 전송</ModalTitle>
                 <ModalTextInputItem name={'메세지'} ref={contentRef} />
-                <ModalTextInputItem name={'등등'} ref={tempRef} />
                 <ModalSelectItem name={'수신'} ref={userIdRef}>
                     <option value="none">선택</option>
                     {

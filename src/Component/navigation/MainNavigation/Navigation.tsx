@@ -1,31 +1,31 @@
+import { faBars, faBook, faHouse, faX } from "@fortawesome/free-solid-svg-icons";
 import { useState, memo, useEffect } from 'react'
 import ReactDOM from "react-dom"
 import { Link, useNavigate, useParams } from "react-router-dom"
-import { useAppDispatch } from "../../../store/hooks/storeHooks"
-import { clickedUserActions, setClickedUserPayload } from "../../../store/clickedUser"
-import styled from 'styled-components'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faBook, faHouse, faX } from "@fortawesome/free-solid-svg-icons";
+import { useAppDispatch } from "../../../store/hooks/storeHooks"
+import styled from 'styled-components'
+import { clickedUserActions } from "../../../store/clickedUser"
 import { filteredUserActions } from '../../../store/filteredUser'
-import { SetAssignmentDataPayload, assignmentActions } from '../../../store/assignment'
-// todos : DB연결 후 삭제
-import { assignmentData } from '../../../DummyData/assignmentData'
-import { SetAttendanceDataPayload, attendanceActions } from '../../../store/attendance'
-import { attendanceData } from '../../../DummyData/attendanceData'
-import { SetAttendanceRateDataPayload, attendanceRateActions } from '../../../store/attendanceRate'
-import { attendanceRateData } from '../../../DummyData/attendaneRateData'
-import { SetFineDataPayload, fineActions } from '../../../store/fine'
-import { fineData } from '../../../DummyData/fineData'
-import { SetMessageDataPayload, messageActions } from '../../../store/message'
-import { messageData } from '../../../DummyData/messageData'
-import { SetScheduleDataPayload, scheduleActions } from '../../../store/schedule'
-import { scheduleData } from '../../../DummyData/scheduleData'
-import { SetSubmitDataPayload, submitActions } from '../../../store/submit'
-import { submitData } from '../../../DummyData/submitData'
-import { SetSubmitRateDataPayload, submitRateActions } from '../../../store/submitRate'
-import { submitRateData } from '../../../DummyData/sutmitRateData'
-import { SetUserDataPayload, userActions } from '../../../store/user'
-import { userData } from '../../../DummyData/userData'
+import { assignmentActions } from '../../../store/assignment'
+import { attendanceActions } from '../../../store/attendance'
+import { attendanceRateActions } from '../../../store/attendanceRate'
+import { fineActions } from '../../../store/fine'
+import { messageActions } from '../../../store/message'
+import { scheduleActions } from '../../../store/schedule'
+import { submitActions } from '../../../store/submit'
+import { submitRateActions } from '../../../store/submitRate'
+import { userActions } from '../../../store/user'
+import type { SetClickedUserPayload } from "../../../store/clickedUser"
+import type { SetAssignmentDataPayload } from '../../../store/assignment'
+import type { SetAttendanceDataPayload } from '../../../store/attendance'
+import type { SetAttendanceRateDataPayload } from '../../../store/attendanceRate'
+import type { SetFineDataPayload } from '../../../store/fine'
+import type { SetMessageDataPayload } from '../../../store/message'
+import type { SetScheduleDataPayload } from '../../../store/schedule'
+import type { SetSubmitDataPayload } from '../../../store/submit'
+import type { SetSubmitRateDataPayload } from '../../../store/submitRate'
+import type { SetUserDataPayload } from '../../../store/user'
 import axios from 'axios'
 
 export default memo(function Navigation() {
@@ -33,7 +33,7 @@ export default memo(function Navigation() {
     const [toggle, setToggle] = useState<boolean>(false)
 
     const ClickHandler = (): void => {
-        const payload: setClickedUserPayload = { user: {} }
+        const payload: SetClickedUserPayload = { user: {} }
         dispatch(clickedUserActions.setClickedUser(payload))
         setToggle(false)
     }

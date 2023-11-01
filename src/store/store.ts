@@ -3,11 +3,14 @@ import studySlice from './study'
 import userSlice from './user'
 import filteredUserSlice from './filteredUser'
 import scheduleSlice from './schedule'
+import clickedScheduleSlice from './ClickedSchedule'
 import assignmentSlice from './assignment'
+import clickedAssignmentSlice from './clickedAssignment'
 import attendanceSlice from './attendance'
 import attendanceRateSlice from './attendanceRate'
 import clickedUserSlice from './clickedUser'
 import messageSlice from './message'
+import clickedMessageSlice from './clickedMessage'
 import modalSlice from './modal'
 import submitSlice from './submit'
 import submitRateSlice from './submitRate'
@@ -18,12 +21,15 @@ const store = configureStore({
         study: studySlice,
         user: userSlice,
         filteredUser: filteredUserSlice,
+        clickedUser: clickedUserSlice,
         schedule: scheduleSlice,
+        clickedSchedule: clickedScheduleSlice,
         attendance: attendanceSlice,
         attendaceRate: attendanceRateSlice,
         assignment: assignmentSlice,
-        clickedUser: clickedUserSlice,
+        clickedAssignment: clickedAssignmentSlice,
         message: messageSlice,
+        clickedMessage: clickedMessageSlice,
         modal: modalSlice,
         submit: submitSlice,
         submitRate: submitRateSlice,

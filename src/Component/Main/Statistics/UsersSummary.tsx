@@ -1,9 +1,9 @@
-import { useMemo } from 'react'
-import { useAppSelector } from '../../../store/hooks/storeHooks';
-import styled from "styled-components"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faCheck, faBook } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components"
+import { useMemo } from 'react'
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from 'react-router-dom';
+import { useAppSelector } from '../../../store/hooks/storeHooks';
 
 export default function UsersSummary() {
 

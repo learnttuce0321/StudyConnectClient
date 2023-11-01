@@ -1,12 +1,12 @@
-import { Fine } from "../../../store/fine";
-import { useAppSelector } from "../../../store/hooks/storeHooks";
-import { User } from "../../../store/user";
 import Table from "../../Table/Table";
 import Talbebody from "../../Table/TableBody";
 import TableHead from "../../Table/TableHead";
 import TableWrapper from "../../Table/TableWrapper";
 import Th from "../../Table/Th";
 import FineTableItem from "./FineTableItem";
+import { useAppSelector } from "../../../store/hooks/storeHooks";
+import { Fine } from "../../../store/fine";
+import { User } from "../../../store/user";
 
 export default function FineTable() {
 

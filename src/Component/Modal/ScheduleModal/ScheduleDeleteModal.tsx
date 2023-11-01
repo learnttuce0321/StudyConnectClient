@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
-import { attendanceActions } from '../../../store/attendance'
-import { scheduleActions } from '../../../store/schedule'
-import type { DeleteAttendancePayload } from '../../../store/attendance'
-import type { DeleteSchedulePayload } from '../../../store/schedule'
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
-import axios from 'axios'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { CalculateAllAttendanceRatePayload, attendanceRateActions } from '../../../store/attendanceRate'
+import axios from 'axios'
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
+import { attendanceActions } from '../../../store/attendance'
+import { scheduleActions } from '../../../store/schedule'
+import { attendanceRateActions } from '../../../store/attendanceRate'
+import type { DeleteAttendancePayload } from '../../../store/attendance'
+import type { DeleteSchedulePayload } from '../../../store/schedule'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
+import type { CalculateAllAttendanceRatePayload } from '../../../store/attendanceRate'
 
 export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()

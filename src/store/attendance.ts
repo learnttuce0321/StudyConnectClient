@@ -1,8 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { User } from "./user";
-import type { Schedule } from "./schedule";
-import { attendanceData } from "../DummyData/attendanceData";
 
 export interface Attendance {
     id?: number;

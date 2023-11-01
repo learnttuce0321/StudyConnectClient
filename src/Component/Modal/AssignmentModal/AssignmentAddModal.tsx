@@ -1,17 +1,20 @@
-import { useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks';
 import ModalButton from "../ModalInputItem/ModalButton";
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
 import ModalTitle from "../ModalInputItem/ModalTitle";
-import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
-import { AddAssignmentPayload, assignmentActions } from '../../../store/assignment';
-import { AddSubmitPayload, submitActions } from '../../../store/submit';
+import { useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import { CalculateAllSubmitRatePayload, submitRateActions } from '../../../store/submitRate';
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks';
+import { assignmentActions } from '../../../store/assignment';
+import { submitActions } from '../../../store/submit';
+import { submitRateActions } from '../../../store/submitRate';
+import type { AddAssignmentPayload } from '../../../store/assignment';
+import type { AddSubmitPayload } from '../../../store/submit';
+import type { CalculateAllSubmitRatePayload } from '../../../store/submitRate';
+import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 

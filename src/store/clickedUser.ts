@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { User } from "./user";
 
 const initialState: any = {}
-export interface setClickedUserPayload {
+export interface SetClickedUserPayload {
     user: User | {} | undefined;
 }
 
@@ -11,7 +11,7 @@ const clickedUserSlice = createSlice({
     name: 'clickedUser',
     initialState,
     reducers: {
-        setClickedUser(state, action: PayloadAction<setClickedUserPayload | Record<string, undefined>>) {
+        setClickedUser(state, action: PayloadAction<SetClickedUserPayload | Record<string, undefined>>) {
             const { user } = action.payload
             return user
         }

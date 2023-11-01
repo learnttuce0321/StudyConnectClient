@@ -1,16 +1,17 @@
-import { useRef } from 'react'
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem";
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
 import ModalTitle from "../ModalInputItem/ModalTitle";
-import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
-import { AddFinePayload, fineActions } from '../../../store/fine';
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer';
 import ModalButton from '../ModalInputItem/ModalButton';
+import { useRef } from 'react'
 import { useParams } from 'react-router-dom';
-import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid'
+import axios from 'axios';
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
+import { fineActions } from '../../../store/fine';
+import type { AddFinePayload } from '../../../store/fine';
+import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 

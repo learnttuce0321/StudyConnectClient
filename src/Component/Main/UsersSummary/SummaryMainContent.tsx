@@ -1,6 +1,6 @@
-import { SummaryNavState } from "../../RouteComponent/MainPage";
 import UserAssignmnet from "./UserAssignment";
 import UserInfo from "./UserInfo";
+import { SummaryNavState } from "../../RouteComponent/MainPage";
 
 export default function SummaryMainContent({ summaryNavState }: { summaryNavState: SummaryNavState }) {
 

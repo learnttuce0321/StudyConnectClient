@@ -1,11 +1,14 @@
 import Td from "../../Table/Td";
-import { useAppDispatch } from "../../../store/hooks/storeHooks";
-import { Submit } from "../../../store/submit";
-import { CheckSubmitPayload, submitActions } from "../../../store/submit";
 import styled from "styled-components";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import { CalculateSubmitRatePayload, submitRateActions } from "../../../store/submitRate";
+import { useAppDispatch } from "../../../store/hooks/storeHooks";
+import { Submit } from "../../../store/submit";
+import { submitActions } from "../../../store/submit";
+import { submitRateActions } from "../../../store/submitRate";
+import type { CheckSubmitPayload } from "../../../store/submit";
+import type { CalculateSubmitRatePayload } from "../../../store/submitRate";
+
 
 export default function SubmitTableItem({ submit }: { submit: Submit }) {
     const dispatch = useAppDispatch()

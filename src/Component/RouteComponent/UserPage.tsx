@@ -11,7 +11,6 @@ import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem"
 import SubNavigation from "../Navigation/SubNavigation/SubNavigation"
 import SubNavigationItem from "../Navigation/SubNavigation/SubNavigationItem"
 import styled from "styled-components"
-import { userData } from "../../DummyData/userData"
 
 export enum ShowLogStatus {
     ATTENDANCE = 'ATTENDANCE',

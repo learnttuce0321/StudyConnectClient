@@ -1,16 +1,17 @@
-import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
 import ModalSelectItem from "../ModalInputItem/ModalSelectItem";
 import ModalTitle from "../ModalInputItem/ModalTitle";
-import { ModalFunctionProps } from "../ModalWrapper/Modal";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
-import { uniqBy } from "lodash";
-import { DeleteFinePayload, Fine, fineActions } from "../../../store/fine";
-import { User } from "../../../store/user";
-import { DateFormater } from "../../../utils/utils";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalButton from "../ModalInputItem/ModalButton";
+import { useState } from "react";
+import { uniqBy } from "lodash";
 import axios from "axios";
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
+import { fineActions } from "../../../store/fine";
+import { DateFormater } from "../../../utils/utils";
+import type { User } from "../../../store/user";
+import type { DeleteFinePayload, Fine } from "../../../store/fine";
+import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()

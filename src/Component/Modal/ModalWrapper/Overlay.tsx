@@ -1,11 +1,7 @@
-import { useAppSelector } from "../../../store/hooks/storeHooks"
-import MessageModal from "../MessageModal/MessageModal"
-import { ModalState } from "../../../store/modal"
+import MessageAddModal from "../MessageModal/MessageAddModal"
 import ScheduleAddModal from '../ScheduleModal/ScheduleAddModal'
 import ScheduleModifyModal from '../ScheduleModal/ScheduleModifyModal'
 import ScheduleDeleteModal from '../ScheduleModal/ScheduleDeleteModal'
-import type { ModalFunctionProps } from "./Modal"
-import styled from "styled-components"
 import UserAddModal from "../UserModal/UserAddModal"
 import UserFindModal from "../UserModal/UserFindModal"
 import AssignmentAddModal from "../AssignmentModal/AssignmentAddModal"
@@ -16,6 +12,13 @@ import FineDeleteModal from "../FineModal/FineDeleteModal"
 import FineModifyModal from "../FineModal/FineModifyModal"
 import StudyAddModal from "../StudyModal/StudyAddModal"
 import StudyDeleteModal from "../StudyModal/StudyDeleteModal"
+import styled from "styled-components"
+import { useAppSelector } from "../../../store/hooks/storeHooks"
+import { ModalState } from "../../../store/modal"
+import type { ModalFunctionProps } from "./Modal"
+import MessageCheckModal from "../MessageModal/MessageCheckModal"
+import ScheduleCheckModal from "../ScheduleModal/ScheduleCheckModal"
+import AssignmentCheckModal from "../AssignmentModal/AssignmentCheckModal"
 
 export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const modalValue = useAppSelector(state => state.modal)
@@ -28,8 +31,12 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
                 return <ScheduleModifyModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.DELETE_ATTENDANCE:
                 return <ScheduleDeleteModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.CHECK_SCHEDULE:
+                return <ScheduleCheckModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.ADD_MESSAGE:
-                return <MessageModal ClickQuitHandler={ClickQuitHandler} />
+                return <MessageAddModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.CHECK_MESSAGE:
+                return <MessageCheckModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.ADD_USER:
                 return <UserAddModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.FILTER_USER:
@@ -40,6 +47,8 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
                 return <AssignmentDeleteModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.MODIFY_ASSIGNMENT:
                 return <AssignmentModifyModal ClickQuitHandler={ClickQuitHandler} />
+            case ModalState.CHECK_ASSIGNMENT:
+                return <AssignmentCheckModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.ADD_FINE:
                 return <FineAddModal ClickQuitHandler={ClickQuitHandler} />
             case ModalState.DELETE_FINE:

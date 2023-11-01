@@ -1,12 +1,12 @@
-import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
-import { clickedUserActions } from "../../../store/clickedUser"
-import type { setClickedUserPayload } from "../../../store/clickedUser"
 import Table from "../../Table/Table"
 import TableHead from "../../Table/TableHead"
 import Talbebody from "../../Table/TableBody"
 import UserTableItem from "./UsersTableItem"
 import TableWrapper from "../../Table/TableWrapper"
 import Th from "../../Table/Th"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
+import { clickedUserActions } from "../../../store/clickedUser"
+import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UsersTable() {
 
@@ -16,7 +16,7 @@ export default function UsersTable() {
 
     const UserClickHandler = (e: React.MouseEvent<HTMLElement>): void => {
         const clickedUserId: string = e.currentTarget.id
-        const payload: setClickedUserPayload = {
+        const payload: SetClickedUserPayload = {
             user: userValue.find((user) => user.id === clickedUserId)
         }
         dispatch(clickedUserActions.setClickedUser(payload))

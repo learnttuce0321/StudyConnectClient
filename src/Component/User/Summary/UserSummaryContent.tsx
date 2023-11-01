@@ -1,7 +1,7 @@
-import { ShowLogStatus } from "../../RouteComponent/UserPage"
 import UserAssignmentSummary from "./UserAssignmentSummary"
 import UserAttendanceSummary from "./UserAttendanceSummary"
 import UserInfo from "./UserInfo"
+import { ShowLogStatus } from "../../RouteComponent/UserPage"
 
 export default function UserSummaryContent({ showLog }: { showLog: ShowLogStatus }) {
 

@@ -1,9 +1,9 @@
-import { useAppDispatch } from '../../store/hooks/storeHooks'
-import { ModalState, modalActions } from '../../store/modal'
 import OtherWrapper from '../Wrapper/OtherWrapper'
 import ModalButtonList from '../Modal/ActiveModalButtonWrapper/ModalButtonList'
 import ModalButtonItem from '../Modal/ActiveModalButtonWrapper/ModalButtonItem'
 import MessageTable from '../Message/MessageTable/MessageTable'
+import { useAppDispatch } from '../../store/hooks/storeHooks'
+import { ModalState, modalActions } from '../../store/modal'
 
 export default function MessagePage() {
 

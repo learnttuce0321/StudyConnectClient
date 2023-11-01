@@ -1,6 +1,6 @@
-import { AssignmentState } from "../../RouteComponent/AssignmentPage";
 import AssignmentTable from "../AssignmentTable/AssignmentTable";
 import SubmitTable from "../SubmitTable/SubmitTable";
+import { AssignmentState } from "../../RouteComponent/AssignmentPage";
 
 export default function AssignmentMainContent({ assignmentState }: { assignmentState: AssignmentState }) {
     const SelectContent = (): (JSX.Element | undefined) => {

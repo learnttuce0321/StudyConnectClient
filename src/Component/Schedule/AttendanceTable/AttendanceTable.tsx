@@ -2,12 +2,12 @@ import TableWrapper from "../../Table/TableWrapper"
 import Table from "../../Table/Table"
 import TableHead from "../../Table/TableHead"
 import Talbebody from "../../Table/TableBody"
+import Th from "../../Table/Th"
+import Td from "../../Table/Td"
+import AttendanceTableItem from "./AttendanceTableItem"
 import { useAppSelector } from "../../../store/hooks/storeHooks"
 import { DateFormater } from "../../../utils/utils"
-import AttendanceTableItem from "./AttendanceTableItem"
-import Th from "../../Table/Th"
 import { Attendance } from "../../../store/attendance"
-import Td from "../../Table/Td"
 
 export default function AttendanceTable() {
     const userValue = useAppSelector(state => state.user)

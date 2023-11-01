@@ -1,8 +1,9 @@
-import ReactDOM from "react-dom"
 import Overlay from "./Overlay"
+import ReactDOM from "react-dom"
 import styled from "styled-components"
-import { ModalPayload, modalActions, ModalState } from "../../../store/modal"
+import { modalActions, ModalState } from "../../../store/modal"
 import { useAppDispatch } from "../../../store/hooks/storeHooks"
+import type { ModalPayload } from "../../../store/modal"
 
 export interface ModalFunctionProps {
     ClickQuitHandler: () => void

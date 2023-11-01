@@ -1,9 +1,10 @@
-import { useAppDispatch } from "../../../store/hooks/storeHooks";
-import { fineActions, type CheckFinePayload } from "../../../store/fine";
-import { DateFormater } from "../../../utils/utils";
 import Td from "../../Table/Td";
 import styled from "styled-components";
 import axios from "axios";
+import { useAppDispatch } from "../../../store/hooks/storeHooks";
+import { DateFormater } from "../../../utils/utils";
+import { fineActions } from "../../../store/fine";
+import type { CheckFinePayload } from "../../../store/fine";
 
 export default function FineTableItem({ userFine, index, length }: { userFine: any, index: number, length: number }) {
 

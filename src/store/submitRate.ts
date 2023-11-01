@@ -1,7 +1,4 @@
-import { createSlice, current, PayloadAction } from "@reduxjs/toolkit";
-import { User } from "./user";
-import { Submit } from "./submit";
-import { submitRateData } from "../DummyData/sutmitRateData";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export interface SubmitRate {
     id?: number;

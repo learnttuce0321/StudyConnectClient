@@ -1,18 +1,16 @@
-import { useState, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
-import { scheduleActions } from '../../../store/schedule'
-import { type ModifySchedulePayload, type Schedule } from '../../../store/schedule'
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import { useState, useRef } from 'react'
 import axios from 'axios'
-import { DateFormater } from '../../../utils/utils'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { scheduleActions } from '../../../store/schedule'
+import type { ModifySchedulePayload, Schedule } from '../../../store/schedule'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
-// todos : 일정 변경하면 defaultValue 변경 되야함
 export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
@@ -81,10 +79,10 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
                 {
                     selectedSchedule ? (
                         <>
-                            <ModalTextInputItem name="이름" ref={nameRef} defaultValue={selectedSchedule!.name} />
-                            <ModalTextInputItem name="날짜" ref={dateRef} defaultValue={selectedSchedule!.date} />
-                            <ModalTextInputItem name="시간" ref={timeRef} defaultValue={selectedSchedule!.date} />
-                            <ModalTextInputItem name="장소" ref={locationRef} defaultValue={selectedSchedule!.location} />
+                            <ModalTextInputItem name="이름" ref={nameRef} value={selectedSchedule!.name} />
+                            <ModalTextInputItem name="날짜" ref={dateRef} value={selectedSchedule!.date} />
+                            <ModalTextInputItem name="시간" ref={timeRef} value={selectedSchedule!.date} />
+                            <ModalTextInputItem name="장소" ref={locationRef} value={selectedSchedule!.location} />
                         </>
                     ) : null
                 }

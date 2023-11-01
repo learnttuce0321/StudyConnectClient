@@ -1,8 +1,8 @@
+import UserAssignmentTable from "../UserAssignmentTable/UserAssignmentTable";
+import styled from "styled-components";
 import { useMemo } from 'react'
 import { useAppSelector } from "../../../store/hooks/storeHooks";
 import type { SubmitRate } from '../../../store/submitRate';
-import UserAssignmentTable from "../UserAssignmentTable/UserAssignmentTable";
-import styled from "styled-components";
 
 export default function UserAssignmentSummary() {
 

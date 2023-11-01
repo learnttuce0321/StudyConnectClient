@@ -1,6 +1,5 @@
-import { createSlice, current } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from '@reduxjs/toolkit'
-import { scheduleData } from "../DummyData/scheduleData";
 
 export interface Schedule {
     num?: number;

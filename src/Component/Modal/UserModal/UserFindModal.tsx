@@ -1,14 +1,14 @@
-import { useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
-import { filteredUserActions } from '../../../store/filteredUser'
-import type { User } from '../../../store/user'
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalSelectItem from '../ModalInputItem/ModalSelectItem'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
+import { useRef } from 'react'
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { filteredUserActions } from '../../../store/filteredUser'
+import type { User } from '../../../store/user'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function UserFindModal({ ClickQuitHandler }: ModalFunctionProps) {
 

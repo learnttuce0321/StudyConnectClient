@@ -1,8 +1,8 @@
+import Td from '../../Table/Td'
+import styled from "styled-components"
 import { useMemo } from 'react'
 import { useAppSelector } from "../../../store/hooks/storeHooks"
 import { User } from "../../../store/user"
-import styled from "styled-components"
-import Td from '../../Table/Td'
 
 export default function UserTableItem({ UserClickHandler, user, index }: { UserClickHandler: any, user: User, index: number }) {
     const clickedUserValue = useAppSelector(state => state.clickedUser)

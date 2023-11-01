@@ -1,7 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import type { User } from './user';
-import { Assignment } from './assignment';
-import { submitData } from '../DummyData/submitData';
 export interface Submit {
     num?: number;
     userId: string;

@@ -1,4 +1,3 @@
-import { Routes, Route, Outlet } from 'react-router-dom';
 import Navigation from '../../Navigation/MainNavigation/Navigation';
 import MainPage from '../MainPage';
 import UserPage from '../UserPage';
@@ -8,8 +7,9 @@ import AssignmentPage from '../AssignmentPage';
 import MyPage from '../MyPage';
 import FinePage from '../FinePage';
 import StudyPage from '../StudyPage';
-import { ModalState } from '../../../store/modal';
 import Modal from '../../Modal/ModalWrapper/Modal';
+import { Routes, Route, Outlet } from 'react-router-dom';
+import { ModalState } from '../../../store/modal';
 import { useAppSelector } from '../../../store/hooks/storeHooks';
 
 export default function Router() {

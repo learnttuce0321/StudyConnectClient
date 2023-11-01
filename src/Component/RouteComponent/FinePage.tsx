@@ -1,9 +1,9 @@
 import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem";
 import ModalButtonList from "../Modal/ActiveModalButtonWrapper/ModalButtonList";
 import OtherWrapper from "../Wrapper/OtherWrapper";
+import FineTable from "../Fine/FineTable/FineTable";
 import { useAppDispatch } from "../../store/hooks/storeHooks";
 import { ModalState, modalActions } from "../../store/modal";
-import FineTable from "../Fine/FineTable/FineTable";
 
 export default function FinePage() {
 

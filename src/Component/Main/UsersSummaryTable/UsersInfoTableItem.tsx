@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
 import { clickedUserActions } from "../../../store/clickedUser"
 import type { User } from "../../../store/user"
-import type { setClickedUserPayload } from "../../../store/clickedUser"
+import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UsersInfoTableItem({ user }: { user: User }) {
     const dispatch = useAppDispatch()
@@ -40,7 +40,7 @@ export default function UsersInfoTableItem({ user }: { user: User }) {
     }, [userSubmitRate])
 
     const ClickWatchUserLogHandler = (user: User) => {
-        const payload: setClickedUserPayload = { user }
+        const payload: SetClickedUserPayload = { user }
         dispatch(clickedUserActions.setClickedUser(payload))
         navigate(`/study/${studyId}/user`)
     }
