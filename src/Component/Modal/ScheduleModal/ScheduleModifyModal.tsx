@@ -12,10 +12,15 @@ import type { ModifySchedulePayload, Schedule } from '../../../store/schedule'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
 
+    const dispatch = useAppDispatch()
+
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule>()
+    const [nameState, setNameState] = useState<string>('')
+    const [locationState, setLocationState] = useState<string>('')
+    const [dateState, setDateState] = useState<string>('')
+    const [timeState, setTimeState] = useState<string>('')
 
     const nameRef = useRef<HTMLInputElement>(null)
     const locationRef = useRef<HTMLInputElement>(null)
@@ -28,6 +33,10 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
             const selectedScheduleObj = scheduleValue.find(schedule => schedule.id === id)
 
             setSelectedSchedule(selectedScheduleObj)
+            setNameState(selectedScheduleObj!.name)
+            setDateState(selectedScheduleObj!.date)
+            setLocationState(selectedScheduleObj!.location)
+            setTimeState(selectedScheduleObj!.date)
         }
     }
 
@@ -79,10 +88,10 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
                 {
                     selectedSchedule ? (
                         <>
-                            <ModalTextInputItem name="이름" ref={nameRef} value={selectedSchedule!.name} />
-                            <ModalTextInputItem name="날짜" ref={dateRef} value={selectedSchedule!.date} />
-                            <ModalTextInputItem name="시간" ref={timeRef} value={selectedSchedule!.date} />
-                            <ModalTextInputItem name="장소" ref={locationRef} value={selectedSchedule!.location} />
+                            <ModalTextInputItem name="이름" ref={nameRef} onChangeHandler={(e: any): void => { setNameState(e.target.value) }} value={nameState} />
+                            <ModalTextInputItem name="날짜" ref={dateRef} onChangeHandler={(e: any): void => { setDateState(e.target.value) }} value={dateState} />
+                            <ModalTextInputItem name="시간" ref={timeRef} onChangeHandler={(e: any): void => { setTimeState(e.target.value) }} value={timeState} />
+                            <ModalTextInputItem name="장소" ref={locationRef} onChangeHandler={(e: any): void => { setLocationState(e.target.value) }} value={locationState} />
                         </>
                     ) : null
                 }

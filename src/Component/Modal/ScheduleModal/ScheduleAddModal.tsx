@@ -17,14 +17,16 @@ import type { AddAttendanceByschedulePayload } from "../../../store/attendance"
 import type { CalculateAllAttendanceRatePayload } from "../../../store/attendanceRate"
 
 export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const userValue = useAppSelector(state => state.user)
+
+    const dispatch = useAppDispatch()
+
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
+
     const nameRef = useRef<HTMLInputElement>(null)
     const dateRef = useRef<HTMLInputElement>(null)
     const timeRef = useRef<HTMLInputElement>(null)
     const locationRef = useRef<HTMLInputElement>(null)
-
-    const dispatch = useAppDispatch()
-    const { studyId }: { studyId: string } = useParams() as { studyId: string }
-    const userValue = useAppSelector(state => state.user)
 
     const ClickAddScheduleHandler = async (): Promise<any> => {
         const inputname = nameRef.current
@@ -45,6 +47,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
                 studyId
             }
         })
+
         const attendanceResult = await axios({
             method: 'POST',
             url: 'attendance/add-schedule',
@@ -54,6 +57,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
                 studyId
             }
         })
+
         const attendanceRateResult = await axios({
             method: 'PATCH',
             url: 'attendance-rate/calculate-all',
@@ -76,6 +80,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
             attendanceRates: attendanceRateResult.data.data
         }
         dispatch(attendanceRateActions.CalculateAllAttendanceRate(calculateAttendanceRatePayload))
+
         ClickQuitHandler()
     }
 

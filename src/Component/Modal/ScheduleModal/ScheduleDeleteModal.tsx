@@ -16,11 +16,14 @@ import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 import type { CalculateAllAttendanceRatePayload } from '../../../store/attendanceRate'
 
 export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
     const scheduleValue = useAppSelector(state => state.schedule)
+
+    const dispatch = useAppDispatch()
+
     const { studyId } = useParams()
 
     const [selectedScheduleId, setSelectedScheduleId] = useState<string>('')
+
     const ClickScheduleHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedScheduleId(e.target!.value)
     }
@@ -47,7 +50,7 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
                 const deleteAttendancePayload: DeleteAttendancePayload = {
                     scheduleId: selectedScheduleId
                 }
-                dispatch(attendanceActions._DeleteAttendance(deleteAttendancePayload))
+                dispatch(attendanceActions.DeleteAttendance(deleteAttendancePayload))
 
                 const deleteSchedulePayload: DeleteSchedulePayload = {
                     id: selectedScheduleId
@@ -65,6 +68,7 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
             ClickQuitHandler()
         }
     }
+
     return (
         <>
             <ModalContentContainer>

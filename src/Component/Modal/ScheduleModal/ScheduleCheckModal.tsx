@@ -1,8 +1,8 @@
-import ModalButton from "../ModalInputItem/ModalButton";
-import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
-import ModalTitle from "../ModalInputItem/ModalTitle";
-import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
+import ModalTitle from "../ModalInputItem/ModalTitle";
+import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
+import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
+import ModalButton from "../ModalInputItem/ModalButton";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
 import { DateFormater } from "../../../utils/utils";
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
