@@ -11,9 +11,9 @@ import type { User } from '../../../store/user'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function UserFindModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const userValue = useAppSelector(state => state.user)
 
     const dispatch = useAppDispatch()
-    const userValue = useAppSelector(state => state.user)
 
     const searchTypeRef = useRef<HTMLSelectElement>(null)
     const searchSexRef = useRef<HTMLSelectElement>(null)
@@ -47,6 +47,7 @@ export default function UserFindModal({ ClickQuitHandler }: ModalFunctionProps) 
                 dispatch(filteredUserActions.setFilteredUser({ filteredUser: tempFilteredUser, isFiltering: true }))
                 break;
         }
+
         ClickQuitHandler()
     }
 

@@ -1,37 +1,39 @@
-import { useState, useRef } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
-import { userActions } from '../../../store/user'
-import { attendanceActions } from '../../../store/attendance'
-import { attendanceRateActions } from '../../../store/attendanceRate'
-import type { ModalFunctionProps } from '../ModalWrapper/Modal'
-import type { AddUserPayload } from '../../../store/user'
-import type { AddAttendanceByUserPayload } from '../../../store/attendance'
-import type { AddAttendanceRatePayload } from '../../../store/attendanceRate'
 import ModalTextInputItem from '../ModalInputItem/ModalTextInputItem'
 import ModalRadioInputItem from '../ModalInputItem/ModalRadioInputItem'
 import ModalTitle from '../ModalInputItem/ModalTitle'
 import ModalButtonsContainer from '../ModalWrapper/ModalButtonsContainer'
 import ModalContentContainer from '../ModalWrapper/ModalContentContainer'
 import ModalButton from '../ModalInputItem/ModalButton'
-import { AddSubmitRatePayload, submitRateActions } from '../../../store/submitRate'
-import { AddSubmitPayloadByUser, submitActions } from '../../../store/submit'
+import { useState, useRef } from 'react'
 import { v4 as uuidv4 } from 'uuid'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
-
+import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
+import { userActions } from '../../../store/user'
+import { attendanceActions } from '../../../store/attendance'
+import { attendanceRateActions } from '../../../store/attendanceRate'
+import { submitRateActions } from '../../../store/submitRate'
+import { submitActions } from '../../../store/submit'
+import type { ModalFunctionProps } from '../ModalWrapper/Modal'
+import type { AddSubmitRatePayload } from '../../../store/submitRate'
+import type { AddSubmitPayloadByUser } from '../../../store/submit'
+import type { AddUserPayload } from '../../../store/user'
+import type { AddAttendanceByUserPayload } from '../../../store/attendance'
+import type { AddAttendanceRatePayload } from '../../../store/attendanceRate'
 
 export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const [sexValue, setSexValue] = useState<string>()
-
-    const dispatch = useAppDispatch()
-    const { studyId } = useParams() as { studyId: string }
-
     const scheduleValue = useAppSelector(state => state.schedule)
     const assignmentValue = useAppSelector(state => state.assignment)
+
+    const dispatch = useAppDispatch()
+
+    const { studyId } = useParams() as { studyId: string }
 
     const nameRef = useRef<HTMLInputElement>(null)
     const phoneRef = useRef<HTMLInputElement>(null)
     const ageRef = useRef<HTMLInputElement>(null)
+
+    const [sexValue, setSexValue] = useState<string>()
 
     const ClickAddUserHandler = async (e: React.MouseEvent<HTMLElement>) => {
         e.preventDefault()
@@ -54,6 +56,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
                 studyId
             }
         })
+
         const attendanceResult = await axios({
             method: 'POST',
             url: 'attendance/add-user',
@@ -63,6 +66,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
                 studyId,
             }
         })
+
         const attendanceRateResult = await axios({
             method: 'POST',
             url: 'attendance-rate/add',
@@ -71,6 +75,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
                 studyId
             }
         })
+
         const submitResult = await axios({
             method: 'POST',
             url: 'submit/add-user',
@@ -80,6 +85,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
                 studyId
             }
         })
+
         const submitRateResult = await axios({
             method: 'POST',
             url: 'submit-rate/add',
