@@ -1,20 +1,20 @@
 import Td from "../../Table/Td"
-import { useAppDispatch } from "../../../store/hooks/storeHooks"
-import { attendanceActions } from "../../../store/attendance"
-import { useParams } from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
-import type { Attendance } from "../../../store/attendance"
+import { useParams } from "react-router-dom"
+import { useAppDispatch } from "../../../store/hooks/storeHooks"
+import { attendanceActions } from "../../../store/attendance"
 import { attendanceRateActions } from "../../../store/attendanceRate"
+import type { Attendance } from "../../../store/attendance"
 import type { CheckAttendancePayload } from "../../../store/attendance"
-import { CalculateAttendaceRatePayload } from "../../../store/attendanceRate"
+import type { CalculateAttendaceRatePayload } from "../../../store/attendanceRate"
 
 export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()
+
     const { studyId } = useParams()
 
     const AttendClickHandler = async (): Promise<any> => {
-
         const attendanceResult = await axios({
             method: 'PATCH',
             url: 'attendance/check',
@@ -24,6 +24,7 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
                 isAttended: attendance.isAttended
             }
         })
+
         const attendanceRateResult = await axios({
             method: 'PATCH',
             url: 'attendance-rate/calculate',

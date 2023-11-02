@@ -7,13 +7,20 @@ import Td from "../../Table/Td"
 import AttendanceTableItem from "./AttendanceTableItem"
 import { useAppSelector } from "../../../store/hooks/storeHooks"
 import { DateFormater } from "../../../utils/utils"
-import { Attendance } from "../../../store/attendance"
+import type { Attendance } from "../../../store/attendance"
 
 export default function AttendanceTable() {
     const userValue = useAppSelector(state => state.user)
     const scheduleValue = useAppSelector(state => state.schedule)
     const attendanceValue = useAppSelector(state => state.attendance)
 
+    /**
+     * 스케쥴의 id와 과제의 스케쥴 id가 동일 할 경우에만 tableItem 반환하는 함수
+     * @param SscheduleId 
+     * @param AscheduleId 
+     * @param attendance 
+     * @returns 
+     */
     const MatchedTableItem = (SscheduleId: string, AscheduleId: string, attendance: Attendance): (JSX.Element | null | undefined) => {
         switch (SscheduleId === AscheduleId) {
             case true:
