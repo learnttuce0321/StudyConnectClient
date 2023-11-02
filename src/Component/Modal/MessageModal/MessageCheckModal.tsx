@@ -3,14 +3,14 @@ import ModalTitle from "../ModalInputItem/ModalTitle";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
 import ModalTextInputItem from "../ModalInputItem/ModalTextInputItem";
+import { useMemo } from "react";
 import { DateFormater } from "../../../utils/utils";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
-import { useMemo } from "react";
 
 export default function MessageCheckModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const clickedMessageValue = useAppSelector(state => state.clickedMessage)
     const userValue = useAppSelector(state => state.user)
+    const clickedMessageValue = useAppSelector(state => state.clickedMessage)
 
     const matchedUserObj = useMemo(() => {
         return userValue.find(user => user.id === clickedMessageValue.userId)

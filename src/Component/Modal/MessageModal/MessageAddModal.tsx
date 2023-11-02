@@ -15,9 +15,11 @@ import type { AddMessagePayload } from '../../../store/message'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function MessageAddModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
-    const { studyId }: { studyId: string } = useParams() as { studyId: string }
     const userValue = useAppSelector(state => state.user)
+
+    const dispatch = useAppDispatch()
+
+    const { studyId } = useParams() as { studyId: string }
 
     const contentRef = useRef<HTMLInputElement>(null)
     const userIdRef = useRef<HTMLSelectElement>(null)
@@ -26,6 +28,7 @@ export default function MessageAddModal({ ClickQuitHandler }: ModalFunctionProps
     const ShareKakao = (userId: string, content: string): void => {
         const matchedUserObj = userValue.find(user => user.id === userId)
 
+        //kakao톡으로 공유 가능
         window.Kakao.Link.sendCustom({
             templateId: 100158,
             templateArgs: {
@@ -73,6 +76,7 @@ export default function MessageAddModal({ ClickQuitHandler }: ModalFunctionProps
 
         ClickQuitHandler()
     }
+
     return (
         <>
             <ModalContentContainer>
