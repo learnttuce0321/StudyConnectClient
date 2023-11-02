@@ -9,13 +9,14 @@ import { clickedUserActions } from "../../../store/clickedUser"
 import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UsersTable() {
-
-    const dispatch = useAppDispatch()
     const { filteredUser, isFiltering } = useAppSelector(state => state.filteredUser)
     const userValue = useAppSelector(state => state.user)
 
+    const dispatch = useAppDispatch()
+
     const UserClickHandler = (e: React.MouseEvent<HTMLElement>): void => {
         const clickedUserId: string = e.currentTarget.id
+
         const payload: SetClickedUserPayload = {
             user: userValue.find((user) => user.id === clickedUserId)
         }

@@ -9,9 +9,9 @@ import type { InfoPaylaod } from "../../../store/user"
 import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UserInfo() {
-    const dispatch = useAppDispatch()
-
     const clickedUserValue = useAppSelector(state => state.clickedUser)
+
+    const dispatch = useAppDispatch()
 
     const infoRef = useRef<HTMLTextAreaElement>(null)
 

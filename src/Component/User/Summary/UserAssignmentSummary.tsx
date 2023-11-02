@@ -5,12 +5,16 @@ import { useAppSelector } from "../../../store/hooks/storeHooks";
 import type { SubmitRate } from '../../../store/submitRate';
 
 export default function UserAssignmentSummary() {
-
     const clickedUserValue = useAppSelector(state => state.clickedUser)
     const submitRateValue = useAppSelector(state => state.submitRate)
 
-    const userSubmitRate: (SubmitRate | undefined) = submitRateValue.find(submitRate => submitRate.userId === clickedUserValue.id)
+    const userSubmitRate: (SubmitRate | undefined) = useMemo(() => {
+        return submitRateValue.find(submitRate => submitRate.userId === clickedUserValue.id)
+    }, [clickedUserValue])
 
+    /**
+     * rate에 따른 색상 지정
+     */
     const titleColor = useMemo((): string => {
         const rate = Number(userSubmitRate!.rate)
 

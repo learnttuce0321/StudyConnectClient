@@ -2,6 +2,7 @@ import Td from "../../Table/Td";
 import { DateFormater } from "../../../utils/utils";
 
 export default function UserAttendanceTableItem({ userAttendance }: { userAttendance: any }) {
+
     return (
         <tr>
             <Td>{userAttendance.name}</Td>

@@ -6,12 +6,16 @@ import { AttendanceRate } from '../../../store/attendanceRate'
 
 
 export default function UserAttendanceSummary() {
-
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
     const clickedUserValue = useAppSelector(state => state.clickedUser)
 
-    const userAttendanceRate: (AttendanceRate | undefined) = attendanceRateValue.find(userAttendance => userAttendance.userId === clickedUserValue.id)
+    const userAttendanceRate: (AttendanceRate | undefined) = useMemo(() => {
+        return attendanceRateValue.find(userAttendance => userAttendance.userId === clickedUserValue.id)
+    }, [clickedUserValue])
 
+    /**
+    * rate에 따른 색상 지정
+    */
     const titleColor = useMemo((): string => {
         const rate = Number(userAttendanceRate!.rate)
 

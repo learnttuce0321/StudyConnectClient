@@ -11,14 +11,13 @@ import type { Schedule } from '../../../store/schedule';
 import type { User } from '../../../store/user';
 
 export default function UserAttendanceTable() {
-
     const scheduleValue = useAppSelector(state => state.schedule)
     const attendanceValue = useAppSelector(state => state.attendance)
     const clickedUserValue = useAppSelector(state => state.clickedUser)
 
-    const userAttendances: any = GetUserAttendances(attendanceValue, scheduleValue, clickedUserValue)
-
     const [tableHeight, setTableHeight] = useState<string>(window.innerWidth >= 1180 ? '58%' : '52%')
+
+    const userAttendances: any = GetUserAttendances(attendanceValue, scheduleValue, clickedUserValue)
 
     useEffect(() => {
         window.addEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '58%' : '52%') })
@@ -44,7 +43,13 @@ export default function UserAttendanceTable() {
         </TableWrapper>
     )
 }
-
+/**
+ * 각 회원의 attendance에 대한 정보만 받는 함수
+ * @param attendanceValue
+ * @param scheduleValue 
+ * @param clickedUserValue 
+ * @returns 
+ */
 const GetUserAttendances = (attendanceValue: Array<Attendance>, scheduleValue: Array<Schedule>, clickedUserValue: User): any => {
     const tempUserAttendances: Array<Attendance> = attendanceValue.filter(attendance => attendance.userId === clickedUserValue.id)
     const returnValue: any = []

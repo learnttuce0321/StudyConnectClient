@@ -2,6 +2,7 @@ import Td from '../../Table/Td';
 import { DateFormater } from "../../../utils/utils";
 
 export default function UserAssignmentTableItem({ userSubmit }: { userSubmit: any }) {
+
     return (
         <tr>
             <Td>{userSubmit.title}</Td>

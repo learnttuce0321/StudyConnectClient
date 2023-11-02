@@ -11,20 +11,21 @@ import type { Assignment } from '../../../store/assignment';
 import type { User } from '../../../store/user';
 
 export default function UserAssignmentTable() {
-
     const assignmentValue = useAppSelector(state => state.assignment)
     const submitValue = useAppSelector(state => state.submit)
     const clickedUserValue = useAppSelector(state => state.clickedUser)
 
-    const userSubmits: any = GetUserSubmits(submitValue, assignmentValue, clickedUserValue)
-
     const [tableHeight, setTableHeight] = useState<string>(window.innerWidth >= 1180 ? '64%' : '52%')
+
+    const userSubmits: any = GetUserSubmits(submitValue, assignmentValue, clickedUserValue)
 
     useEffect(() => {
         window.addEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '64%' : '52%') })
+
         return () => {
             window.removeEventListener('resize', () => { setTableHeight(window.innerWidth >= 1180 ? '64%' : '52%') })
         }
+
     }, [])
 
     return (
@@ -44,6 +45,13 @@ export default function UserAssignmentTable() {
         </TableWrapper>
     )
 }
+/**
+ * 각 회원의 submit에 대한 정보만 받아오는 함수
+ * @param submitValue 
+ * @param assignmentValue 
+ * @param clickedUserValue 
+ * @returns 
+ */
 const GetUserSubmits = (submitValue: Array<Submit>, assignmentValue: Array<Assignment>, clickedUserValue: User): any => {
     const tempUserSubmits: Array<Submit> = submitValue.filter(submit => submit.userId === clickedUserValue.id)
     const returnValue: any = []

@@ -2,7 +2,7 @@ import Td from '../../Table/Td'
 import styled from "styled-components"
 import { useMemo } from 'react'
 import { useAppSelector } from "../../../store/hooks/storeHooks"
-import { User } from "../../../store/user"
+import type { User } from "../../../store/user"
 
 export default function UserTableItem({ UserClickHandler, user, index }: { UserClickHandler: any, user: User, index: number }) {
     const clickedUserValue = useAppSelector(state => state.clickedUser)
@@ -19,6 +19,7 @@ export default function UserTableItem({ UserClickHandler, user, index }: { UserC
         </tr>
     )
 }
+
 const SexSpan = styled.span`
     font-size: 14px;
 `
