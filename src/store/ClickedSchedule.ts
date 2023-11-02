@@ -10,6 +10,7 @@ export interface SetClickedSchedulePayload {
 const clickedScheduleSlice = createSlice({
     name: 'clickedSchedule',
     initialState,
+    // set-clicked schedule-data
     reducers: {
         setClickedSchedule(state, action: PayloadAction<SetClickedSchedulePayload>) {
             const { schedule } = action.payload

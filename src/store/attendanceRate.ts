@@ -24,6 +24,7 @@ const initialState: Array<AttendanceRate> = []
 const attendanceRateSlice = createSlice({
     name: 'attendanceRate',
     initialState,
+    // set/add/calculate/calculate-all attendance-rate-data
     reducers: {
         SetAttendanceRateData(state, action: PayloadAction<SetAttendanceRateDataPayload>) {
             return  action.payload.attendanceRates

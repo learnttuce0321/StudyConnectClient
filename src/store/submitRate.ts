@@ -23,6 +23,7 @@ const initialState: Array<SubmitRate> = []
 const submitRateSlice = createSlice({
     name: 'submitRate',
     initialState,
+    //set/add/calculate/calculate-all submit-rate-data
     reducers: {
         SetSubmitData(state, action: PayloadAction<SetSubmitRateDataPayload>) {
             return action.payload.submitRates  

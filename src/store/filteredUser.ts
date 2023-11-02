@@ -18,6 +18,7 @@ export interface FilteredUserPayoad {
 const filteredUserSlice = createSlice({
     name: 'filteredUserSlice',
     initialState,
+    // set-filtered user-data
     reducers:{
         setFilteredUser(state, action: PayloadAction<FilteredUserPayoad>) {
             const { filteredUser, isFiltering } = action.payload

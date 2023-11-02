@@ -10,6 +10,7 @@ export interface SetClickedUserPayload {
 const clickedUserSlice = createSlice({
     name: 'clickedUser',
     initialState,
+    // set-clicked user-data
     reducers: {
         setClickedUser(state, action: PayloadAction<SetClickedUserPayload | Record<string, undefined>>) {
             const { user } = action.payload

@@ -10,6 +10,7 @@ export interface SetClickedMessagePayload {
 const clickedMessageSlice = createSlice({
     name: 'clickedMessage',
     initialState,
+    // set-clicked message-data
     reducers: {
         setClickedMessage(state, action: PayloadAction<SetClickedMessagePayload>) {
             const { message } = action.payload

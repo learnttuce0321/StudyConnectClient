@@ -13,6 +13,7 @@ const initialState: Array<Study> = []
 const studySlice = createSlice({
     name: 'study',
     initialState,
+    // set study-data
     reducers: {
         SetStudyData(state, action: PayloadAction<SetStudyDataPayload>) {
             return action.payload.studies

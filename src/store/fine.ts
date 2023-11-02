@@ -30,6 +30,7 @@ const initialState: Array<Fine> = []
 const fineSlice = createSlice({
     name: 'fine',
     initialState,
+    // set/add/delete/modify/check find-data
     reducers: {
         SetFineData(state, action: PayloadAction<SetFineDataPayload>) {
             return action.payload.fines

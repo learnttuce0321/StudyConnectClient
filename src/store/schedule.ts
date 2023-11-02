@@ -37,6 +37,7 @@ const initialState: Array<Schedule> = []
 const scheduleSlice = createSlice({
     name: 'schedule',
     initialState,
+    // set/add/delete/modify schedule-data
     reducers: {
         SetSchduleData(state, action: PayloadAction<SetScheduleDataPayload>) {
             return action.payload.schedules

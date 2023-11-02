@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { PayloadAction } from "@reduxjs/toolkit";
-import { messageData } from "../DummyData/messageData";
 
 interface Message {
     id: string,
@@ -27,6 +26,7 @@ const initialState: Array<Message> = []
 const messageSlice = createSlice({
     name: 'message',
     initialState,
+    // set/add message-data
     reducers: {
         SetMessageData(state, action: PayloadAction<SetMessageDataPayload>) {
             return action.payload.messages
@@ -44,9 +44,6 @@ const messageSlice = createSlice({
             }
 
             state.push(tempMessageObj)
-
-            // todos: 삭제
-            messageData.push(tempMessageObj)
         }
     }
 })

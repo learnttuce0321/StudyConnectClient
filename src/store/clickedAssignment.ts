@@ -10,6 +10,7 @@ export interface SetClickedAssignmentPayload {
 const clickedAssignmentSlice = createSlice({
     name: 'clickedAssignment',
     initialState,
+    // set-clicked assignment-data
     reducers: {
         setClickedAssignment(state, action: PayloadAction<SetClickedAssignmentPayload>) {
             const { assignment } = action.payload

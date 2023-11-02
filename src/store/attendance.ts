@@ -30,6 +30,7 @@ const initialState: Array<Attendance> = []
 const attendanceSlice = createSlice({
     name: 'attendance',
     initialState,
+    // set/add/addByUser/delete/check attendance-data
     reducers: {
         SetAttendanceData(state, action: PayloadAction<SetAttendanceDataPayload>) {
             return action.payload.attendanes
@@ -61,7 +62,7 @@ const attendanceSlice = createSlice({
                 state.push(attendance)
             }
         },
-        _DeleteAttendance(state, action: PayloadAction<DeleteAttendancePayload>) {
+        DeleteAttendance(state, action: PayloadAction<DeleteAttendancePayload>) {
             const { scheduleId } = action.payload
 
             const tempAttendaces = state.filter(attendance => attendance.scheduleId !== scheduleId)

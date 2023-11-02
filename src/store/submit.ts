@@ -28,6 +28,7 @@ const initialState: Array<Submit> = []
 const submitSlice = createSlice({
     name: 'submit',
     initialState,
+    // set/add/add-user/delete/modify/check submit-data
     reducers: {
         SetSutmitData(state, action: PayloadAction<SetSubmitDataPayload>) {
             return action.payload.submits

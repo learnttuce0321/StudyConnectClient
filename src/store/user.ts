@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
-import { userData } from "../DummyData/userData";
 
 type Sex = 'male' | 'female'
 export interface User {
@@ -36,6 +35,7 @@ const initialState: Array<User> = []
 const userSlice = createSlice({
     name: 'user',
     initialState,
+    // set/add/change-info user-data
     reducers: {
         SetUserData(state, action: PayloadAction<SetUserDataPayload>) {
             return action.payload.users
@@ -60,9 +60,6 @@ const userSlice = createSlice({
                 studyId
             }
             state.push(tempUser)
-
-            // todos : 삭제
-            userData.push(tempUser)
         }
     }
 })
