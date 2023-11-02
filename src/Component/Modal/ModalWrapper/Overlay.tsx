@@ -13,16 +13,20 @@ import FineModifyModal from "../FineModal/FineModifyModal"
 import StudyAddModal from "../StudyModal/StudyAddModal"
 import StudyDeleteModal from "../StudyModal/StudyDeleteModal"
 import styled from "styled-components"
-import { useAppSelector } from "../../../store/hooks/storeHooks"
-import { ModalState } from "../../../store/modal"
-import type { ModalFunctionProps } from "./Modal"
 import MessageCheckModal from "../MessageModal/MessageCheckModal"
 import ScheduleCheckModal from "../ScheduleModal/ScheduleCheckModal"
 import AssignmentCheckModal from "../AssignmentModal/AssignmentCheckModal"
+import { useAppSelector } from "../../../store/hooks/storeHooks"
+import { ModalState } from "../../../store/modal"
+import type { ModalFunctionProps } from "./Modal"
 
 export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const modalValue = useAppSelector(state => state.modal)
 
+    /**
+     * ModalState값에 따라 모달의 보여주는 내용을 다르게 보여줌
+     * @returns 
+     */
     const ModalContent = (): (JSX.Element | undefined) => {
         switch (modalValue.type) {
             case ModalState.ADD_ATTENDANCE:
@@ -80,7 +84,6 @@ const ModalCard = styled.div`
     background-color: white;
     border: 1px solid #282828;
     border-radius: 5px;
-    
     display: flex;
     flex-direction: column;
     justify-content: space-around;

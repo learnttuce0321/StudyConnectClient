@@ -10,13 +10,13 @@ export interface ModalFunctionProps {
 }
 
 export default function Modal() {
-
     const dispatch = useAppDispatch()
 
     const ClickQuitHandler = (): void => {
         const modalPayload: ModalPayload = { type: ModalState.NONE }
         dispatch(modalActions.setModalState(modalPayload))
     }
+
     return (
         <>
             {
@@ -28,6 +28,7 @@ export default function Modal() {
         </>
     )
 }
+
 const Backdrop = styled.div`
     position: fixed;
     top: 0;
