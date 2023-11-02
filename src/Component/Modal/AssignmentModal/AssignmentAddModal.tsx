@@ -17,17 +17,17 @@ import type { CalculateAllSubmitRatePayload } from '../../../store/submitRate';
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const userValue = useAppSelector(state => state.user)
 
     const dispatch = useAppDispatch()
+
     const { studyId }: { studyId: string } = useParams() as { studyId: string }
-    const userValue = useAppSelector(state => state.user)
 
     const titleRef = useRef<HTMLInputElement>(null)
     const contentRef = useRef<HTMLInputElement>(null)
     const deadLineRef = useRef<HTMLInputElement>(null)
 
     const ClickAddAssignmentHandler = async (): Promise<any> => {
-
         const titleInput = titleRef.current
         const contentInput = contentRef.current
         const deadLineInput = deadLineRef.current
@@ -44,6 +44,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
                 studyId
             }
         })
+
         const submitResult = await axios({
             method: 'POST',
             url: 'submit/add-assignment',
@@ -53,6 +54,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
                 studyId
             }
         })
+
         const submitRateResult = await axios({
             method: 'PATCH',
             url: 'submit-rate/calculate-all',
@@ -78,6 +80,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
 
         ClickQuitHandler()
     }
+
     return (
         <>
             <ModalContentContainer>

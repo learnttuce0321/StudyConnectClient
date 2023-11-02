@@ -12,10 +12,14 @@ import type { Assignment, ModifyAssignmentPayload } from '../../../store/assignm
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
 
 export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
     const assignmentValue = useAppSelector(state => state.assignment)
 
+    const dispatch = useAppDispatch()
+
     const [selectedAssignment, setSelectedAssignment] = useState<Assignment>()
+    const [titleState, setTitleState] = useState<string>('')
+    const [contentState, setContentState] = useState<string>('')
+    const [deadLineState, setDeadLineState] = useState<string>('')
 
     const titleRef = useRef<HTMLInputElement>(null)
     const contentRef = useRef<HTMLInputElement>(null)
@@ -27,6 +31,9 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
         if (id !== 'none') {
             const selectedAssignmentObj = assignmentValue.find(assignment => assignment.id === id)
             setSelectedAssignment(selectedAssignmentObj)
+            setTitleState(selectedAssignmentObj!.title)
+            setContentState(selectedAssignmentObj!.content)
+            setDeadLineState(selectedAssignmentObj!.deadLine)
         }
     }
 
@@ -55,9 +62,13 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
             }
 
             setSelectedAssignment(undefined)
+            setTitleState('')
+            setContentState('')
+            setDeadLineState('')
             ClickQuitHandler()
         }
     }
+
     return (
         <>
             <ModalContentContainer>
@@ -75,9 +86,9 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
                 {
                     selectedAssignment ? (
                         <>
-                            <ModalTextInputItem name="이름" ref={titleRef} value={selectedAssignment!.title} />
-                            <ModalTextInputItem name="내용" ref={contentRef} value={selectedAssignment!.content} />
-                            <ModalTextInputItem name="기한" ref={deadLineRef} value={selectedAssignment!.deadLine} />
+                            <ModalTextInputItem name="이름" ref={titleRef} onChangeHandler={(e: any): void => { setTitleState(e.target.value) }} value={titleState} />
+                            <ModalTextInputItem name="내용" ref={contentRef} onChangeHandler={(e: any): void => { setContentState(e.target.value) }} value={contentState} />
+                            <ModalTextInputItem name="기한" ref={deadLineRef} onChangeHandler={(e: any): void => { setDeadLineState(e.target.value) }} value={deadLineState} />
 
                         </>
                     ) : null

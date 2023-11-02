@@ -9,6 +9,7 @@ import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function AssignmentCheckModal({ ClickQuitHandler }: ModalFunctionProps) {
     const clickedAssignmentValue = useAppSelector(state => state.clickedAssignment)
+
     return (
         <>
             <ModalContentContainer>

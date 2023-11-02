@@ -16,12 +16,14 @@ import type { DeleteSubmitPayload } from '../../../store/submit'
 import type { CalculateAllSubmitRatePayload } from '../../../store/submitRate'
 
 export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const assignmentValue = useAppSelector(state => state.assignment)
 
     const dispatch = useAppDispatch()
-    const assignmentValue = useAppSelector(state => state.assignment)
+
     const { studyId } = useParams()
 
     const [selectedAssignmentId, setSelectedAssignmentId] = useState<string>('')
+
     const ClickAssignmentHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedAssignmentId(e.target!.value)
     }
@@ -35,6 +37,7 @@ export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctio
                     id: selectedAssignmentId
                 }
             })
+
             const submitRateResult = await axios({
                 method: 'PATCH',
                 url: 'submit-rate/calculate-all',
