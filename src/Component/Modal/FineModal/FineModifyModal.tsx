@@ -15,14 +15,16 @@ import type { User } from "../../../store/user";
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
-
     const userValue = useAppSelector(state => state.user)
     const fineValue = useAppSelector(state => state.fine)
 
+    const dispatch = useAppDispatch()
+
     const [selectedUserId, setSelectedUserId] = useState<string>('')
     const [selectedFineId, setSelectedFineId] = useState<string>('')
-    const selectedFineObj: (Fine | undefined) = fineValue.find(fine => fine.id === selectedFineId)
+    const [selectedFineObj, setSelectedFineObj] = useState<Fine | undefined>()
+    const [fineState, setFineState] = useState<number>()
+    const [deadLineState, setDeadLineState] = useState<string>('')
 
     const hasFineUsers: any = GetHasFineUsers(fineValue, userValue)
     const userFines: Array<Fine> = GetUserFine(fineValue, selectedUserId)
@@ -33,8 +35,14 @@ export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps
     const ClickuserIdHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedUserId(e.target!.value)
     }
+
     const ClickFineIdHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
+        let matchedFineObj = fineValue.find(fine => fine.id === e.target!.value)
+
         setSelectedFineId(e.target!.value)
+        setSelectedFineObj(matchedFineObj)
+        setFineState(matchedFineObj!.fine)
+        setDeadLineState(matchedFineObj!.deadLine)
     }
 
     const ClickModifyHandler = async (): Promise<any> => {
@@ -87,8 +95,8 @@ export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps
                 {
                     selectedFineObj ? (
                         <>
-                            <ModalTextInputItem name="벌금" ref={fineRef} value={selectedFineObj.fine.toString()} />
-                            <ModalTextInputItem name="기한" ref={deadLineRef} value={selectedFineObj.deadLine} />
+                            <ModalTextInputItem name="벌금" ref={fineRef} onChangeHandler={(e: any): void => { setFineState(e.target.value) }} value={fineState!.toString()} />
+                            <ModalTextInputItem name="기한" ref={deadLineRef} onChangeHandler={(e: any): void => { setDeadLineState(e.target.value) }} value={deadLineState} />
                         </>
                     ) : null
                 }

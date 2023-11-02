@@ -3,7 +3,7 @@ import ModalTitle from "../ModalInputItem/ModalTitle";
 import ModalContentContainer from "../ModalWrapper/ModalContentContainer";
 import ModalButtonsContainer from "../ModalWrapper/ModalButtonsContainer";
 import ModalButton from "../ModalInputItem/ModalButton";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { uniqBy } from "lodash";
 import axios from "axios";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
@@ -14,16 +14,20 @@ import type { DeleteFinePayload, Fine } from "../../../store/fine";
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
-    const dispatch = useAppDispatch()
-
-    const userValue = useAppSelector(state => state.user)
     const fineValue = useAppSelector(state => state.fine)
+    const userValue = useAppSelector(state => state.user)
+
+    const dispatch = useAppDispatch()
 
     const [selectedUserId, setSelectedUserId] = useState<string>('')
     const [selectedFineId, setSelectedFineId] = useState<string>('')
 
-    const hasFineUsers: any = GetHasFineUsers(fineValue, userValue)
-    const userFines: Array<Fine> = GetUserFine(fineValue, selectedUserId)
+    const hasFineUsers: any = useMemo(() => {
+        GetHasFineUsers(fineValue, userValue)
+    }, [fineValue])
+    const userFines: Array<Fine> = useMemo(() => {
+        return GetUserFine(fineValue, selectedUserId)
+    }, [selectedUserId])
 
     const ClickuserIdHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedUserId(e.target!.value)
@@ -88,6 +92,12 @@ export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps
     )
 }
 
+/**
+ * 벌금을 갖고 있는 회원의 이름을 fineOBj과 함께 반환
+ * @param fineValue 
+ * @param userValue 
+ * @returns 
+ */
 const GetHasFineUsers = (fineValue: Array<Fine>, userValue: Array<User>): any => {
     const returnValue: any = fineValue.map(fine => {
         const matchedUserObj = userValue.find(user => user.id === fine.userId)
@@ -96,6 +106,12 @@ const GetHasFineUsers = (fineValue: Array<Fine>, userValue: Array<User>): any =>
     return returnValue
 }
 
+/**
+ * 선택한 회원의 벌금 내역을 반환함
+ * @param fineValue 
+ * @param userId 
+ * @returns 
+ */
 const GetUserFine = (fineValue: Array<Fine>, userId: string): Array<Fine> => {
     return fineValue.filter(fine => fine.userId === userId)
 }

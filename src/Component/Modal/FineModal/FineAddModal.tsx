@@ -14,10 +14,11 @@ import type { AddFinePayload } from '../../../store/fine';
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 
 export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const userValue = useAppSelector(state => state.user)
 
     const dispatch = useAppDispatch()
+
     const { studyId }: { studyId: string } = useParams() as { studyId: string }
-    const userValue = useAppSelector(state => state.user)
 
     const userIdRef = useRef<HTMLSelectElement>(null)
     const fineRef = useRef<HTMLInputElement>(null)
@@ -41,10 +42,12 @@ export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
                 }
             })
 
-            const addFinePayload: AddFinePayload = {
-                fine: result.data.data
+            if (result.data.result) {
+                const addFinePayload: AddFinePayload = {
+                    fine: result.data.data
+                }
+                dispatch(fineActions.AddFine(addFinePayload))
             }
-            dispatch(fineActions.AddFine(addFinePayload))
         }
 
         ClickQuitHandler()
