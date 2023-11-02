@@ -1,4 +1,10 @@
 type DateType = Date | string | number;
+/**
+ * yyyy mm dd 형식을 yyyy년 mm월 dd일로 변경해주는 함수
+ * @param format 
+ * @param date 
+ * @returns 
+ */
 export const DateFormater = (format: string, date: DateType = Date.now()): string => {
 
     /* eslint-disable no-useless-escape */
@@ -31,6 +37,10 @@ export const DateFormater = (format: string, date: DateType = Date.now()): strin
     });
 };
 
+/**
+ * 현재시간을 얻는 함수
+ * @returns 
+ */
 export const GetCurrentDate = (): Array<string> => {
     return new Date(+new Date() + 3240 * 10000).toISOString().replace("T", " ").replace(/\..*/, '').split(' ')
 }
