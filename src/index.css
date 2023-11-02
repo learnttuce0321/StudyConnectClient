@@ -5,8 +5,7 @@
     font-style: normal;
 }
 
-body {
-    margin: 0;
+button {
     font-family: 'SUITE-Regular', -apple-system, BlinkMacSystemFont, 'SUITE-Regular', 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
@@ -14,7 +13,8 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
-button {
+body {
+    margin: 0;
     font-family: 'SUITE-Regular', -apple-system, BlinkMacSystemFont, 'SUITE-Regular', 'Segoe UI', 'Roboto', 'Oxygen',
         'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
         sans-serif;
