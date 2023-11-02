@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// table
 const Table = styled.table`
     border-collapse: collapse;
     border: 0;

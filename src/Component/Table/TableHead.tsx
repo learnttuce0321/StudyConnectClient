@@ -1,5 +1,6 @@
 import styled from "styled-components"
 
+// thead
 export default function TableHead({ children }: { children: React.ReactNode }) {
     return (
         <Thead>

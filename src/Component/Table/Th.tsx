@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// th
 const Th = styled.th`
     border: 1px solid #aaa;
     background-clip: padding-box;
