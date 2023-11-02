@@ -6,13 +6,13 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../store/hooks/storeHooks';
 
 export default function UsersSummary() {
-
-    const navigate = useNavigate()
-    const { studyId } = useParams()
-
     const userValue = useAppSelector(state => state.user)
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
     const submitRateValue = useAppSelector(state => state.submitRate)
+
+    const { studyId } = useParams()
+
+    const navigate = useNavigate()
 
     const totalAttendanceRate: string = useMemo(() => {
         const userLength: number = userValue.length
@@ -53,6 +53,7 @@ export default function UsersSummary() {
     )
 }
 
+// styled-component props
 interface CardProps {
     $gridarea: string;
 }

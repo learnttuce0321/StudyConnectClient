@@ -7,12 +7,14 @@ import type { User } from "../../../store/user"
 import type { SetClickedUserPayload } from "../../../store/clickedUser"
 
 export default function UsersInfoTableItem({ user }: { user: User }) {
-    const dispatch = useAppDispatch()
-    const { studyId } = useParams()
-    const navigate = useNavigate()
-
     const attendanceRateValue = useAppSelector(state => state.attendaceRate)
     const submitRateValue = useAppSelector(state => state.submitRate)
+
+    const dispatch = useAppDispatch()
+
+    const { studyId } = useParams()
+
+    const navigate = useNavigate()
 
     const userAttendanceRate = attendanceRateValue.find(userAttendance => userAttendance.userId === user.id)
     const userSubmitRate = submitRateValue.find(usersubmit => usersubmit.userId === user.id)

@@ -7,7 +7,6 @@ import UsersInfoTableItem from "./UsersInfoTableItem";
 import { useAppSelector } from "../../../store/hooks/storeHooks"
 
 export default function UsersInfoTable() {
-
     const userValue = useAppSelector(state => state.user)
 
     return (

@@ -1,6 +1,6 @@
 import Table from "../../Table/Table";
-import Talbebody from "../../Table/TableBody";
 import TableHead from "../../Table/TableHead";
+import Talbebody from "../../Table/TableBody";
 import TableWrapper from "../../Table/TableWrapper";
 import Th from "../../Table/Th";
 import UsersAssignmentTableItem from "./UsersAssignmentTableItem";
