@@ -7,7 +7,6 @@ import { fineActions } from "../../../store/fine";
 import type { CheckFinePayload } from "../../../store/fine";
 
 export default function FineTableItem({ userFine, index, length }: { userFine: any, index: number, length: number }) {
-
     const dispatch = useAppDispatch()
 
     const ClickFineCheckHandler = async (): Promise<any> => {
@@ -26,6 +25,7 @@ export default function FineTableItem({ userFine, index, length }: { userFine: a
             dispatch(fineActions.CheckFine(payload))
         }
     }
+
     return (
         <tr>
             <Td>{length - index}</Td>

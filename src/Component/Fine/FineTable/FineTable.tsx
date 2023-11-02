@@ -5,16 +5,14 @@ import TableWrapper from "../../Table/TableWrapper";
 import Th from "../../Table/Th";
 import FineTableItem from "./FineTableItem";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
-import { Fine } from "../../../store/fine";
-import { User } from "../../../store/user";
+import type { Fine } from "../../../store/fine";
+import type { User } from "../../../store/user";
 
 export default function FineTable() {
-
     const fineValue = useAppSelector(state => state.fine)
     const userValue = useAppSelector(state => state.user)
 
     const userFines = GetUserFines(userValue, fineValue)
-
 
     return (
         <TableWrapper height="100%">
@@ -35,6 +33,13 @@ export default function FineTable() {
         </TableWrapper>
     )
 }
+
+/**
+ * 벌금 내역의 userId와 회원의 id를 비교하여 이름을 받아오는 함수
+ * @param userValue 
+ * @param fineValue 
+ * @returns fineObj + name_property
+ */
 const GetUserFines = (userValue: Array<User>, fineValue: Array<Fine>): any => {
     const returnValue: any = fineValue.map(fine => {
         const matchedUserObj = userValue.find(user => user.id === fine.userId)
