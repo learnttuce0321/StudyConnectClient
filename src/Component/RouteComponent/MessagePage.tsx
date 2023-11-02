@@ -6,12 +6,12 @@ import { useAppDispatch } from '../../store/hooks/storeHooks'
 import { ModalState, modalActions } from '../../store/modal'
 
 export default function MessagePage() {
-
     const dispatch = useAppDispatch()
 
     const ClickOpenMessageHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_MESSAGE }))
     }
+
     return (
         <>
             <ModalButtonList>

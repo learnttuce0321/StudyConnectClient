@@ -12,8 +12,8 @@ export enum ScheduleState {
     SCHEDULE = 'SCHEDULE',
     ATTENDANCE = 'ATTENDANCE'
 }
-export default function AttendancePage() {
 
+export default function AttendancePage() {
     const dispatch = useAppDispatch()
 
     const [scheduleState, setScheduleState] = useState<ScheduleState>(ScheduleState.SCHEDULE)
@@ -21,9 +21,11 @@ export default function AttendancePage() {
     const ClickAddAttendanceHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ATTENDANCE }))
     }
+
     const ClickDeleteAttendanceHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.DELETE_ATTENDANCE }))
     }
+
     const ClickModifyAttendanceHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.MODIFY_ATTENDANCE }))
     }

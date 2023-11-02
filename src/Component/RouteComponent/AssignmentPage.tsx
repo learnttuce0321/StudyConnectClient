@@ -12,17 +12,20 @@ export enum AssignmentState {
     ASSIGNMENT = 'ASSIGNEMNT',
     SUBMIT = 'SUBMIT'
 }
-export default function AssignmentPage() {
 
+export default function AssignmentPage() {
     const dispatch = useAppDispatch()
+
     const [assignmentState, setAssignmentState] = useState<AssignmentState>(AssignmentState.ASSIGNMENT)
 
     const ClickAddAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_ASSIGNMNET }))
     }
+
     const ClickDeleteAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.DELETE_ASSIGNMNET }))
     }
+
     const ClickModifyAssignmentHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.MODIFY_ASSIGNMENT }))
     }

@@ -1,8 +1,3 @@
-import { useState } from "react"
-import { useAppSelector, useAppDispatch } from "../../store/hooks/storeHooks"
-import { clickedUserActions } from "../../store/clickedUser"
-import { ModalState, modalActions } from "../../store/modal"
-import { filteredUserActions } from "../../store/filteredUser"
 import OtherWrapper from "../Wrapper/OtherWrapper"
 import UserSummaryContent from "../User/Summary/UserSummaryContent"
 import UsersTable from "../User/UsersTable/UsersTable"
@@ -11,6 +6,11 @@ import ModalButtonItem from "../Modal/ActiveModalButtonWrapper/ModalButtonItem"
 import SubNavigation from "../Navigation/SubNavigation/SubNavigation"
 import SubNavigationItem from "../Navigation/SubNavigation/SubNavigationItem"
 import styled from "styled-components"
+import { useState } from "react"
+import { useAppSelector, useAppDispatch } from "../../store/hooks/storeHooks"
+import { clickedUserActions } from "../../store/clickedUser"
+import { ModalState, modalActions } from "../../store/modal"
+import { filteredUserActions } from "../../store/filteredUser"
 
 export enum ShowLogStatus {
     ATTENDANCE = 'ATTENDANCE',
@@ -18,18 +18,20 @@ export enum ShowLogStatus {
 }
 
 export default function UserPage() {
+    const clickedUserValue = useAppSelector(state => state.clickedUser)
 
     const dispatch = useAppDispatch()
-    const clickedUserValue = useAppSelector(state => state.clickedUser)
 
     const [showLog, setshowLog] = useState<ShowLogStatus>(ShowLogStatus.ATTENDANCE)
 
     const ClickAddUserHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_USER }))
     }
+
     const ClickFilterUserHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.FILTER_USER }))
     }
+
     const ClickResetHandler = (): void => {
         dispatch(filteredUserActions.setFilteredUser({ filteredUser: [], isFiltering: false }))
         dispatch(modalActions.setModalState({ type: ModalState.NONE }))

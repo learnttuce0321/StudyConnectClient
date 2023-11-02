@@ -11,7 +11,6 @@ export enum SummaryNavState {
 }
 
 export default function MainPage() {
-
     const [summaryNavState, setSummaryNavState] = useState<SummaryNavState>(SummaryNavState.USER)
 
     return (

@@ -11,28 +11,31 @@ import { ModalState, modalActions } from "../../store/modal"
 import type { SetStudyDataPayload } from "../../store/study"
 
 export default function StudyPage() {
+    const studyValue = useAppSelector(state => state.study)
 
     const dispatch = useAppDispatch()
-    const studyValue = useAppSelector(state => state.study)
 
     const [toggle, setToggle] = useState<boolean>(false)
 
     const ClickToggleHandler = (e: any): void => {
         setToggle(prev => !prev)
     }
+
     const ClickAddStudyHandler = (): void => {
         setToggle(false)
         dispatch(modalActions.setModalState({ type: ModalState.ADD_STUDY }))
     }
+
     const ClickDeleteStudyHandler = (): void => {
         setToggle(false)
         dispatch(modalActions.setModalState({ type: ModalState.DELETE_STUDY }))
     }
 
     useEffect(() => {
-
+        /**
+         * study에 대한 data를 DB에서 가져옴
+         */
         const getStudiesData = async (): Promise<any> => {
-
             try {
                 const result = await axios({
                     method: 'GET',
@@ -47,6 +50,7 @@ export default function StudyPage() {
                 console.log(error)
             }
         }
+
         getStudiesData();
     }, [dispatch])
 

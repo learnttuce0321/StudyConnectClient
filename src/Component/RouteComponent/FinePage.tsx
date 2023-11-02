@@ -6,18 +6,20 @@ import { useAppDispatch } from "../../store/hooks/storeHooks";
 import { ModalState, modalActions } from "../../store/modal";
 
 export default function FinePage() {
-
     const dispatch = useAppDispatch()
 
     const ClickAddFineHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.ADD_FINE }))
     }
+
     const ClickDelteFineHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.DELETE_FINE }))
     }
+
     const ClickModifyFineHandler = (): void => {
         dispatch(modalActions.setModalState({ type: ModalState.MODIFY_FINE }))
     }
+
     return (
         <>
             <ModalButtonList>
