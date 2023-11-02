@@ -1,5 +1,6 @@
 import styled from "styled-components";
 
+// 모달창을 띄워주는 버튼 Item
 const ModalButtonItem = styled.li`
     height: 2.5rem;
     flex-grow: 1;
@@ -12,4 +13,5 @@ const ModalButtonItem = styled.li`
         color: white;
     }
 `
+
 export default ModalButtonItem
