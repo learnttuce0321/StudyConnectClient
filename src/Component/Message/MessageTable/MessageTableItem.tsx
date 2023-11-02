@@ -1,4 +1,5 @@
 import Td from "../../Table/Td";
+import { useMemo } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
 import { DateFormater } from "../../../utils/utils";
 import { clickedMessageActions, type SetClickedMessagePayload } from "../../../store/clickedMessage";
@@ -7,11 +8,14 @@ import type { Message } from "../../../store/message";
 import type { User } from "../../../store/user";
 
 export default function MessageTableItem({ message, index, length }: { message: Message, index: number, length: number }) {
-    const dispatch = useAppDispatch()
     const userValue = useAppSelector(state => state.user)
     const messageValue = useAppSelector(state => state.message)
 
-    const matchedUserObj: (User | undefined) = userValue.find(user => user.id === message.userId)
+    const dispatch = useAppDispatch()
+
+    const matchedUserObj: (User | undefined) = useMemo(() => {
+        return userValue.find(user => user.id === message.userId)
+    }, [message])
 
     const ClickMessageHandler = (e: any): void => {
         const clickedMessageId: string = e.currentTarget.id

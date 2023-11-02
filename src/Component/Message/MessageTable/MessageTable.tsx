@@ -7,7 +7,6 @@ import MessageTableItem from "./MessageTableItem";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
 
 export default function MessageTable() {
-
     const messageValue = useAppSelector(state => state.message)
 
     return (
