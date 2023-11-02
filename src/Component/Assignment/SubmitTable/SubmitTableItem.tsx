@@ -12,10 +12,10 @@ import type { CalculateSubmitRatePayload } from "../../../store/submitRate";
 
 export default function SubmitTableItem({ submit }: { submit: Submit }) {
     const dispatch = useAppDispatch()
+
     const { studyId } = useParams()
 
     const ClickAssignmentCheckHandler = async (): Promise<any> => {
-
         const submitResult = await axios({
             method: 'PATCH',
             url: 'submit/check',
@@ -25,6 +25,7 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
                 isSubmitted: submit.isSubmitted
             }
         })
+
         const submitRateResult = await axios({
             method: 'PATCH',
             url: 'submit-rate/calculate',
@@ -47,6 +48,7 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
             dispatch(submitRateActions.CalculateSubmitRate(calculateSubmitRatePayload))
         }
     }
+
     return (
         <Td>
             <Item type="checkbox" onChange={ClickAssignmentCheckHandler} id={submit.assignmentId + submit.userId} checked={submit.isSubmitted} />

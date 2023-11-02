@@ -7,7 +7,6 @@ import AssignmentTableItem from "./AssignmentTableItem";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
 
 export default function AssignmentTable() {
-
     const assignmentValue = useAppSelector(state => state.assignment)
 
     return (

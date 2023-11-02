@@ -11,6 +11,7 @@ export default function AssignmentMainContent({ assignmentState }: { assignmentS
                 return <SubmitTable />
         }
     }
+
     return (
         <>
             {SelectContent()}

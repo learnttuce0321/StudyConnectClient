@@ -6,7 +6,7 @@ import Td from "../../Table/Td";
 import Th from "../../Table/Th";
 import SubmitTableItem from "./SubmitTableItem";
 import { useAppSelector } from "../../../store/hooks/storeHooks";
-import { Submit } from "../../../store/submit";
+import type { Submit } from "../../../store/submit";
 
 export default function SubmitTable() {
     const userValue = useAppSelector(state => state.user)

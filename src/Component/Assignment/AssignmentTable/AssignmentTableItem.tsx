@@ -7,17 +7,21 @@ import type { SetClickedAssignmentPayload } from "../../../store/clickedAssignme
 import type { Assignment } from "../../../store/assignment";
 
 export default function AssignmentTableItem({ assignment, index, length }: { assignment: Assignment, index: number, length: number }) {
-    const dispatch = useAppDispatch()
     const assignmentValue = useAppSelector(state => state.assignment)
+
+    const dispatch = useAppDispatch()
 
     const ClickAssignmentHandler = (e: any): void => {
         const clickedAssignmentId = e.currentTarget.id
+
         const payload: SetClickedAssignmentPayload = {
             assignment: assignmentValue.find(assignment => assignment.id === clickedAssignmentId)
         }
         dispatch(clickedAssignmentActions.setClickedAssignment(payload))
+
         dispatch(modalActions.setModalState({ type: ModalState.CHECK_ASSIGNMENT }))
     }
+
     return (
         <tr id={assignment.id} onClick={ClickAssignmentHandler}>
             <Td>{length - index}</Td>
