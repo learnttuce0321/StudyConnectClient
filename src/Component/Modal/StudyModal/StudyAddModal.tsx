@@ -12,8 +12,8 @@ import type { ModalFunctionProps } from "../ModalWrapper/Modal";
 import { SetStudyDataPayload } from "../../../store/study";
 
 export default function StudyAddModal({ ClickQuitHandler }: ModalFunctionProps) {
-
     const dispatch = useAppDispatch()
+
     const nameRef = useRef<HTMLInputElement>(null)
 
     const ClickAddStudyHandler = async (): Promise<any> => {
@@ -42,6 +42,7 @@ export default function StudyAddModal({ ClickQuitHandler }: ModalFunctionProps) 
                 <ModalTitle>스터디 추가</ModalTitle>
                 <ModalTextInputItem name="이름" ref={nameRef} />
             </ModalContentContainer>
+
             <ModalButtonsContainer>
                 <ModalButton onClick={ClickAddStudyHandler}>추가</ModalButton>
                 <ModalButton onClick={ClickQuitHandler}>닫기</ModalButton>

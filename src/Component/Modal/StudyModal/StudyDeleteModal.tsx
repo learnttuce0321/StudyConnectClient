@@ -8,18 +8,19 @@ import axios from 'axios';
 import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks";
 import { studyActions } from '../../../store/study';
 import type { ModalFunctionProps } from "../ModalWrapper/Modal";
-import { SetStudyDataPayload } from '../../../store/study';
+import type { SetStudyDataPayload } from '../../../store/study';
 
 export default function StudyDeleteModal({ ClickQuitHandler }: ModalFunctionProps) {
+    const studyValue = useAppSelector(state => state.study)
 
     const dispatch = useAppDispatch()
-    const studyValue = useAppSelector(state => state.study)
 
     const [selectedStudyId, setSelectedtudyId] = useState<string>('')
 
     const ClickStudyHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedtudyId(e.target!.value)
     }
+
     const ClickDeleteHandler = async (): Promise<any> => {
         if (window.confirm('삭제하시겠습니까?')) {
             const result = await axios({
@@ -38,6 +39,7 @@ export default function StudyDeleteModal({ ClickQuitHandler }: ModalFunctionProp
             ClickQuitHandler()
         }
     }
+
     return (
         <>
             <ModalContentContainer>
