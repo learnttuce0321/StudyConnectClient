@@ -30,6 +30,11 @@ import axios from 'axios'
 
 export default memo(function Navigation() {
     const dispatch = useAppDispatch()
+
+    const { studyId } = useParams()
+
+    const navigate = useNavigate()
+
     const [toggle, setToggle] = useState<boolean>(false)
 
     const ClickHandler = (): void => {
@@ -38,15 +43,13 @@ export default memo(function Navigation() {
         setToggle(false)
     }
 
-    const navigate = useNavigate()
-    const { studyId } = useParams()
-
     const ClickHomeHandler = (): void => {
         dispatch(clickedUserActions.setClickedUser({ user: {} }))
         dispatch(filteredUserActions.setFilteredUser({ filteredUser: [], isFiltering: false }))
         setToggle(false)
         navigate(`/study/${studyId}/main`)
     }
+
     const ClickStudyHandler = (): void => {
         dispatch(assignmentActions.SetAssignmentsData({ assignments: [] }))
         dispatch(attendanceActions.SetAttendanceData({ attendanes: [] }))
@@ -68,7 +71,9 @@ export default memo(function Navigation() {
     }
 
     useEffect(() => {
-
+        /**
+         * studyId와 동일한 data를 DB에서 가져와 store에 등록하는 함수
+         */
         const GetDatas = async (): Promise<any> => {
             const userResult = await axios({
                 method: 'GET',
@@ -153,9 +158,6 @@ export default memo(function Navigation() {
                     <NavItem>
                         <Link to={`/study/${studyId}/fine`} onClick={ClickHandler}>벌금</Link>
                     </NavItem>
-                    <NavItem>
-                        <Link to={`/study/${studyId}/myPage`} onClick={ClickHandler}>마이페이지</Link>
-                    </NavItem>
                 </TopBarWrap>
             </HeaderBar>
 
@@ -178,9 +180,6 @@ export default memo(function Navigation() {
                 </NavItem>
                 <NavItem>
                     <Link to={`/study/${studyId}/fine`} onClick={ClickHandler}>벌금</Link>
-                </NavItem>
-                <NavItem>
-                    <Link to={`/study/${studyId}/myPage`} onClick={ClickHandler}>마이페이지</Link>
                 </NavItem>
             </SideBarWrap>
             {
