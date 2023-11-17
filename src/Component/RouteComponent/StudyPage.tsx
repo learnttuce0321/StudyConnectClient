@@ -32,9 +32,6 @@ export default function StudyPage() {
     }
 
     useEffect(() => {
-        /**
-         * study에 대한 data를 DB에서 가져옴
-         */
         const getStudiesData = async (): Promise<any> => {
             try {
                 const result = await axios({

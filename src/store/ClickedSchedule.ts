@@ -1,23 +1,25 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import type { Schedule } from "./schedule";
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import type { Schedule } from './schedule';
 
-const initialState: any = {}
+const initialState: any = {};
 
 export interface SetClickedSchedulePayload {
-    schedule: Schedule | {} | undefined
+    schedule: Schedule | {} | undefined;
 }
 
 const clickedScheduleSlice = createSlice({
     name: 'clickedSchedule',
     initialState,
-    // set-clicked schedule-data
     reducers: {
-        setClickedSchedule(state, action: PayloadAction<SetClickedSchedulePayload>) {
-            const { schedule } = action.payload
-            return schedule
-        }
-    }   
-})
+        setClickedSchedule(
+            state,
+            action: PayloadAction<SetClickedSchedulePayload>
+        ) {
+            const { schedule } = action.payload;
+            return schedule;
+        },
+    },
+});
 
-export default clickedScheduleSlice.reducer
-export const clickedScheduleActions = clickedScheduleSlice.actions
+export default clickedScheduleSlice.reducer;
+export const clickedScheduleActions = clickedScheduleSlice.actions;

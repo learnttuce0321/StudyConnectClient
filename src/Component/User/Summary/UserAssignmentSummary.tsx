@@ -10,7 +10,7 @@ export default function UserAssignmentSummary() {
 
     const userSubmitRate: (SubmitRate | undefined) = useMemo(() => {
         return submitRateValue.find(submitRate => submitRate.userId === clickedUserValue.id)
-    }, [clickedUserValue])
+    }, [clickedUserValue, submitRateValue])
 
     /**
      * rate에 따른 색상 지정

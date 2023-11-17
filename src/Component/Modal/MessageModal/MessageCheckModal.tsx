@@ -14,7 +14,7 @@ export default function MessageCheckModal({ ClickQuitHandler }: ModalFunctionPro
 
     const matchedUserObj = useMemo(() => {
         return userValue.find(user => user.id === clickedMessageValue.userId)
-    }, [clickedMessageValue])
+    }, [clickedMessageValue, userValue])
 
     return (
         <>

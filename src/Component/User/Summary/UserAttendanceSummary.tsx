@@ -11,7 +11,7 @@ export default function UserAttendanceSummary() {
 
     const userAttendanceRate: (AttendanceRate | undefined) = useMemo(() => {
         return attendanceRateValue.find(userAttendance => userAttendance.userId === clickedUserValue.id)
-    }, [clickedUserValue])
+    }, [clickedUserValue, attendanceRateValue])
 
     /**
     * rate에 따른 색상 지정

@@ -24,10 +24,10 @@ export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps
 
     const hasFineUsers: any = useMemo(() => {
         GetHasFineUsers(fineValue, userValue)
-    }, [fineValue])
+    }, [fineValue, userValue])
     const userFines: Array<Fine> = useMemo(() => {
         return GetUserFine(fineValue, selectedUserId)
-    }, [selectedUserId])
+    }, [selectedUserId, fineValue])
 
     const ClickuserIdHandler = (e: React.ChangeEvent<HTMLSelectElement>): void => {
         setSelectedUserId(e.target!.value)

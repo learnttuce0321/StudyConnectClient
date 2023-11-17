@@ -15,7 +15,7 @@ export default function MessageTableItem({ message, index, length }: { message: 
 
     const matchedUserObj: (User | undefined) = useMemo(() => {
         return userValue.find(user => user.id === message.userId)
-    }, [message])
+    }, [message, userValue])
 
     const ClickMessageHandler = (e: any): void => {
         const clickedMessageId: string = e.currentTarget.id
