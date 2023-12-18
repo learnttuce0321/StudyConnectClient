@@ -52,7 +52,7 @@ export default function FineModifyModal({ ClickQuitHandler }: ModalFunctionProps
 
             const result = await axios({
                 method: 'PATCH',
-                url: 'fine/update',
+                url: '${process.env.REACT_APP_BASE_URL}/fine/update',
                 data: {
                     id: selectedFineId,
                     deadLine: deadLineInput!.value,

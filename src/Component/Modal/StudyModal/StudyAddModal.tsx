@@ -22,7 +22,7 @@ export default function StudyAddModal({ ClickQuitHandler }: ModalFunctionProps) 
 
         const result = await axios({
             method: 'POST',
-            url: '/add',
+            url: '${process.env.REACT_APP_BASE_URL}/add',
             data: {
                 id,
                 name: nameInput!.value

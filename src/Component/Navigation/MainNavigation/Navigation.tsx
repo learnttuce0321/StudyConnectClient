@@ -3,7 +3,7 @@ import { useState, memo, useEffect } from 'react'
 import ReactDOM from "react-dom"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useAppDispatch } from "../../../store/hooks/storeHooks"
+import { useAppDispatch, useAppSelector } from "../../../store/hooks/storeHooks"
 import styled from 'styled-components'
 import { clickedUserActions } from "../../../store/clickedUser"
 import { filteredUserActions } from '../../../store/filteredUser'
@@ -28,12 +28,13 @@ import type { SetSubmitRateDataPayload } from '../../../store/submitRate'
 import type { SetUserDataPayload } from '../../../store/user'
 import axios from 'axios'
 
-export default memo(function Navigation() {
+export default function Navigation() {
     const dispatch = useAppDispatch()
 
     const { studyId } = useParams()
 
     const navigate = useNavigate()
+    const attendanceRateValue = useAppSelector(state => state.attendaceRate)
 
     const [toggle, setToggle] = useState<boolean>(false)
 
@@ -70,58 +71,62 @@ export default memo(function Navigation() {
         setToggle(prev => !prev)
     }
 
+    // useEffect(() => {
+    //     /**
+    //      * studyId와 동일한 data를 DB에서 가져와 store에 등록하는 함수
+    //      */
+    //     const GetDatas = async (): Promise<any> => {
+    //         const userResult = await axios({
+    //             method: 'GET',
+    //             url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/get`
+    //         })
+
+    //         if (userResult.data.result) {
+    //             const setAssignmentDataPayload: SetAssignmentDataPayload = {
+    //                 assignments: userResult.data.assignmentData
+    //             }
+    //             const setAttendanceDataPayload: SetAttendanceDataPayload = {
+    //                 attendanes: userResult.data.attendanceData
+    //             }
+    //             const setAttendanceRateDataPayload: SetAttendanceRateDataPayload = {
+    //                 attendanceRates: userResult.data.attendanceRateData
+    //             }
+    //             const setFineDataPayload: SetFineDataPayload = {
+    //                 fines: userResult.data.fineData
+    //             }
+    //             const setMessageDataPayload: SetMessageDataPayload = {
+    //                 messages: userResult.data.messageData
+    //             }
+    //             const setScheduleDataPayload: SetScheduleDataPayload = {
+    //                 schedules: userResult.data.scheduleData
+    //             }
+    //             const setSubmitDataPayload: SetSubmitDataPayload = {
+    //                 submits: userResult.data.submitData
+    //             }
+    //             const setSubmitRateDataPayload: SetSubmitRateDataPayload = {
+    //                 submitRates: userResult.data.submitRateData
+    //             }
+    //             const setUserDataPayload: SetUserDataPayload = {
+    //                 users: userResult.data.userData
+    //             }
+    //             console.log(setUserDataPayload)
+
+    //             dispatch(assignmentActions.SetAssignmentsData(setAssignmentDataPayload))
+    //             dispatch(attendanceActions.SetAttendanceData(setAttendanceDataPayload))
+    //             dispatch(attendanceRateActions.SetAttendanceRateData(setAttendanceRateDataPayload))
+    //             dispatch(fineActions.SetFineData(setFineDataPayload))
+    //             dispatch(messageActions.SetMessageData(setMessageDataPayload))
+    //             dispatch(scheduleActions.SetSchduleData(setScheduleDataPayload))
+    //             dispatch(submitActions.SetSutmitData(setSubmitDataPayload))
+    //             dispatch(submitRateActions.SetSubmitData(setSubmitRateDataPayload))
+    //             dispatch(userActions.SetUserData(setUserDataPayload))
+    //         }
+    //     }
+    //     GetDatas()
+    // }, [dispatch])
     useEffect(() => {
-        /**
-         * studyId와 동일한 data를 DB에서 가져와 store에 등록하는 함수
-         */
-        const GetDatas = async (): Promise<any> => {
-            const userResult = await axios({
-                method: 'GET',
-                url: `get`
-            })
-
-            if (userResult.data.result) {
-                const setAssignmentDataPayload: SetAssignmentDataPayload = {
-                    assignments: userResult.data.assignmentData
-                }
-                const setAttendanceDataPayload: SetAttendanceDataPayload = {
-                    attendanes: userResult.data.attendanceData
-                }
-                const setAttendanceRateDataPayload: SetAttendanceRateDataPayload = {
-                    attendanceRates: userResult.data.attendanceRateData
-                }
-                const setFineDataPayload: SetFineDataPayload = {
-                    fines: userResult.data.fineData
-                }
-                const setMessageDataPayload: SetMessageDataPayload = {
-                    messages: userResult.data.messageData
-                }
-                const setScheduleDataPayload: SetScheduleDataPayload = {
-                    schedules: userResult.data.scheduleData
-                }
-                const setSubmitDataPayload: SetSubmitDataPayload = {
-                    submits: userResult.data.submitData
-                }
-                const setSubmitRateDataPayload: SetSubmitRateDataPayload = {
-                    submitRates: userResult.data.submitRateData
-                }
-                const setUserDataPayload: SetUserDataPayload = {
-                    users: userResult.data.userData
-                }
-
-                dispatch(assignmentActions.SetAssignmentsData(setAssignmentDataPayload))
-                dispatch(attendanceActions.SetAttendanceData(setAttendanceDataPayload))
-                dispatch(attendanceRateActions.SetAttendanceRateData(setAttendanceRateDataPayload))
-                dispatch(fineActions.SetFineData(setFineDataPayload))
-                dispatch(messageActions.SetMessageData(setMessageDataPayload))
-                dispatch(scheduleActions.SetSchduleData(setScheduleDataPayload))
-                dispatch(submitActions.SetSutmitData(setSubmitDataPayload))
-                dispatch(submitRateActions.SetSubmitData(setSubmitRateDataPayload))
-                dispatch(userActions.SetUserData(setUserDataPayload))
-            }
-        }
-        GetDatas()
-    }, [dispatch])
+        console.log(attendanceRateValue)
+    }, [attendanceRateValue])
 
     return (
         <nav>
@@ -173,7 +178,7 @@ export default memo(function Navigation() {
                     <Link to={`/study/${studyId}/message`} onClick={ClickHandler}>메세지</Link>
                 </NavItem>
                 <NavItem>
-                    <Link to={`/study/${studyId}/attendance`} onClick={ClickHandler}>출석</Link>
+                    <Link to={`/study/${studyId}/schedule`} onClick={ClickHandler}>출석</Link>
                 </NavItem>
                 <NavItem>
                     <Link to={`/study/${studyId}/assignment`} onClick={ClickHandler}>과제</Link>
@@ -187,7 +192,7 @@ export default memo(function Navigation() {
             }
         </nav>
     )
-})
+}
 
 const HeaderBar = styled.div`
     background-color: #282828;

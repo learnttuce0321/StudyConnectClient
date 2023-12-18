@@ -32,14 +32,14 @@ export default function ScheduleDeleteModal({ ClickQuitHandler }: ModalFunctionP
         if (window.confirm('정말 삭제하시겠습니까?')) {
             const result = await axios({
                 method: 'DELETE',
-                url: 'schedule/delete',
+                url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/schedule/delete`,
                 data: {
                     id: selectedScheduleId
                 }
             })
             const attendanceRateResult = await axios({
                 method: 'PATCH',
-                url: 'attendance-rate/calculate-all',
+                url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance-rate/calculate-all`,
                 data: {
                     studyId
                 }

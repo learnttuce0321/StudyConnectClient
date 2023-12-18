@@ -10,11 +10,14 @@ import { useAppDispatch, useAppSelector } from '../../../store/hooks/storeHooks'
 import { scheduleActions } from '../../../store/schedule'
 import type { ModifySchedulePayload, Schedule } from '../../../store/schedule'
 import type { ModalFunctionProps } from '../ModalWrapper/Modal'
+import { useParams } from 'react-router-dom'
 
 export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionProps) {
     const scheduleValue = useAppSelector(state => state.schedule)
 
     const dispatch = useAppDispatch()
+
+    const { studyId }: { studyId: string } = useParams() as { studyId: string }
 
     const [selectedSchedule, setSelectedSchedule] = useState<Schedule>()
     const [nameState, setNameState] = useState<string>('')
@@ -49,7 +52,7 @@ export default function ScheduleModifyModal({ ClickQuitHandler }: ModalFunctionP
 
             const result = await axios({
                 method: 'PATCH',
-                url: 'schedule/update',
+                url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/schedule/update`,
                 data: {
                     id: selectedSchedule!.id,
                     name: nameInput!.value,

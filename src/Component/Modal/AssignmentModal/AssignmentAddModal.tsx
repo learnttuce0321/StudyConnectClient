@@ -35,7 +35,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
 
         const assignmentResult = await axios({
             method: 'POST',
-            url: 'assignment/add',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/assignment/add`,
             data: {
                 id,
                 title: titleInput!.value,
@@ -47,7 +47,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
 
         const submitResult = await axios({
             method: 'POST',
-            url: 'submit/add-assignment',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit/add-assignment`,
             data: {
                 users: userValue,
                 assignmentId: id,
@@ -57,7 +57,7 @@ export default function AssignmentAddModal({ ClickQuitHandler }: ModalFunctionPr
 
         const submitRateResult = await axios({
             method: 'PATCH',
-            url: 'submit-rate/calculate-all',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit-rate/calculate-all`,
             data: {
                 studyId
             }

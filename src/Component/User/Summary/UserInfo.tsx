@@ -20,7 +20,7 @@ export default function UserInfo() {
 
         const result = await axios({
             method: 'PATCH',
-            url: 'user/modify',
+            url: '${process.env.REACT_APP_BASE_URL}/user/modify',
             data: {
                 id: clickedUserValue!.id,
                 info: infoInput!.value

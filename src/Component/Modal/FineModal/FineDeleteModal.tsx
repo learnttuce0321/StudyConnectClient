@@ -41,7 +41,7 @@ export default function FineDeleteModal({ ClickQuitHandler }: ModalFunctionProps
 
             const result = await axios({
                 method: 'DELETE',
-                url: 'fine/delete',
+                url: '${process.env.REACT_APP_BASE_URL}/fine/delete',
                 data: {
                     id: selectedFineId
                 }

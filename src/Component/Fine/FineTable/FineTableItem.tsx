@@ -5,14 +5,16 @@ import { useAppDispatch } from "../../../store/hooks/storeHooks";
 import { DateFormater } from "../../../utils/utils";
 import { fineActions } from "../../../store/fine";
 import type { CheckFinePayload } from "../../../store/fine";
+import { useParams } from "react-router-dom";
 
 export default function FineTableItem({ userFine, index, length }: { userFine: any, index: number, length: number }) {
     const dispatch = useAppDispatch()
+    const { studyId } = useParams()
 
     const ClickFineCheckHandler = async (): Promise<any> => {
         const result = await axios({
             method: 'PATCH',
-            url: 'fine/check',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/fine/check`,
             data: {
                 id: userFine.id
             }

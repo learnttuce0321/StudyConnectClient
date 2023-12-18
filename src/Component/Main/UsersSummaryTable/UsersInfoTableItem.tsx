@@ -41,6 +41,7 @@ export default function UsersInfoTableItem({ user }: { user: User }) {
         }
     }, [userSubmitRate])
 
+
     const ClickWatchUserLogHandler = (user: User) => {
         const payload: SetClickedUserPayload = { user }
         dispatch(clickedUserActions.setClickedUser(payload))

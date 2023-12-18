@@ -48,7 +48,7 @@ export default function MessageAddModal({ ClickQuitHandler }: ModalFunctionProps
         if (userIdInput!.value !== 'none') {
             const result = await axios({
                 method: 'POST',
-                url: 'message/add',
+                url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/message/add`,
                 data: {
                     id,
                     content: contentInput!.value,

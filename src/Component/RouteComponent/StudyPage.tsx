@@ -36,7 +36,7 @@ export default function StudyPage() {
             try {
                 const result = await axios({
                     method: 'GET',
-                    url: '/get',
+                    url: `${process.env.REACT_APP_BASE_URL}/get`,
                 })
 
                 if (result.data.result) {
@@ -47,7 +47,6 @@ export default function StudyPage() {
                 console.log(error)
             }
         }
-
         getStudiesData();
     }, [dispatch])
 

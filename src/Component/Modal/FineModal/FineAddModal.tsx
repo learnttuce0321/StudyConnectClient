@@ -32,7 +32,7 @@ export default function FineAddModal({ ClickQuitHandler }: ModalFunctionProps) {
         if (userIdInput!.value !== 'none') {
             const result = await axios({
                 method: 'POST',
-                url: 'fine/add',
+                url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/fine/add`,
                 data: {
                     id: uuidv4(),
                     deadLine: deadLineInput!.value,

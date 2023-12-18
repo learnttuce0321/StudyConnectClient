@@ -25,7 +25,7 @@ export default function StudyDeleteModal({ ClickQuitHandler }: ModalFunctionProp
         if (window.confirm('삭제하시겠습니까?')) {
             const result = await axios({
                 method: 'DELETE',
-                url: '/delete',
+                url: '${process.env.REACT_APP_BASE_URL}/delete',
                 data: {
                     id: selectedStudyId
                 }

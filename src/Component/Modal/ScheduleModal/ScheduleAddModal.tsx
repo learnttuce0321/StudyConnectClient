@@ -37,7 +37,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
 
         const scheduleResult = await axios({
             method: 'POST',
-            url: 'schedule/add',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/schedule/add`,
             data: {
                 id,
                 name: inputname!.value.trim(),
@@ -50,7 +50,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
 
         const attendanceResult = await axios({
             method: 'POST',
-            url: 'attendance/add-schedule',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance/add-schedule`,
             data: {
                 users: userValue,
                 scheduleId: id,
@@ -60,7 +60,7 @@ export default function ScheduleAddModal({ ClickQuitHandler }: ModalFunctionProp
 
         const attendanceRateResult = await axios({
             method: 'PATCH',
-            url: 'attendance-rate/calculate-all',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance-rate/calculate-all`,
             data: {
                 studyId
             }

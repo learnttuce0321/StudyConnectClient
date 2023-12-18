@@ -45,7 +45,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const userResult = await axios({
             method: 'POST',
-            url: 'user/add',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/user/add`,
             data: {
                 id,
                 name: nameInput!.value,
@@ -59,7 +59,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const attendanceResult = await axios({
             method: 'POST',
-            url: 'attendance/add-user',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance/add-user`,
             data: {
                 schedules: scheduleValue,
                 userId: id,
@@ -69,7 +69,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const attendanceRateResult = await axios({
             method: 'POST',
-            url: 'attendance-rate/add',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance-rate/add`,
             data: {
                 userId: id,
                 studyId
@@ -78,7 +78,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const submitResult = await axios({
             method: 'POST',
-            url: 'submit/add-user',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit/add-user`,
             data: {
                 assignments: assignmentValue,
                 userId: id,
@@ -88,7 +88,7 @@ export default function UserAddModal({ ClickQuitHandler }: ModalFunctionProps) {
 
         const submitRateResult = await axios({
             method: 'POST',
-            url: 'submit-rate/add',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit-rate/add`,
             data: {
                 userId: id,
                 studyId

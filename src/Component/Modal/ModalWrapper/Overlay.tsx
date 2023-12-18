@@ -30,41 +30,41 @@ export default function Overlay({ ClickQuitHandler }: ModalFunctionProps) {
     const ModalContent = (): (JSX.Element | undefined) => {
         switch (modalValue.type) {
             case ModalState.ADD_ATTENDANCE:
-                return <ScheduleAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <ScheduleAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.MODIFY_ATTENDANCE:
-                return <ScheduleModifyModal ClickQuitHandler={ClickQuitHandler} />
+                return <ScheduleModifyModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.DELETE_ATTENDANCE:
-                return <ScheduleDeleteModal ClickQuitHandler={ClickQuitHandler} />
+                return <ScheduleDeleteModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.CHECK_SCHEDULE:
-                return <ScheduleCheckModal ClickQuitHandler={ClickQuitHandler} />
+                return <ScheduleCheckModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.ADD_MESSAGE:
-                return <MessageAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <MessageAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.CHECK_MESSAGE:
-                return <MessageCheckModal ClickQuitHandler={ClickQuitHandler} />
+                return <MessageCheckModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.ADD_USER:
-                return <UserAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <UserAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.FILTER_USER:
-                return <UserFindModal ClickQuitHandler={ClickQuitHandler} />
+                return <UserFindModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.ADD_ASSIGNMNET:
-                return <AssignmentAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <AssignmentAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.DELETE_ASSIGNMNET:
-                return <AssignmentDeleteModal ClickQuitHandler={ClickQuitHandler} />
+                return <AssignmentDeleteModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.MODIFY_ASSIGNMENT:
-                return <AssignmentModifyModal ClickQuitHandler={ClickQuitHandler} />
+                return <AssignmentModifyModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.CHECK_ASSIGNMENT:
-                return <AssignmentCheckModal ClickQuitHandler={ClickQuitHandler} />
+                return <AssignmentCheckModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.ADD_FINE:
-                return <FineAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <FineAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.DELETE_FINE:
-                return <FineDeleteModal ClickQuitHandler={ClickQuitHandler} />
+                return <FineDeleteModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.MODIFY_FINE:
-                return <FineModifyModal ClickQuitHandler={ClickQuitHandler} />
+                return <FineModifyModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.ADD_STUDY:
-                return <StudyAddModal ClickQuitHandler={ClickQuitHandler} />
+                return <StudyAddModal ClickQuitHandler={ClickQuitHandler} />;
             case ModalState.DELETE_STUDY:
-                return <StudyDeleteModal ClickQuitHandler={ClickQuitHandler} />
-        }
-    }
+                return <StudyDeleteModal ClickQuitHandler={ClickQuitHandler} />;
+        };
+    };
 
     return (
         <ModalCard>

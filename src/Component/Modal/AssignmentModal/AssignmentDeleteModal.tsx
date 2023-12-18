@@ -32,7 +32,7 @@ export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctio
         if (window.confirm('정말 삭제하시겠습니까?')) {
             const result = await axios({
                 method: 'DELETE',
-                url: 'assignment/delete',
+                url: '${process.env.REACT_APP_BASE_URL}/assignment/delete',
                 data: {
                     id: selectedAssignmentId
                 }
@@ -40,7 +40,7 @@ export default function AssignmentDeleteModal({ ClickQuitHandler }: ModalFunctio
 
             const submitRateResult = await axios({
                 method: 'PATCH',
-                url: 'submit-rate/calculate-all',
+                url: '${process.env.REACT_APP_BASE_URL}/submit-rate/calculate-all',
                 data: {
                     studyId
                 }

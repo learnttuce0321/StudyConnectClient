@@ -45,7 +45,7 @@ export default function AssignmentModifyModal({ ClickQuitHandler }: ModalFunctio
 
             const result = await axios({
                 method: 'PATCH',
-                url: 'assignment/update',
+                url: '${process.env.REACT_APP_BASE_URL}/assignment/update',
                 data: {
                     id: selectedAssignment!.id,
                     title: titleInput!.value,
