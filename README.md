@@ -20,6 +20,9 @@
 ### 목적
 - 스터디에서 모두가 필요하다고 느낄 기능을 갖추자.
 
+### 의의
+- 
+
 ## 서비스 화면
 
 <details>
@@ -91,6 +94,28 @@
 
 </details>
 
+## 설치 및 실행
+```
+git clone https://github.com/learnttuce0321/studyUserClient.git
+cd studyUserClient
+
+npm install 
+npm run start
+```
+
+## 기술 스택
+### 프론트
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-squart&logo=react&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-squart&logo=typescript&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Redux-764ABC?style=flat-squart&logo=redux&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Styledcomponents-DB7093?style=flat-squart&logo=styledcomponents&logoColor=white"/></a>
+
+## 백엔드
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=flat-squart&logo=express&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=flat-squart/"></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=flat-squart&logo=mysql&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=flat-squart&logo=amazonec2&logoColor=white"/></a>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=flat-squart&logo=amazonrds&logoColor=white"/></a>
 
 
 
