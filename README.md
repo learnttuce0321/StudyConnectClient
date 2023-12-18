@@ -1,5 +1,7 @@
 # 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
-<img width="613" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/44a29e47-f841-4953-98f9-b5ca2dd40956">
+<div align="center">
+  <img width="613" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/44a29e47-f841-4953-98f9-b5ca2dd40956">
+</div>
 
 ## 프로젝트 기간 및 인원
 
