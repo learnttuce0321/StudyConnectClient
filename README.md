@@ -1,11 +1,9 @@
 # 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
-> 1인 개발
->
-> <img width="300" alt="verda_logo" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3abb0b19-03da-4425-b3c8-cbe0b1afd7ca">
 
-## 프로젝트 기간
+## 프로젝트 기간 및 인원
 
 `2023.10.10 ~ 2023.10.31 (약 3주)`
+1인 개발
 
 ## 서비스 설명
 
@@ -94,6 +92,64 @@
 
 </details>
 
+## 주요 기능
+
+<details>
+  <summary>메인 페이지</summary>
+  - 스터디 추가•삭제 기능
+</details>
+
+<details>
+  <summary>스터디 페이지</summary>
+  
+  - 회원 정보(출석률, 과제제출률), 일정 요약 페이지
+  - 
+</details>
+
+<details>
+  <summary>회원 페이지</summary>
+  
+  - 스터디 회원 추가 
+  - 검색 기능 
+  - 회원 메모 기능
+
+</details>
+
+<details>
+  <summary>일정, 출석 페이지</summary>
+  
+  - 스터디 일정 추가 기능
+  - 스터디 일정 삭제 기능
+  - 스터디 일정 수정 기능
+  - 일정별 회원 출석 체크 기능
+    
+</details>
+
+<details>
+  <summary>과제, 제출 페이지</summary>
+  
+  - 스터디 과제 추가 기능
+  - 스터디 과제 삭제 기능
+  - 스터디 과제 수정 기능
+  - 과제별 회원 제출 체크 기능
+    
+</details>
+
+<details>
+  <summary>메시지 페이지</summary>
+  - 스터디 회원에게 메세지 작성 기능(카카오톡 전송)
+</details>
+
+<details>
+  <summary>벌금 페이지</summary>
+  
+  - 벌금 추가 기능
+  - 벌금 삭제 기능
+  - 벌금 수정 기능
+  - 벌금 제출 체크 기능
+  - 
+</details>
+
 ## 설치 및 실행
 ```
 git clone https://github.com/learnttuce0321/studyUserClient.git
@@ -120,13 +176,7 @@ npm run start
 ## 폴더구조
 <img width="344" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/9c0e8267-2f1b-4f8e-a563-06fb038e8102">
 
-## 주요 기능
-- 스터디 추가•삭제 기능
-- 스터디 회원 추가 및 검색 기능, 회원 메모 기능
-- 스터디 일정 추가•삭제•수정 기능, 일정별 회원 출석 체크 기능
-- 스터디 과체 추가•삭제•수정 기능, 과제별 회원 제출 체크 기능
-- 스터디 회원에게 메세지 작성 기능(카카오톡 전송)
-- 벌금 추가•삭제•수정 기능, 벌금 제출 체크 기능
+
 
 
 
