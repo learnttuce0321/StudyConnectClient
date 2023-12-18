@@ -117,6 +117,9 @@ npm run start
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=flat-squart&logo=amazonec2&logoColor=white"/></a>
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=flat-squart&logo=amazonrds&logoColor=white"/></a>
 
+## 폴더구조
+<img width="344" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/9c0e8267-2f1b-4f8e-a563-06fb038e8102">
+
 
 
 
