@@ -1,6 +1,7 @@
 import Td from "../../Table/Td"
 import styled from "styled-components"
 import axios from "axios"
+import { memo } from "react"
 import { useParams } from "react-router-dom"
 import { useAppDispatch } from "../../../store/hooks/storeHooks"
 import { attendanceActions } from "../../../store/attendance"
@@ -9,7 +10,11 @@ import type { Attendance } from "../../../store/attendance"
 import type { CheckAttendancePayload } from "../../../store/attendance"
 import type { CalculateAttendaceRatePayload } from "../../../store/attendanceRate"
 
-export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
+const isEqual = (prev: Readonly<{ attendance: Attendance }>, next: Readonly<{ attendance: Attendance }>): boolean => {
+    return prev.attendance.isAttended === next.attendance.isAttended;
+};
+
+export default memo(function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
     const dispatch = useAppDispatch()
 
     const { studyId } = useParams()
@@ -17,7 +22,7 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
     const AttendClickHandler = async (): Promise<any> => {
         const attendanceResult = await axios({
             method: 'PATCH',
-            url: 'attendance/check',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance/check`,
             data: {
                 scheduleId: attendance.scheduleId,
                 userId: attendance.userId,
@@ -27,7 +32,7 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
 
         const attendanceRateResult = await axios({
             method: 'PATCH',
-            url: 'attendance-rate/calculate',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance-rate/calculate`,
             data: {
                 userId: attendance.userId,
                 studyId
@@ -54,8 +59,53 @@ export default function AttendanceTableItem({ attendance }: { attendance: Attend
             <label htmlFor={attendance.scheduleId + attendance.userId} />
         </Td>
     )
-}
+}, isEqual)
+// export default function AttendanceTableItem({ attendance }: { attendance: Attendance }) {
+//     const dispatch = useAppDispatch()
 
+//     const { studyId } = useParams()
+
+//     const AttendClickHandler = async (): Promise<any> => {
+//         const attendanceResult = await axios({
+//             method: 'PATCH',
+//             url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance/check`,
+//             data: {
+//                 scheduleId: attendance.scheduleId,
+//                 userId: attendance.userId,
+//                 isAttended: attendance.isAttended
+//             }
+//         })
+
+//         const attendanceRateResult = await axios({
+//             method: 'PATCH',
+//             url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/attendance-rate/calculate`,
+//             data: {
+//                 userId: attendance.userId,
+//                 studyId
+//             }
+//         })
+
+//         if (attendanceResult.data.result && attendanceRateResult.data.result) {
+//             const checkAttendancePayload: CheckAttendancePayload = {
+//                 scheduleId: attendance.scheduleId,
+//                 userId: attendance.userId
+//             }
+//             dispatch(attendanceActions.checkAttendance(checkAttendancePayload))
+
+//             const calculateAttendanceRatePayload: CalculateAttendaceRatePayload = {
+//                 userAttendanceRate: attendanceRateResult.data.data
+//             }
+//             dispatch(attendanceRateActions.CalculateAttendanceRate(calculateAttendanceRatePayload))
+//         }
+//     }
+
+//     return (
+//         <Td key={attendance.userId}>
+//             <Item type="checkbox" onChange={AttendClickHandler} id={attendance.scheduleId + attendance.userId} checked={attendance.isAttended} />
+//             <label htmlFor={attendance.scheduleId + attendance.userId} />
+//         </Td>
+//     )
+// }
 const Item = styled.input`
     &{
         display: none;

@@ -8,9 +8,13 @@ import { submitActions } from "../../../store/submit";
 import { submitRateActions } from "../../../store/submitRate";
 import type { CheckSubmitPayload } from "../../../store/submit";
 import type { CalculateSubmitRatePayload } from "../../../store/submitRate";
+import { memo } from "react";
 
+const isEqual = (prev: Readonly<{ submit: Submit }>, next: Readonly<{ submit: Submit }>): boolean => {
+    return prev.submit.isSubmitted === next.submit.isSubmitted
+}
 
-export default function SubmitTableItem({ submit }: { submit: Submit }) {
+export default memo(function SubmitTableItem({ submit }: { submit: Submit }) {
     const dispatch = useAppDispatch()
 
     const { studyId } = useParams()
@@ -18,7 +22,7 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
     const ClickAssignmentCheckHandler = async (): Promise<any> => {
         const submitResult = await axios({
             method: 'PATCH',
-            url: 'submit/check',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit/check`,
             data: {
                 userId: submit.userId,
                 assignmentId: submit.assignmentId,
@@ -28,7 +32,7 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
 
         const submitRateResult = await axios({
             method: 'PATCH',
-            url: 'submit-rate/calculate',
+            url: `${process.env.REACT_APP_BASE_URL}/study/${studyId}/submit-rate/calculate`,
             data: {
                 userId: submit.userId,
                 studyId
@@ -55,7 +59,7 @@ export default function SubmitTableItem({ submit }: { submit: Submit }) {
             <label htmlFor={submit.assignmentId + submit.userId} />
         </Td>
     )
-}
+}, isEqual)
 
 const Item = styled.input`
     &{

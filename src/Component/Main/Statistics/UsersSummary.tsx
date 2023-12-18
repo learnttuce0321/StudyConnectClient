@@ -1,30 +1,40 @@
 import { faUser, faCheck, faBook } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components"
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppSelector } from '../../../store/hooks/storeHooks';
+import { shallowEqual } from "react-redux";
 
 export default function UsersSummary() {
     const userValue = useAppSelector(state => state.user)
-    const attendanceRateValue = useAppSelector(state => state.attendaceRate)
-    const submitRateValue = useAppSelector(state => state.submitRate)
+    const attendanceRateValue = useAppSelector(state => state.attendaceRate, shallowEqual)
+    const submitRateValue = useAppSelector(state => state.submitRate, shallowEqual)
 
     const { studyId } = useParams()
 
     const navigate = useNavigate()
 
-    const totalAttendanceRate: string = useMemo(() => {
-        const userLength: number = userValue.length
-        const attendanceRateTotal: number = attendanceRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
-        return (attendanceRateTotal / userLength).toFixed(1)
-    }, [attendanceRateValue, userValue])
+    // const totalAttendanceRate: string = useMemo(() => {
+    //     const userLength: number = userValue.length
+    //     const attendanceRateTotal: number = attendanceRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+    //     return (attendanceRateTotal / userLength).toFixed(1)
+    // }, [attendanceRateValue, userValue])
 
-    const totalSubmitRate: string = useMemo(() => {
-        const userLength: number = userValue.length
-        const submitRateTotal: number = submitRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
-        return (submitRateTotal / userLength).toFixed(1)
-    }, [submitRateValue, userValue])
+    // const totalSubmitRate: string = useMemo(() => {
+    //     const userLength: number = userValue.length
+    //     const submitRateTotal: number = submitRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+    //     return (submitRateTotal / userLength).toFixed(1)
+    // }, [submitRateValue, userValue])
+
+    const userLength1: number = userValue.length
+    const attendanceRateTotal: number = attendanceRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+    const totalAttendanceRate = (attendanceRateTotal / userLength1).toFixed(1)
+
+    const userLength2: number = userValue.length
+    const submitRateTotal: number = submitRateValue.reduce((accu, curr) => accu = accu + Number(curr.rate), 0)
+    const totalSubmitRate: string = (submitRateTotal / userLength2).toFixed(1)
+
 
     return (
         <CardContainer>
