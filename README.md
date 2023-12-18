@@ -1,11 +1,11 @@
 # 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
-> 1인 개
+> 1인 개발
 >
 > <img width="300" alt="verda_logo" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3abb0b19-03da-4425-b3c8-cbe0b1afd7ca">
 
 ## 프로젝트 기간
 
-`2023.10.10 ~ 2023.10.31 (약 3)`
+`2023.10.10 ~ 2023.10.31 (약 3주)`
 
 ## 서비스 설명
 
