@@ -1,4 +1,4 @@
-<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/80610c8e-c3a7-44a5-b2fd-223c9d706e63"><img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3f6e878c-acbb-43c1-885b-11a97a4eed19"># 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
+# 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
 > 1인 개
 >
 > <img width="300" alt="verda_logo" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3abb0b19-03da-4425-b3c8-cbe0b1afd7ca">
