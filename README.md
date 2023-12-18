@@ -1,45 +1,65 @@
-# Getting Started with Create React App
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/80610c8e-c3a7-44a5-b2fd-223c9d706e63"><img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3f6e878c-acbb-43c1-885b-11a97a4eed19"># 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
+> 1인 개
+>
+> <img width="300" alt="verda_logo" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/3abb0b19-03da-4425-b3c8-cbe0b1afd7ca">
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 프로젝트 기간
 
-## Available Scripts
+`2023.10.10 ~ 2023.10.31 (약 3)`
 
-In the project directory, you can run:
+## 서비스 설명
 
-### `npm start`
+### 개요
+서비스명 : 스터디커넥트(StudyConnect)
+한 줄 설명 : 노션과 같은 외부 서비스를 이용하지 않고, 스터디를 진행하며 기본적으로 필요한 출석, 과제 등의 기능을 제공하는 서비스
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 기획 배경
+- 스터디를 진행하기 위해선 회원등록, 출석, 과제 등을 기록할 수 있는 것들이 필요함.
+- 노션과 같은 외부 서비스를 이용할 수 있지만, 필요한 템플릿을 찾거나 직접 만들어 사용해야 하므로 불편함.
 
-### `npm test`
+### 목적
+- 스터디에서 모두가 필요하다고 느낄 기능을 갖추자.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 서비스 화면
+- 메이페이지
 
-### `npm run build`
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/5b555ffc-ca76-4e8d-8d09-deeffe3dcf37">
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- 스터디 페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/610e645f-77f9-4960-bc86-2e374f30727e">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- 회원 페이지
 
-### `npm run eject`
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/82e4033a-d006-4611-9b1d-97a09965569b">
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- 메시지 페이지
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/f1096120-4684-49a2-bc79-9b6a4632ef93">
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- 일정, 출석 페이지
 
-## Learn More
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/8294752d-181a-4645-a381-b1a3c03926fa">
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/abe997b9-ccd2-4ffc-87bb-45b5d21413c6">
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- 과제 페이지
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/56e4cc92-a07b-4a11-9a62-34e320e5ee10">
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/8b54d945-710e-44d4-983a-df9defcf965d">
+
+- 벌금 페이지
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/9ac547d0-5a27-4fea-a711-dd88ae8462bf">
+
+- 각 페이지 데이터 추가, 삭제, 수정, 검색 모달
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/47877119-7201-47ab-98c0-ec78b5d08850">
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/b6bf1e5b-18cc-43c1-a215-725320e0ad70">
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/fc4b701a-35a2-4c1b-85d6-9350eb598e64">
+<img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/973c0799-caa2-42f8-a145-51237483483c">
+
+
+
+
+
+
+
