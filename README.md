@@ -15,7 +15,7 @@
 
 ## 1.📱 StudyConnect소개
 <div align="center">
-  
+  <img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/82e4033a-d006-4611-9b1d-97a09965569b">
 </div>
 
 스터디를 원활하게 진행하기 위해서는 인원, 출석, 과제, 벌금 등 관리해야 할 것들이 많습니다. notion 등과 같은 외부 프로그램을 사용하기 위해서는, 템플릿이 직접만들거나 구입하여 사용해야 합니다. 좀더 간단하고 쉽게, 무료로 스터디를 관리할 수 있도록 만들어진 서비스입니다.
@@ -123,7 +123,7 @@
     <td align="center">Back-End</td>
     <td>
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=for-the-badge/"></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=for-the-badge&logo=typeorm&logoColor=white"/"></a>&nbsp
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/></a>&nbsp
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"/></a>&nbsp
 <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"/></a>&nbsp
@@ -148,7 +148,7 @@
 
 <details>
 
-<summary>메이페이지</summary>
+<summary>메인페이지</summary>
 
 <img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/5b555ffc-ca76-4e8d-8d09-deeffe3dcf37">
 
