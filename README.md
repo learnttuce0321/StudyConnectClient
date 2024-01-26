@@ -36,6 +36,7 @@
   </tbody>
 </table>
 
+<br />
 
 ### 주요 기능
 
@@ -112,20 +113,20 @@
   <tr>
     <td align="center">Front-End</td>
     <td>
-      <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-squart&logo=react&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-squart&logo=typescript&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Redux-764ABC?style=flat-squart&logo=redux&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Styledcomponents-DB7093?style=flat-squart&logo=styledcomponents&logoColor=white"/></a>&nbsp
+      <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Styledcomponents-DB7093?style=for-the-badge&logo=styledcomponents&logoColor=white"/></a>&nbsp
     </td>
   </tr>
   <tr>
     <td align="center">Back-End</td>
     <td>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=flat-squart&logo=express&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=flat-squart/"></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=flat-squart&logo=mysql&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=flat-squart&logo=amazonec2&logoColor=white"/></a>&nbsp
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=flat-squart&logo=amazonrds&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=for-the-badge/"></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=for-the-badge&logo=mysql&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=for-the-badge&logo=amazonec2&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=for-the-badge&logo=amazonrds&logoColor=white"/></a>&nbsp
     </td>
   </tr>
   <tr>
@@ -214,6 +215,8 @@
 
 </details>
 
+<br />
+
 ## 6.📜 폴더 구조
 ### Front-End
 ```
@@ -262,7 +265,7 @@ client/src
 └─utils
 ```
 
-### BackEnd
+### Back-End
 ```
 server/src
 ├─config
@@ -273,8 +276,32 @@ server/src
 └─swagger
 ```
 
+<br />
+
 ## 7.⭐️ 핵심 코드
 
+### Front-End
+#### 리렌더링 최적화
+불필요한 리렌더링을 막기 위해 memo훅을 사용하였으며, 비교함수를 custom하여 사용
+
+```
+const isEqual = (prev: Readonly<{ submit: Submit }>, next: Readonly<{ submit: Submit }>): boolean => {
+    return prev.submit.isSubmitted === next.submit.isSubmitted
+}
+
+export default memo(function SubmitTableItem({ submit }: { submit: Submit }) {
+  ...
+}, isEqual)
+```
+
+### Back-End
+#### MVC 모델 적용
+비지니스 로직과 UI로직을 분리하여 유지보수를 쉽게 할 수 있음
+
+<div align="center">
+  <img width="179" alt="image" src="https://github.com/learnttuce0321/StudyConnectClient/assets/138414160/a8fd88f4-003c-46e0-809d-425da5a1876d">
+  <img width="183" alt="image" src="https://github.com/learnttuce0321/StudyConnectClient/assets/138414160/4a03c0f8-7ee5-41a8-83e9-ed43a78eff61">
+</div>
 
 
 
