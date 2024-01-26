@@ -37,18 +37,20 @@
 </table>
 
 
-## 주요 기능
+### 주요 기능
 
 <details>
   <summary>메인 페이지</summary>
+  
   - 스터디 추가•삭제 기능
+    
 </details>
 
 <details>
   <summary>스터디 페이지</summary>
   
   - 회원 정보(출석률, 과제제출률), 일정 요약 페이지
-  - 
+    
 </details>
 
 <details>
@@ -82,7 +84,9 @@
 
 <details>
   <summary>메시지 페이지</summary>
+  
   - 스터디 회원에게 메세지 작성 기능(카카오톡 전송)
+    
 </details>
 
 <details>
@@ -92,7 +96,7 @@
   - 벌금 삭제 기능
   - 벌금 수정 기능
   - 벌금 제출 체크 기능
-  - 
+    
 </details>
 
 <br />
@@ -210,34 +214,66 @@
 
 </details>
 
-## 설치 및 실행
+## 6.📜 폴더 구조
+### Front-End
 ```
-git clone https://github.com/learnttuce0321/studyUserClient.git
-cd studyUserClient
-
-npm install 
-npm run start
+client/src
+├─Component
+│  ├─Assignment
+│  │  ├─AssignmentTable
+│  │  ├─Content
+│  │  └─SubmitTable
+│  ├─Fine
+│  │  └─FineTable
+│  ├─Main
+│  │  ├─Statistics
+│  │  ├─UsersSummary
+│  │  └─UsersSummaryTable
+│  ├─Message
+│  │  └─MessageTable
+│  ├─Modal
+│  │  ├─ActiveModalButtonWrapper
+│  │  ├─AssignmentModal
+│  │  ├─FineModal
+│  │  ├─MessageModal
+│  │  ├─ModalInputItem
+│  │  ├─ModalWrapper
+│  │  ├─ScheduleModal
+│  │  ├─StudyModal
+│  │  └─UserModal
+│  ├─Navigation
+│  │  ├─MainNavigation
+│  │  └─SubNavigation
+│  ├─RouteComponent
+│  │  └─Router
+│  ├─Schedule
+│  │  ├─AttendanceTable
+│  │  ├─Content
+│  │  └─ScheduleTable
+│  ├─Table
+│  ├─User
+│  │  ├─Summary
+│  │  ├─UserAssignmentTable
+│  │  ├─UserAttendanceTable
+│  │  └─UsersTable
+│  └─Wrapper
+├─store
+│  └─hooks
+└─utils
 ```
 
-## 기술 스택
-### 프론트
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-squart&logo=react&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-squart&logo=typescript&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Redux-764ABC?style=flat-squart&logo=redux&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Styledcomponents-DB7093?style=flat-squart&logo=styledcomponents&logoColor=white"/></a>
+### BackEnd
+```
+server/src
+├─config
+├─controll
+├─model
+├─router
+├─server
+└─swagger
+```
 
-## 백엔드
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=flat-squart&logo=express&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=flat-squart/"></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=flat-squart&logo=mysql&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=flat-squart&logo=amazonec2&logoColor=white"/></a>
-<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=flat-squart&logo=amazonrds&logoColor=white"/></a>
-
-## 폴더구조
-<img width="344" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/9c0e8267-2f1b-4f8e-a563-06fb038e8102">
-
-
-
+## 7.⭐️ 핵심 코드
 
 
 
