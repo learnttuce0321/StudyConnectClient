@@ -1,30 +1,145 @@
 # 스터디를 위한 기본기능 제공 서비스 : 스터디커넥트(StudyConnect)
+---
+## 목차
+<details>
+  <summary>목차</summary>
+
+  1. StudyConnect 소개
+  2. 팀원 소개
+  3. 개발 기간
+  4. 기술 스택
+  5. 서비스 화면면
+  6. 폴더 구조
+  7. 핵심 코드
+</details>
+
+## 1.📱 StudyConnect소개
 <div align="center">
-  <img width="613" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/44a29e47-f841-4953-98f9-b5ca2dd40956">
+  
 </div>
 
-## 프로젝트 기간 및 인원
+스터디를 원활하게 진행하기 위해서는 인원, 출석, 과제, 벌금 등 관리해야 할 것들이 많습니다. notion 등과 같은 외부 프로그램을 사용하기 위해서는, 템플릿이 직접만들거나 구입하여 사용해야 합니다. 좀더 간단하고 쉽게, 무료로 스터디를 관리할 수 있도록 만들어진 서비스입니다.
 
-- `2023.10.10 ~ 2023.10.31 (약 3주)`
-- 1인 개발
+스터디를 만들수 있습니다. 스터디내에서는 인원 추가, 검색 및 메모가 가능합니다. 이외에도 일정 및 출석 관리, 과제 및 과제 제출 관리, 벌금 관리, 카카오톡 메세지 전송을 할 수 있습니다.
 
-## 서비스 설명
+<br />
 
-### 개요
-- 서비스명 : 스터디커넥트(StudyConnect)
-- 한 줄 설명 : 노션과 같은 외부 서비스를 이용하지 않고, 스터디를 진행하며 기본적으로 필요한 출석, 과제 등의 기능을 제공하는 서비스
+## 2.🤼 팀원 소개
+<table>
+  <tbody>
+    <tr>
+      <th scope="col" colspan="3">프론트엔드 및 백엔드</th>
+    </tr>
+    <tr>
+      <td align="center"><a href="https://github.com/learnttuce0321"><img src="https://github.com/learnttuce0321.png" width="100px;" alt=""/><br /><b>주상후</b></a><br /></td>
+    </tr>
+  </tbody>
+</table>
 
-### 기획 배경
-- 스터디를 진행하기 위해선 회원등록, 출석, 과제 등을 기록할 수 있는 것들이 필요함.
-- 노션과 같은 외부 서비스를 이용할 수 있지만, 필요한 템플릿을 찾거나 직접 만들어 사용해야 하므로 불편함.
 
-### 목적
-- 스터디에서 모두가 필요하다고 느낄 기능을 갖추자.
+## 주요 기능
 
-### 의의
-- 
+<details>
+  <summary>메인 페이지</summary>
+  - 스터디 추가•삭제 기능
+</details>
 
-## 서비스 화면
+<details>
+  <summary>스터디 페이지</summary>
+  
+  - 회원 정보(출석률, 과제제출률), 일정 요약 페이지
+  - 
+</details>
+
+<details>
+  <summary>회원 페이지</summary>
+  
+  - 스터디 회원 추가 
+  - 검색 기능 
+  - 회원 메모 기능
+
+</details>
+
+<details>
+  <summary>일정, 출석 페이지</summary>
+  
+  - 스터디 일정 추가 기능
+  - 스터디 일정 삭제 기능
+  - 스터디 일정 수정 기능
+  - 일정별 회원 출석 체크 기능
+    
+</details>
+
+<details>
+  <summary>과제, 제출 페이지</summary>
+  
+  - 스터디 과제 추가 기능
+  - 스터디 과제 삭제 기능
+  - 스터디 과제 수정 기능
+  - 과제별 회원 제출 체크 기능
+    
+</details>
+
+<details>
+  <summary>메시지 페이지</summary>
+  - 스터디 회원에게 메세지 작성 기능(카카오톡 전송)
+</details>
+
+<details>
+  <summary>벌금 페이지</summary>
+  
+  - 벌금 추가 기능
+  - 벌금 삭제 기능
+  - 벌금 수정 기능
+  - 벌금 제출 체크 기능
+  - 
+</details>
+
+<br />
+
+## 3.📆 개발 기간
+> **2023.10.10 ~ 2023.10.31 (총 22일)**
+
+<br />
+
+## 4.⚙️ 기술 스택
+### 기술 스택
+<table>
+  <tr>
+    <td align="center">Front-End</td>
+    <td>
+      <a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/React-61DAFB?style=flat-squart&logo=react&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Typescript-3178C6?style=flat-squart&logo=typescript&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Redux-764ABC?style=flat-squart&logo=redux&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Styledcomponents-DB7093?style=flat-squart&logo=styledcomponents&logoColor=white"/></a>&nbsp
+    </td>
+  </tr>
+  <tr>
+    <td align="center">Back-End</td>
+    <td>
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Express-000000?style=flat-squart&logo=express&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/TypeOrm-262626?style=flat-squart/"></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Mysql-4479A1?style=flat-squart&logo=mysql&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonec2-FF9900?style=flat-squart&logo=amazonec2&logoColor=white"/></a>&nbsp
+<a href="https://github.com/learnttuce0321" target="_blank"><img src="https://img.shields.io/badge/Amazonrds-527FFF?style=flat-squart&logo=amazonrds&logoColor=white"/></a>&nbsp
+    </td>
+  </tr>
+  <tr>
+     <td align="center">디자인</td>
+     <td>
+       <span><img src="https://img.shields.io/badge/Figma-d90f42?style=for-the-badge&logo=Figma&logoColor=white"/></span>&nbsp
+     </td>
+  </tr>
+  <tr>
+   <td align="center">IDE</td>
+   <td>
+      <span><img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white"/></span>&nbsp
+  </tr>
+</table>
+
+<br />
+
+## 5.🔧 서비스 화면
 
 <details>
 
@@ -93,64 +208,6 @@
 <img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/fc4b701a-35a2-4c1b-85d6-9350eb598e64">
 <img width="1280" alt="image" src="https://github.com/learnttuce0321/studyUserClient/assets/138414160/973c0799-caa2-42f8-a145-51237483483c">
 
-</details>
-
-## 주요 기능
-
-<details>
-  <summary>메인 페이지</summary>
-  - 스터디 추가•삭제 기능
-</details>
-
-<details>
-  <summary>스터디 페이지</summary>
-  
-  - 회원 정보(출석률, 과제제출률), 일정 요약 페이지
-  - 
-</details>
-
-<details>
-  <summary>회원 페이지</summary>
-  
-  - 스터디 회원 추가 
-  - 검색 기능 
-  - 회원 메모 기능
-
-</details>
-
-<details>
-  <summary>일정, 출석 페이지</summary>
-  
-  - 스터디 일정 추가 기능
-  - 스터디 일정 삭제 기능
-  - 스터디 일정 수정 기능
-  - 일정별 회원 출석 체크 기능
-    
-</details>
-
-<details>
-  <summary>과제, 제출 페이지</summary>
-  
-  - 스터디 과제 추가 기능
-  - 스터디 과제 삭제 기능
-  - 스터디 과제 수정 기능
-  - 과제별 회원 제출 체크 기능
-    
-</details>
-
-<details>
-  <summary>메시지 페이지</summary>
-  - 스터디 회원에게 메세지 작성 기능(카카오톡 전송)
-</details>
-
-<details>
-  <summary>벌금 페이지</summary>
-  
-  - 벌금 추가 기능
-  - 벌금 삭제 기능
-  - 벌금 수정 기능
-  - 벌금 제출 체크 기능
-  - 
 </details>
 
 ## 설치 및 실행
